@@ -1,0 +1,9 @@
+<resources>
+    <style name="LaunchTheme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#0e50df</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/iconchatx3</item> <item name="windowSplashScreenAnimationDuration">1000</item>
+        
+        <item name="postSplashScreenTheme">@style/NormalTheme</item>
+    </style>
+    
+    </resources>
