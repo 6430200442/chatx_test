@@ -30,7 +30,7 @@ class ChatBubble extends StatelessWidget {
           mainAxisAlignment:
               isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
           children: [
-            if (!isSender) ...[
+            if (showAvatarAndName && !isSender) ...[
               CircleAvatar(
                 radius: 14,
                 backgroundImage: AssetImage(senderImage),
@@ -38,7 +38,7 @@ class ChatBubble extends StatelessWidget {
               const SizedBox(width: 4),
               Text(senderName),
             ],
-            if (isSender) ...[
+            if (showAvatarAndName && isSender) ...[
               Text(senderName),
               const SizedBox(width: 4),
               CircleAvatar(

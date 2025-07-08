@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:chatx_test/widget/message_input_bar.dart';
 //import 'package:chatx_test/widget/emoji_button.dart';
 //import 'package:chatx_test/model/chat_detail_message.dart';
-// import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 
 class ChatDetailPage extends StatefulWidget {
   final ChatDetailMessage chatDetail;
@@ -21,7 +21,7 @@ class ChatDetailPage extends StatefulWidget {
 
 class _ChatDetailPageState extends State<ChatDetailPage> {
   final TextEditingController _messageController = TextEditingController();
-  // final FocusNode _focusNode = FocusNode();
+  //final FocusNode _focusNode = FocusNode();
   bool _showEmojiBar = false;
 
   void _handleSend() {
@@ -41,8 +41,8 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
       status: 'have agent',
       channel: widget.chatDetail.channel,
       agentId: widget.chatDetail.agentId,
-      agentImage: widget.chatDetail.agentImage,
-      agentName: widget.chatDetail.agentName,
+      agentImage: OwnerInfo.ownerImage,
+      agentName: OwnerInfo.ownerName,
     );
     setState(() {
       mockChatDetailData.add(newMsg);
@@ -57,13 +57,13 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
     });
   }
 
-  // void _onEmojiSelected(String emoji) {
-  //   _messageController.text += emoji;
-  //   _messageController.selection = TextSelection.fromPosition(
-  //     TextPosition(offset: _messageController.text.length),
-  //   );
-  //   setState(() {});
-  // }
+  void _onEmojiSelected(String emoji) {
+    _messageController.text += emoji;
+    _messageController.selection = TextSelection.fromPosition(
+      TextPosition(offset: _messageController.text.length),
+    );
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +74,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
 
     return Scaffold(
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.white),
         titleSpacing: 0,
         title: Row(
           children: [
@@ -123,27 +124,17 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
               ),
             ),
 
-            /// Emoji Picker
-            // if (_showEmojiBar)
-            //   SizedBox(
-            //     height: 300,
-            //     child: EmojiPicker(
-            //       onEmojiSelected: (category, emoji) {
-            //         _onEmojiSelected(emoji.emoji);
-            //       },
-            //       config: const Config(
-            //         columns: 7,
-            //         emojiSizeMax: 32,
-            //         verticalSpacing: 0,
-            //         horizontalSpacing: 0,
-            //         initCategory: Category.SMILEYS,
-            //         bgColor: Color(0xFFF2F2F2),
-            //         indicatorColor: Colors.pink,
-            //         iconColorSelected: Colors.pink,
-            //         backspaceColor: Colors.red,
-            //       ),
-            //     ),
-            //   ),
+            // Emoji Picker
+            if (_showEmojiBar)
+              SizedBox(
+                height: 300,
+                child: EmojiPicker(
+                  onEmojiSelected: (category, emoji) {
+                    _onEmojiSelected(emoji.emoji);
+                  },
+                  
+                ),
+              ),
             MessageInputBar(
               controller: _messageController,
               onSend: _handleSend,

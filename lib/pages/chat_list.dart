@@ -12,6 +12,7 @@ import 'package:chatx_test/widget/chat_item.dart';
 import 'package:chatx_test/controller/chat_controller.dart';
 import 'package:chatx_test/widget/status_dropdown.dart';
 import 'package:chatx_test/constant/app_constants.dart';
+import 'package:chatx_test/widget/filter_dialog.dart';
 
 class ChatListPage extends StatefulWidget {
   const ChatListPage({super.key});
@@ -25,6 +26,7 @@ class _ChatListPageState extends State<ChatListPage> {
   String? selectedChannel = 'All Channel';
   String? selectedAgent = 'All Agents';
   String? selectedStatus = 'All Status';
+  bool _showFilterBar = false;
 
   @override
   void initState() {
@@ -34,11 +36,29 @@ class _ChatListPageState extends State<ChatListPage> {
 
   void filterChats() {
     chatController.filter(
-      search: chatController.searchController.text,
-      channel: selectedChannel,
-      agent: selectedAgent,
-      status: selectedStatus
+        search: chatController.searchController.text,
+        channel: selectedChannel,
+        agent: selectedAgent,
+        status: selectedStatus);
+  }
+
+  void _showFilterDialog() async {
+    final result = await showDialog<Map<String, String?>>(
+      context: context,
+      builder: (context) => FilterDialog(
+        selectedChannel: selectedChannel,
+        selectedAgent: selectedAgent,
+        selectedStatus: selectedStatus,
+      ),
     );
+    if (result != null) {
+      setState(() {
+        selectedChannel = result['channel'];
+        selectedAgent = result['agent'];
+        selectedStatus = result['status'];
+        filterChats();
+      });
+    }
   }
 
   @override
@@ -64,61 +84,77 @@ class _ChatListPageState extends State<ChatListPage> {
             const SizedBox(height: 6.0),
             Container(
               color: Colors.white,
-              child: SearchBox(
-                controller: chatController.searchController,
-                onSearch: () {
-                  filterChats();
-                },
-              ),
-            ),
-            const SizedBox(height: 2.0),
-            Container(
-              color: Colors.white,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
-                    child: ChannelDropdown(
-                      channels: ChannelList.channels,
-                      selectedChannel: selectedChannel,
-                      onChanged: (String? value) {
-                        setState(() {
-                          selectedChannel = value;
-                          filterChats();
-                        });
+                    child: SearchBox(
+                      controller: chatController.searchController,
+                      onSearch: () {
+                        filterChats();
                       },
-                      borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
-                  Expanded(
-                    child: AgentDropdown(
-                      agents: AgentList.agents,
-                      selectedAgent: selectedAgent,
-                      onChanged: (String? value) {
-                        setState(() {
-                          selectedAgent = value;
-                          filterChats();
-                        });
-                      },
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                  ),
-                  Expanded(
-                    child: StatusDropdown(
-                      statuses: StatusList.statuses,
-                      selectedStatus: selectedStatus,
-                      onChanged: (String? value) {
-                        setState(() {
-                          selectedStatus = value;
-                          filterChats();
-                        });
-                      },
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
+                  IconButton(
+                    icon: const Icon(Icons.filter_list),
+                    onPressed: () {
+                      setState(() {
+                        _showFilterBar = !_showFilterBar;
+                      });
+                    },
                   ),
                 ],
               ),
             ),
+            if (_showFilterBar)
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: ChannelDropdown(
+                        channels: ChannelList.channels,
+                        selectedChannel: selectedChannel,
+                        onChanged: (value) {
+                          setState(() {
+                            selectedChannel = value;
+                            filterChats();
+                          });
+                        },
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: AgentDropdown(
+                        agents: AgentList.agents,
+                        selectedAgent: selectedAgent,
+                        onChanged: (value) {
+                          setState(() {
+                            selectedAgent = value;
+                            filterChats();
+                          });
+                        },
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: StatusDropdown(
+                        statuses: StatusList.statuses,
+                        selectedStatus: selectedStatus,
+                        onChanged: (value) {
+                          setState(() {
+                            selectedStatus = value;
+                            filterChats();
+                          });
+                        },
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             const SizedBox(height: 2.0),
             Expanded(
               child: ValueListenableBuilder<List<ChatMessage>>(

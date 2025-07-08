@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color primaryColor = Color.fromARGB(255, 254, 105, 110);
+  static const Color primaryColor = Color.fromARGB(255, 14, 80, 223);
   static const Color white = Colors.white;
   static const Color grey = Colors.grey;
   static const Color background = Color(0xFFF5F5F5);
@@ -34,4 +34,9 @@ class StatusList {
     'have agent',
     'done',
   ];
+}
+
+class OwnerInfo {
+  static const String ownerName = 'Me';
+  static const String ownerImage = 'assets/imgs/agent1.jpg';
 }

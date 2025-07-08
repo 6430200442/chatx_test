@@ -27,13 +27,19 @@ android {
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
+    }
+
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '17'
     }
 
     sourceSets {
@@ -58,6 +64,10 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+}
+
+kotlin {
+        jvmToolchain(17) // 👈 เพิ่มบรรทัดนี้ (สำคัญมาก)
 }
 
 flutter {
