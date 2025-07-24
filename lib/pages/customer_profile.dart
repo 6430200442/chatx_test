@@ -1,18 +1,20 @@
+import 'package:chatx_test/model/customer_profile.dart';
 import 'package:chatx_test/widget/customer_profile_avatar.dart';
 import 'package:chatx_test/widget/customer_profile_header.dart';
 import 'package:chatx_test/widget/customer_profile_note.dart';
 import 'package:chatx_test/widget/customer_profile_detail.dart';
 import 'package:chatx_test/widget/customer_profile_tag.dart';
 import 'package:flutter/material.dart';
-import 'package:chatx_test/model/chat_detail_message.dart';
-// import 'package:chatx_test/model/customer_profile_tag.dart';
+// import 'package:chatx_test/model/chat_detail_message.dart';
+// import 'package:chatx_test/model/customer_profile.dart';
 import 'package:chatx_test/widget/customer_profile_gallery.dart';
 
 class CustomerProfilePage extends StatefulWidget {
-  final ChatDetailMessage customerProfile;
+  final CustomerProfile customerHeaderProfile;
+
   final ScrollController scrollController;
 
-  const CustomerProfilePage({Key? key, required this.customerProfile, required this.scrollController}) : super(key: key);
+  const CustomerProfilePage({Key? key, required this.customerHeaderProfile, required this.scrollController}) : super(key: key);
 
   @override
   State<CustomerProfilePage> createState() => _CustomerProfilePageState();
@@ -37,7 +39,7 @@ class _CustomerProfilePageState extends State<CustomerProfilePage> {
               const SizedBox(
                 height: 70,
               ),
-              CustomerProfileHeader(profile: widget.customerProfile),
+              CustomerProfileHeader(profile: widget.customerHeaderProfile),
               const CustomerProfileDetail(),
               const CustomerProfileNote(),
               const CustomerProfileTag(),
@@ -48,7 +50,7 @@ class _CustomerProfilePageState extends State<CustomerProfilePage> {
         Positioned(
           top: -75,
           left: (MediaQuery.of(context).size.width / 2) - 75,
-          child: CustomerProfileAvatar(imagePath: widget.customerProfile.customerImage,)
+          child: CustomerProfileAvatar(imagePath: widget.customerHeaderProfile.customerImage,)
         ),
       ],
     );

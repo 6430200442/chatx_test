@@ -44,7 +44,8 @@ class _CustomerProfileGalleryState extends State<CustomerProfileGallery> {
               'View all',
               style: TextStyle(
                   fontWeight: FontWeight.normal,
-                  decoration: TextDecoration.underline
+                  decoration: TextDecoration.underline,
+                  color: Colors.grey,
               ),
             ),
             ),

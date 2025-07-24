@@ -1,8 +1,10 @@
-import 'package:chatx_test/model/chat_detail_message.dart';
+// import 'package:chatx_test/model/chat_detail_message.dart';
 import 'package:flutter/material.dart';
+import 'package:chatx_test/model/customer_profile.dart';
 
 class CustomerProfileHeader extends StatelessWidget {
-  final ChatDetailMessage profile;
+  final CustomerProfile profile;
+  
   const CustomerProfileHeader({Key? key, required this.profile})
       : super(key: key);
 
@@ -11,7 +13,7 @@ class CustomerProfileHeader extends StatelessWidget {
     return Center(
       child: 
         Text(
-          '${profile.customerName} - ${profile.status}',
+          '${profile.customerName} - ${profile.channelName}',
           style: const TextStyle(
               fontSize: 24, 
               fontWeight: FontWeight.bold, 

@@ -1,5 +1,6 @@
 import 'package:chatx_test/constant/app_constants.dart';
 import 'package:chatx_test/data/mock_chat_detail_data.dart';
+import 'package:chatx_test/data/mock_customer_profile.dart';
 import 'package:chatx_test/model/chat_detail_message.dart';
 import 'package:chatx_test/widget/chat_bubble.dart';
 import 'package:flutter/material.dart';
@@ -72,6 +73,11 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
         .toList()
       ..sort((a, b) => a.time.compareTo(b.time));
 
+    final customerProfile = mockCustomer.firstWhere(
+  (c) => c.customerId == widget.chatDetail.customerId,
+  orElse: () => throw Exception('Customer not found'),
+);
+
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: AppColors.backButton),
@@ -89,7 +95,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                   expand: false,
                   builder: (context, scrollController) {
                     return CustomerProfilePage(
-                        customerProfile: widget.chatDetail,
+                        customerHeaderProfile: customerProfile,
                         scrollController: scrollController);
                   }),
             );
