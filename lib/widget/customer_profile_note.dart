@@ -1,8 +1,12 @@
 import 'package:chatx_test/widget/profile_note_edit.dart';
 import 'package:flutter/material.dart';
+import 'package:chatx_test/model/customer_profile.dart';
 
 class CustomerProfileNote extends StatefulWidget {
-  const CustomerProfileNote({super.key});
+  final CustomerProfile profile;
+  
+  const CustomerProfileNote({Key? key, required this.profile})
+      : super(key: key);
 
   @override
   State<CustomerProfileNote> createState() => _CustomerProfileNoteState();
@@ -12,6 +16,12 @@ class _CustomerProfileNoteState extends State<CustomerProfileNote> {
   bool isEditing = false;
 
   final TextEditingController noteController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    noteController.text = widget.profile.customerNote;
+  }
 
   @override
   void dispose() {

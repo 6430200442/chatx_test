@@ -1,8 +1,10 @@
 import 'package:chatx_test/widget/profile_detail_edit.dart';
 import 'package:flutter/material.dart';
+import 'package:chatx_test/model/customer_profile.dart';
 
 class CustomerProfileDetail extends StatefulWidget {
-  const CustomerProfileDetail({super.key});
+  final CustomerProfile profile;
+  const CustomerProfileDetail({super.key, required this.profile});
 
   @override
   State<CustomerProfileDetail> createState() => _CustomerProfileDetailState();
@@ -15,6 +17,15 @@ class _CustomerProfileDetailState extends State<CustomerProfileDetail> {
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    nameController.text = widget.profile.customerDetail.firstName;
+    lastNameController.text = widget.profile.customerDetail.lastName;
+    phoneController.text = widget.profile.customerDetail.phoneNumber;
+    emailController.text = widget.profile.customerDetail.email;
+  }
 
   @override
   void dispose() {
@@ -61,27 +72,25 @@ class _CustomerProfileDetailState extends State<CustomerProfileDetail> {
           ],
         ),
         ProfileDetailEdit(
-            label: 'Phone',
-            controller: phoneController,
-            isEditing: isEditing),
+            label: 'Phone', controller: phoneController, isEditing: isEditing),
         ProfileDetailEdit(
-            label: 'Email',
-            controller: emailController,
-            isEditing: isEditing),
+            label: 'Email', controller: emailController, isEditing: isEditing),
         Align(
-            alignment: Alignment.topRight,
-            child: GestureDetector(
-              onTap: toggleEditing,
-              child: Text(
-                isEditing ? 'บันทึก' : 'แก้ไข',
-                style: const TextStyle(
-                  decoration: TextDecoration.underline,
-                  color: Colors.grey,
-                ),
+          alignment: Alignment.topRight,
+          child: GestureDetector(
+            onTap: toggleEditing,
+            child: Text(
+              isEditing ? 'บันทึก' : 'แก้ไข',
+              style: const TextStyle(
+                decoration: TextDecoration.underline,
+                color: Colors.grey,
               ),
             ),
-            ),
-        const Divider(height: 24,),
+          ),
+        ),
+        const Divider(
+          height: 24,
+        ),
       ],
     );
   }
