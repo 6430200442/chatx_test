@@ -17,10 +17,11 @@ class StatusDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(16.0, 5.0, 6.0, 5.0),
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 1.0),
+      width: MediaQuery.of(context).size.width,
+      height: 50,
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 5.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20.0),
+        borderRadius: BorderRadius.circular(10.0),
         border: Border.all(color: Colors.white),
         color: Colors.white,
         boxShadow: [

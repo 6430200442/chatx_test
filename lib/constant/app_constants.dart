@@ -5,6 +5,7 @@ class AppColors {
   static const Color white = Colors.white;
   static const Color grey = Colors.grey;
   static const Color background = Color(0xFFF5F5F5);
+  static const Color backButton = Colors.white;
 }
 
 class AgentList {

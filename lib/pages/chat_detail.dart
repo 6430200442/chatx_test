@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 //import 'package:chatx_test/model/chat_message.dart';
 import 'package:chatx_test/widget/message_input_bar.dart';
 //import 'package:chatx_test/widget/emoji_button.dart';
-//import 'package:chatx_test/model/chat_detail_message.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
+import 'package:chatx_test/pages/customer_profile.dart';
 
 class ChatDetailPage extends StatefulWidget {
   final ChatDetailMessage chatDetail;
@@ -74,17 +74,36 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
 
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: AppColors.backButton),
         titleSpacing: 0,
-        title: Row(
-          children: [
-            CircleAvatar(
-              backgroundImage: AssetImage(widget.chatDetail.customerImage),
-              radius: 18,
-            ),
-            const SizedBox(width: 12),
-            Text(widget.chatDetail.customerName),
-          ],
+        title: GestureDetector(
+          onTap: () {
+            showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              backgroundColor: Colors.transparent,
+              builder: (context) => DraggableScrollableSheet(
+                  initialChildSize: 0.7,
+                  minChildSize: 0.1,
+                  maxChildSize: 0.85,
+                  expand: false,
+                  builder: (context, scrollController) {
+                    return CustomerProfilePage(
+                        customerProfile: widget.chatDetail,
+                        scrollController: scrollController);
+                  }),
+            );
+          },
+          child: Row(
+            children: [
+              CircleAvatar(
+                backgroundImage: AssetImage(widget.chatDetail.customerImage),
+                radius: 18,
+              ),
+              const SizedBox(width: 12),
+              Text(widget.chatDetail.customerName),
+            ],
+          ),
         ),
         titleTextStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(
               color: Colors.white,
@@ -132,7 +151,6 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                   onEmojiSelected: (category, emoji) {
                     _onEmojiSelected(emoji.emoji);
                   },
-                  
                 ),
               ),
             MessageInputBar(

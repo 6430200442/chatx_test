@@ -2,8 +2,6 @@ import 'package:chatx_test/data/mock_chat_detail_data.dart';
 import 'package:chatx_test/model/chat_message.dart';
 import 'package:chatx_test/pages/chat_detail.dart';
 import 'package:flutter/material.dart';
-//import 'package:chatx_test/app.dart';
-//import 'package:chatx_test/pages/chat_list.dart';
 import 'package:chatx_test/widget/search_box.dart';
 import 'package:chatx_test/widget/channel_dropdown.dart';
 import 'package:chatx_test/widget/agent_dropdown.dart';
@@ -12,7 +10,6 @@ import 'package:chatx_test/widget/chat_item.dart';
 import 'package:chatx_test/controller/chat_controller.dart';
 import 'package:chatx_test/widget/status_dropdown.dart';
 import 'package:chatx_test/constant/app_constants.dart';
-import 'package:chatx_test/widget/filter_dialog.dart';
 
 class ChatListPage extends StatefulWidget {
   const ChatListPage({super.key});
@@ -42,25 +39,6 @@ class _ChatListPageState extends State<ChatListPage> {
         status: selectedStatus);
   }
 
-  void _showFilterDialog() async {
-    final result = await showDialog<Map<String, String?>>(
-      context: context,
-      builder: (context) => FilterDialog(
-        selectedChannel: selectedChannel,
-        selectedAgent: selectedAgent,
-        selectedStatus: selectedStatus,
-      ),
-    );
-    if (result != null) {
-      setState(() {
-        selectedChannel = result['channel'];
-        selectedAgent = result['agent'];
-        selectedStatus = result['status'];
-        filterChats();
-      });
-    }
-  }
-
   @override
   void dispose() {
     chatController.dispose();
@@ -77,7 +55,7 @@ class _ChatListPageState extends State<ChatListPage> {
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
-          title: const Text('Chat X'),
+          title: const Text('ChatX'),
         ),
         body: Column(
           children: [
@@ -108,49 +86,43 @@ class _ChatListPageState extends State<ChatListPage> {
             if (_showFilterBar)
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 5.0),
                 child: Column(
                   children: [
-                    Expanded(
-                      child: ChannelDropdown(
-                        channels: ChannelList.channels,
-                        selectedChannel: selectedChannel,
-                        onChanged: (value) {
-                          setState(() {
-                            selectedChannel = value;
-                            filterChats();
-                          });
-                        },
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
+                    ChannelDropdown(
+                      channels: ChannelList.channels,
+                      selectedChannel: selectedChannel,
+                      onChanged: (value) {
+                        setState(() {
+                          selectedChannel = value;
+                          filterChats();
+                        });
+                      },
+                      borderRadius: BorderRadius.circular(8.0),
                     ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: AgentDropdown(
-                        agents: AgentList.agents,
-                        selectedAgent: selectedAgent,
-                        onChanged: (value) {
-                          setState(() {
-                            selectedAgent = value;
-                            filterChats();
-                          });
-                        },
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
+                    const SizedBox(height: 8),
+                    AgentDropdown(
+                      agents: AgentList.agents,
+                      selectedAgent: selectedAgent,
+                      onChanged: (value) {
+                        setState(() {
+                          selectedAgent = value;
+                          filterChats();
+                        });
+                      },
+                      borderRadius: BorderRadius.circular(8.0),
                     ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: StatusDropdown(
-                        statuses: StatusList.statuses,
-                        selectedStatus: selectedStatus,
-                        onChanged: (value) {
-                          setState(() {
-                            selectedStatus = value;
-                            filterChats();
-                          });
-                        },
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
+                    const SizedBox(height: 8),
+                    StatusDropdown(
+                      statuses: StatusList.statuses,
+                      selectedStatus: selectedStatus,
+                      onChanged: (value) {
+                        setState(() {
+                          selectedStatus = value;
+                          filterChats();
+                        });
+                      },
+                      borderRadius: BorderRadius.circular(8.0),
                     ),
                   ],
                 ),
