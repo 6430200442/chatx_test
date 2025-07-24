@@ -1,9 +1,14 @@
 // import 'package:chatx_test/widget/profile_tag_show.dart';
 import 'package:flutter/material.dart';
 // import 'package:chatx_test/widget/profile_tag_edit.dart';
+import 'package:chatx_test/model/customer_profile.dart';
+import 'package:chatx_test/model/tag.dart';
+import 'package:chatx_test/data/mock_tag_data.dart';
 
 class CustomerProfileTag extends StatefulWidget {
-  const CustomerProfileTag({super.key});
+  final CustomerProfile profile;
+
+  const CustomerProfileTag({super.key, required this.profile});
 
   @override
   State<CustomerProfileTag> createState() => _CustomerProfileTagState();
@@ -14,44 +19,67 @@ class _CustomerProfileTagState extends State<CustomerProfileTag> {
 
   bool showAvailableTags = false;
 
-  List<String> allTags = [
-    'test01',
-    'test025678910',
-    'test03',
-    'test04',
-    'test05',
-    'test06',
-    'test07'
-  ];
+  late List<CustomerTagLabel> customerTags; // tag ของลูกค้า
+  late List<TagLabel> allTagLabels; // tag ทั้งหมดในระบบ
+  late List<TagLabel> _availableTags;
 
-  List<String> tags = ['test05', 'test06', 'test07'];
+  @override
+  void initState() {
+    super.initState();
+    
+    // ดึง tag ของลูกค้า (flatten ให้เป็น list ของ CustomerTagLabel)
+    customerTags = widget.profile.customerTags
+        .expand((tag) => tag.tags)
+        .toList();
 
-  List<String> get availableTags =>
-      allTags.where((t) => !tags.contains(t)).toList();
+    // ดึง tag ทั้งหมดจาก mock (flatten ให้เป็น list ของ TagLabel)
+    allTagLabels = allTags.expand((t) => t.tags).toList();
+    _refreshAvailableTags();
+  }
+
+  List<TagLabel> get availableTags {
+    final customerTagIds = customerTags.map((e) => e.tagLabelId).toSet();
+    return allTagLabels
+        .where((tag) => !customerTagIds.contains(tag.tagLabelId))
+        .toList(); // สมมุติว่าเป็นทั้งหมดที่มีในระบบ
+  }
 
   void toggleEditing() {
     setState(() {
       isEditing = !isEditing;
-      showAvailableTags = false;
+      if (!isEditing) {
+      showAvailableTags = false; // ออกจากโหมดแก้ไขค่อยปิด
+    }
     });
   }
 
-  void addTag(String newTag) {
+  void addTag(TagLabel newTag) {
     setState(() {
-      tags.add(newTag);
-      availableTags.remove(newTag);
+      customerTags.add(
+        CustomerTagLabel(
+          tagLabelId: newTag.tagLabelId,
+          tagLabelName: newTag.tagLabelName,
+          tagColor: newTag.tagColor,
+        ),
+      );
+      _refreshAvailableTags();
     });
   }
 
   void removeTag(int index) {
     setState(() {
-      showAvailableTags = true;
-      final removed = tags.removeAt(index);
-      if (!availableTags.contains(removed)) {
-        availableTags.add(removed);
-      }
+      customerTags.removeAt(index);
+      _refreshAvailableTags();
     });
   }
+
+  void _refreshAvailableTags() {
+  final customerTagIds = customerTags.map((e) => e.tagLabelId).toSet();
+  _availableTags = allTagLabels
+      .where((tag) => !customerTagIds.contains(tag.tagLabelId))
+      .toList();
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +99,7 @@ class _CustomerProfileTagState extends State<CustomerProfileTag> {
             spacing: 10,
             runSpacing: 6,
             children: [
-              for (int i = 0; i < tags.length; i++)
+              for (int i = 0; i < customerTags.length; i++)
                 Stack(
                   clipBehavior: Clip.none,
                   children: [
@@ -80,10 +108,10 @@ class _CustomerProfileTagState extends State<CustomerProfileTag> {
                           horizontal: 14, vertical: 2),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6),
-                        color: Colors.amber,
+                        color: customerTags[i].tagColor,
                       ),
                       child: Text(
-                        tags[i],
+                        customerTags[i].tagLabelName,
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -123,7 +151,7 @@ class _CustomerProfileTagState extends State<CustomerProfileTag> {
             ],
           ),
         ),
-        if (isEditing && showAvailableTags && availableTags.isNotEmpty)
+        if (isEditing && showAvailableTags && _availableTags.isNotEmpty)
           Container(
             margin: const EdgeInsets.only(top: 6),
             padding: const EdgeInsets.all(8),
@@ -134,21 +162,24 @@ class _CustomerProfileTagState extends State<CustomerProfileTag> {
             ),
             child: Wrap(
               spacing: 8,
-              children: availableTags.map((tag) {
+              children: _availableTags.map((tag) {
                 return GestureDetector(
                   onTap: () => addTag(tag),
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12,vertical: 4),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: Colors.blue[100],
                     ),
-                    child: Text(tag, style: const TextStyle(color: Colors.black),
+                    child: Text(
+                      tag.tagLabelName,
+                      style: const TextStyle(color: Colors.black),
                     ),
                   ),
                 );
               }).toList(),
-              ),
+            ),
           ),
         Align(
           alignment: Alignment.topRight,
