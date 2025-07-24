@@ -43,7 +43,7 @@ class _CustomerProfilePageState extends State<CustomerProfilePage> {
               CustomerProfileDetail(profile: widget.customerHeaderProfile),
               CustomerProfileNote(profile: widget.customerHeaderProfile),
               CustomerProfileTag(profile: widget.customerHeaderProfile),
-              const CustomerProfileGallery(),
+              CustomerProfileGallery(profile: widget.customerHeaderProfile),
             ],
           ),
         ),

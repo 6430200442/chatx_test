@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:chatx_test/pages/gallery_view_all.dart';
+import 'package:chatx_test/model/customer_profile.dart';
 
 class CustomerProfileGallery extends StatefulWidget {
-  const CustomerProfileGallery({super.key});
+  final CustomerProfile profile;
+
+  const CustomerProfileGallery({super.key, required this.profile});
 
   @override
   State<CustomerProfileGallery> createState() => _CustomerProfileGalleryState();
@@ -12,14 +15,15 @@ class _CustomerProfileGalleryState extends State<CustomerProfileGallery> {
   @override
   Widget build(BuildContext context) {
 
-    final List<String> imageTest =
-        List.generate(12, (index) => 'assets/imgs/agent1.jpg');
+    final List<String> images =
+      widget.profile.sentImages.map((img) => img.imageUrl).toList();
 
     int crossAxisCount = 3; 
     int maxRows = 2;
     int maxItems = crossAxisCount * maxRows;
 
-    List<String> limitImages = imageTest.length > maxItems ? imageTest.sublist(0, maxItems) : imageTest;
+    List<String> limitImages =
+      images.length > maxItems ? images.sublist(0, maxItems) : images;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,15 +33,15 @@ class _CustomerProfileGalleryState extends State<CustomerProfileGallery> {
         ),
         Row(
           children: [
-            Text(
+            const Text(
               'Gallery',
-              style: const TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const Spacer(),
             GestureDetector(
               onTap: () {
                 Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => GalleryViewAllPage(images: imageTest)),
+                  context, MaterialPageRoute(builder: (_) => GalleryViewAllPage(images: widget.profile.sentImages)),
                   );
               },
               child: const Text(
@@ -65,7 +69,7 @@ class _CustomerProfileGalleryState extends State<CustomerProfileGallery> {
                 childAspectRatio: 1 
                 ), 
             itemBuilder: (context, index) {
-              return Image.asset(limitImages[index], fit: BoxFit.cover);
+              return Image.network(limitImages[index], fit: BoxFit.cover);
             }),
         const Divider(
           height: 24,

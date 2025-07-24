@@ -66,13 +66,61 @@ List<CustomerProfile> mockCustomer = [
         imageId: 'si001',
         imageUrl:
             'https://www.cuteness.com/cuteness/17-super-wholesome-dog-memes-to-warm-your-heart/20e09723c51f41b5bebe1fbda21472c9.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 1)),
+        sentAt: DateTime(2025, 7, 24),
       ),
       CustomerSentImage(
         imageId: 'si002',
         imageUrl:
             'https://ih1.redbubble.net/image.3127263335.9602/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 2)),
+        sentAt: DateTime(2025, 7, 24),
+      ),
+      CustomerSentImage(
+        imageId: 'si003',
+        imageUrl:
+            'https://www.cuteness.com/cuteness/17-super-wholesome-dog-memes-to-warm-your-heart/20e09723c51f41b5bebe1fbda21472c9.jpg',
+        sentAt: DateTime(2025, 7, 23),
+      ),
+      CustomerSentImage(
+        imageId: 'si004',
+        imageUrl:
+            'https://www.cuteness.com/cuteness/17-super-wholesome-dog-memes-to-warm-your-heart/20e09723c51f41b5bebe1fbda21472c9.jpg',
+        sentAt: DateTime(2025, 7, 23),
+      ),
+      CustomerSentImage(
+        imageId: 'si005',
+        imageUrl:
+            'https://www.cuteness.com/cuteness/17-super-wholesome-dog-memes-to-warm-your-heart/20e09723c51f41b5bebe1fbda21472c9.jpg',
+        sentAt: DateTime(2025, 7, 23),
+      ),
+      CustomerSentImage(
+        imageId: 'si006',
+        imageUrl:
+            'https://www.cuteness.com/cuteness/17-super-wholesome-dog-memes-to-warm-your-heart/20e09723c51f41b5bebe1fbda21472c9.jpg',
+        sentAt: DateTime(2025, 7, 23),
+      ),
+      CustomerSentImage(
+        imageId: 'si007',
+        imageUrl:
+            'https://www.cuteness.com/cuteness/17-super-wholesome-dog-memes-to-warm-your-heart/20e09723c51f41b5bebe1fbda21472c9.jpg',
+        sentAt: DateTime(2025, 7, 22),
+      ),
+      CustomerSentImage(
+        imageId: 'si008',
+        imageUrl:
+            'https://www.cuteness.com/cuteness/17-super-wholesome-dog-memes-to-warm-your-heart/20e09723c51f41b5bebe1fbda21472c9.jpg',
+        sentAt: DateTime(2025, 7, 21),
+      ),
+      CustomerSentImage(
+        imageId: 'si009',
+        imageUrl:
+            'https://www.cuteness.com/cuteness/17-super-wholesome-dog-memes-to-warm-your-heart/20e09723c51f41b5bebe1fbda21472c9.jpg',
+        sentAt: DateTime(2025, 7, 21),
+      ),
+      CustomerSentImage(
+        imageId: 'si010',
+        imageUrl:
+            'https://www.cuteness.com/cuteness/17-super-wholesome-dog-memes-to-warm-your-heart/20e09723c51f41b5bebe1fbda21472c9.jpg',
+        sentAt: DateTime(2025, 7, 21),
       ),
     ],
   ),

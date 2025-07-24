@@ -60,7 +60,7 @@ class _GalleryImageViewState extends State<GalleryImageView> {
             },
             itemBuilder: (context, index) {
               return Center(
-                child: Image.asset(
+                child: Image.network(
                   widget.images[index],
                   fit: BoxFit.contain,
                 ),
