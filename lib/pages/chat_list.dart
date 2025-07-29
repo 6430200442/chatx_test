@@ -152,6 +152,7 @@ class _ChatListPageState extends State<ChatListPage> {
                             MaterialPageRoute(
                               builder: (context) => ChatDetailPage(
                                 chatDetail: chatDetail,
+                                chatController: chatController, // <--- ส่ง controller
                               ),
                             ),
                           );

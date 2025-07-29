@@ -12,20 +12,23 @@ class ChatController {
       filteredChats.value = mockChatData;
     } else {
       filteredChats.value = mockChatData
-          .where(
-              (chat) => chat.customerName.toLowerCase().contains(filter.toLowerCase()))
+          .where((chat) =>
+              chat.customerName.toLowerCase().contains(filter.toLowerCase()))
           .toList();
     }
   }
 
-  void filter({String? search, String? channel, String? agent, String? status}) {
+  void filter(
+      {String? search, String? channel, String? agent, String? status}) {
     filteredChats.value = mockChatData.where((chat) {
       bool matchSearch;
       if (search == null) {
         matchSearch = true;
       } else if (search.isEmpty) {
         matchSearch = true;
-      } else if (chat.customerName.toLowerCase().contains(search.toLowerCase())) {
+      } else if (chat.customerName
+          .toLowerCase()
+          .contains(search.toLowerCase())) {
         matchSearch = true;
       } else {
         matchSearch = false;
@@ -43,7 +46,8 @@ class ChatController {
       bool matchAgent;
       if (agent == null || agent == 'All Agents') {
         matchAgent = true;
-      } else if ((chat.agentName!= null && chat.agentName!.toLowerCase() == agent.toLowerCase())) {
+      } else if ((chat.agentName != null &&
+          chat.agentName!.toLowerCase() == agent.toLowerCase())) {
         matchAgent = true;
       } else {
         matchAgent = false;
@@ -66,4 +70,90 @@ class ChatController {
     searchController.dispose();
     filteredChats.dispose();
   }
+
+  void updateStatus(String chatRoomId, String newStatus) {
+    final index =
+        filteredChats.value.indexWhere((c) => c.chatRoomId == chatRoomId);
+    if (index != -1) {
+      final old = filteredChats.value[index];
+      filteredChats.value[index] = ChatMessage(
+        chatRoomId: old.chatRoomId,
+        customerId: old.customerId,
+        customerImage: old.customerImage,
+        customerName: old.customerName,
+        lastMessage: old.lastMessage,
+        time: old.time,
+        unreadCount: old.unreadCount,
+        status: newStatus,
+        statusColor: _getColorByStatus(newStatus),
+        channel: old.channel,
+        agentId: old.agentId,
+        agentImage: old.agentImage,
+        agentName: old.agentName,
+      );
+      filteredChats.notifyListeners(); // รีเฟรช UI
+    }
+  }
+
+  Color _getColorByStatus(String status) {
+    switch (status) {
+      case 'no agent':
+        return Colors.red;
+      case 'have agent':
+        return Colors.orange;
+      case 'done':
+        return Colors.grey;
+      default:
+        return Colors.black;
+    }
+  }
+
+  // void updateAgent(String chatRoomId, String newAgent) {
+  //   final index =
+  //       filteredChats.value.indexWhere((c) => c.chatRoomId == chatRoomId);
+  //   if (index != -1) {
+  //     final old = filteredChats.value[index];
+  //     filteredChats.value[index] = ChatMessage(
+  //       chatRoomId: old.chatRoomId,
+  //       customerId: old.customerId,
+  //       customerImage: old.customerImage,
+  //       customerName: old.customerName,
+  //       lastMessage: old.lastMessage,
+  //       time: old.time,
+  //       unreadCount: old.unreadCount,
+  //       status: newAgent,
+  //       statusColor: Colors.blue,
+  //       channel: old.channel,
+  //       agentId: old.agentId,
+  //       agentImage: old.agentImage,
+  //       agentName: old.agentName,
+  //     );
+  //     filteredChats.notifyListeners(); // รีเฟรช UI
+  //   }
+  // }
+
+  void updateTransfer(String chatRoomId, String newAgent) {
+  final index =
+      filteredChats.value.indexWhere((c) => c.chatRoomId == chatRoomId);
+  if (index != -1) {
+    final old = filteredChats.value[index];
+    filteredChats.value[index] = ChatMessage(
+      chatRoomId: old.chatRoomId,
+      customerId: old.customerId,
+      customerImage: old.customerImage,
+      customerName: old.customerName,
+      lastMessage: old.lastMessage,
+      time: old.time,
+      unreadCount: old.unreadCount,
+      status: old.status,
+      statusColor: _getColorByStatus(old.status),
+      channel: old.channel,
+      agentId: old.agentId,
+      agentImage: old.agentImage,
+      agentName: newAgent, // ✅ เปลี่ยนตรงนี้
+    );
+    filteredChats.notifyListeners(); // ✅ รีเฟรช UI
+  }
+}
+
 }

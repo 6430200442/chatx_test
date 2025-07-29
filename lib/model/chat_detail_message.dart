@@ -10,11 +10,11 @@ class ChatDetailMessage {
   final DateTime time;
   final bool isSender;
   final bool isRead;
-  final String status;
+  String status;
   final String channel;
   final String? agentId;
   final String? agentImage;
-  final String? agentName;
+  String? agentName;
   //final AgentInfo? agent;
 
   ChatDetailMessage({
@@ -34,20 +34,40 @@ class ChatDetailMessage {
     this.agentName,
     //this.agent,
   });
+
+  ChatDetailMessage copyWith({
+  String? chatRoomId,
+  String? customerId,
+  String? customerImage,
+  String? customerName,
+  String? messageId,
+  String? message,
+  DateTime? time,
+  bool? isSender,
+  bool? isRead,
+  String? status,
+  String? channel,
+  String? agentId,
+  String? agentImage,
+  String? agentName,
+}) {
+  return ChatDetailMessage(
+    chatRoomId: chatRoomId ?? this.chatRoomId,
+    customerId: customerId ?? this.customerId,
+    customerImage: customerImage ?? this.customerImage,
+    customerName: customerName ?? this.customerName,
+    messageId: messageId ?? this.messageId,
+    message: message ?? this.message,
+    time: time ?? this.time,
+    isSender: isSender ?? this.isSender,
+    isRead: isRead ?? this.isRead,
+    status: status ?? this.status,
+    channel: channel ?? this.channel,
+    agentId: agentId ?? this.agentId,
+    agentImage: agentImage ?? this.agentImage,
+    agentName: agentName ?? this.agentName,
+  );
 }
 
-/*class AgentInfo {
-  final String id;
-  final String name;
-  final String image;
-  final String message;
-  final String time;
+}
 
-  AgentInfo({
-    required this.id,
-    required this.name,
-    required this.image,
-    required this.message,
-    required this.time,
-  });
-}*/

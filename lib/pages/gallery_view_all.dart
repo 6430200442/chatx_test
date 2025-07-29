@@ -10,11 +10,14 @@ class GalleryViewAllPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 🔁 กลุ่มรูปตามวันที่
+    // กลุ่มรูปตามวันที่
     Map<String, List<CustomerSentImage>> groupedImages = {};
     for (var img in images) {
       String dateStr = DateFormat('yyyy-MM-dd').format(img.sentAt);
-      groupedImages.putIfAbsent(dateStr, () => []).add(img);
+      if (!groupedImages.containsKey(dateStr)) {
+        groupedImages[dateStr] = [];
+      }
+      groupedImages[dateStr]!.add(img);
     }
 
     // 🔽 เรียงวันที่ล่าสุดไว้บน
@@ -37,8 +40,8 @@ class GalleryViewAllPage extends StatelessWidget {
             children: [
               Text(
                 DateFormat('dd MMMM yyyy').format(DateTime.parse(dateStr)),
-                style: const TextStyle(
-                    fontWeight: FontWeight.bold, fontSize: 16),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
               const SizedBox(height: 8),
               GridView.builder(
@@ -82,8 +85,6 @@ class GalleryViewAllPage extends StatelessWidget {
     );
   }
 }
-
-
 
 // import 'package:chatx_test/widget/gallery_image_view.dart';
 // import 'package:flutter/material.dart';

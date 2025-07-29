@@ -1,8 +1,11 @@
 import 'package:chatx_test/constant/app_constants.dart';
+import 'package:chatx_test/controller/chat_controller.dart';
 import 'package:chatx_test/data/mock_chat_detail_data.dart';
 import 'package:chatx_test/data/mock_customer_profile.dart';
 import 'package:chatx_test/model/chat_detail_message.dart';
 import 'package:chatx_test/widget/chat_bubble.dart';
+import 'package:chatx_test/widget/close_button.dart';
+import 'package:chatx_test/widget/tranfer_agent_dropdown.dart';
 import 'package:flutter/material.dart';
 //import 'package:chatx_test/data/mock_chat_detail_data.dart';
 //import 'package:chatx_test/model/chat_message.dart';
@@ -13,8 +16,13 @@ import 'package:chatx_test/pages/customer_profile.dart';
 
 class ChatDetailPage extends StatefulWidget {
   final ChatDetailMessage chatDetail;
+  final ChatController chatController;
 
-  const ChatDetailPage({Key? key, required this.chatDetail}) : super(key: key);
+  const ChatDetailPage({
+    Key? key,
+    required this.chatDetail,
+    required this.chatController,
+  }) : super(key: key);
 
   @override
   State<ChatDetailPage> createState() => _ChatDetailPageState();
@@ -24,6 +32,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
   final TextEditingController _messageController = TextEditingController();
   //final FocusNode _focusNode = FocusNode();
   bool _showEmojiBar = false;
+  String? selectedTransfer;
 
   void _handleSend() {
     final text = _messageController.text.trim();
@@ -66,6 +75,96 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
     setState(() {});
   }
 
+  void onPressedClose() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('ยืนยันการปิดงาน'),
+          content: const Text('คุณต้องการปิดงานหรือไม่?'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('ยกเลิก'),
+              onPressed: () {
+                Navigator.of(context).pop(); // ปิด dialog แล้วกลับสู่หน้าปกติ
+              },
+            ),
+            TextButton(
+              child: const Text('ยืนยัน'),
+              onPressed: () {
+                // เปลี่ยนสถานะใน chat list
+                setState(() {
+                  widget.chatDetail.status = 'done';
+
+                  // หรือถ้าคุณใช้ mock data list ก็ต้องอัปเดตใน mockChatDetailData ด้วย
+                  final index = mockChatDetailData.indexWhere(
+                      (m) => m.chatRoomId == widget.chatDetail.chatRoomId);
+                  if (index != -1) {
+                    mockChatDetailData[index] =
+                        mockChatDetailData[index].copyWith(status: 'done');
+                  }
+
+                  widget.chatController.updateStatus(
+                      widget.chatDetail.chatRoomId,
+                      'done'); // ✅ อัปเดตที่ ChatList
+                });
+
+                Navigator.of(context).pop(); // ปิด dialog
+                Navigator.of(context).pop(); // กลับไปหน้า ChatList
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void onPressedTransfer() {
+    if (selectedTransfer == null) return; // ป้องกันถ้ายังไม่เลือก agent
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('ยืนยันการโอนงาน'),
+          content: Text('คุณต้องการโอนงานไปยัง $selectedTransfer หรือไม่?'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('ยกเลิก'),
+              onPressed: () {
+                Navigator.of(context).pop(); // ปิด dialog
+              },
+            ),
+            TextButton(
+              child: const Text('ยืนยัน'),
+              onPressed: () {
+                setState(() {
+                  // ✅ อัปเดตในหน้า ChatDetail
+                  widget.chatDetail.agentName = selectedTransfer;
+
+                  // ✅ อัปเดตใน mockChatDetailData
+                  final index = mockChatDetailData.indexWhere(
+                      (m) => m.chatRoomId == widget.chatDetail.chatRoomId);
+                  if (index != -1) {
+                    mockChatDetailData[index] = mockChatDetailData[index]
+                        .copyWith(agentName: selectedTransfer);
+                  }
+
+                  // ✅ เรียก controller เพื่อ sync กลับไปหน้า ChatList
+                  widget.chatController.updateTransfer(
+                      widget.chatDetail.chatRoomId, selectedTransfer!);
+                });
+
+                Navigator.of(context).pop(); // ปิด dialog
+                Navigator.of(context).pop(); // กลับไปหน้า ChatList
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final messages = mockChatDetailData
@@ -74,9 +173,9 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
       ..sort((a, b) => a.time.compareTo(b.time));
 
     final customerProfile = mockCustomer.firstWhere(
-  (c) => c.customerId == widget.chatDetail.customerId,
-  orElse: () => throw Exception('Customer not found'),
-);
+      (c) => c.customerId == widget.chatDetail.customerId,
+      orElse: () => throw Exception('Customer not found'),
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -120,6 +219,27 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
       body: SafeArea(
         child: Column(
           children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 6),
+              color: Colors.white,
+              child: Row(
+                children: [
+                  CloseButtonLabel(onPressed: onPressedClose),
+                  const SizedBox(width: 10),
+                  TransferDropdown(
+                    transfer: AgentList.agents,
+                    selectedTransfer: selectedTransfer,
+                    onChanged: (value) {
+                      setState(() {
+                        selectedTransfer = value!;
+                      });
+                      onPressedTransfer();
+                    },
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ],
+              ),
+            ),
             Expanded(
               child: ListView.separated(
                 padding:

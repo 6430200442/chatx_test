@@ -11,7 +11,7 @@ class EmojiButton extends StatelessWidget {
       icon: const Icon(Icons.emoji_emotions_outlined),
       onPressed: onPressed,
       tooltip: 'Emoji',
-      
+      color: Colors.grey,
     );
   }
 }
