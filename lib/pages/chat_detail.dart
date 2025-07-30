@@ -80,17 +80,17 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('ยืนยันการปิดงาน'),
-          content: const Text('คุณต้องการปิดงานหรือไม่?'),
+          title: const Text(' Confirm chat closure '),
+          content: const Text('Do you want to complete the task?'),
           actions: <Widget>[
             TextButton(
-              child: const Text('ยกเลิก'),
+              child: const Text('Cancel'),
               onPressed: () {
                 Navigator.of(context).pop(); // ปิด dialog แล้วกลับสู่หน้าปกติ
               },
             ),
             TextButton(
-              child: const Text('ยืนยัน'),
+              child: const Text('Confirm'),
               onPressed: () {
                 // เปลี่ยนสถานะใน chat list
                 setState(() {
@@ -126,17 +126,17 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('ยืนยันการโอนงาน'),
-          content: Text('คุณต้องการโอนงานไปยัง $selectedTransfer หรือไม่?'),
+          title: const Text('Confirm chat transfer'),
+          content: Text('Do you want to transfer the chat to $selectedTransfer ?'),
           actions: <Widget>[
             TextButton(
-              child: const Text('ยกเลิก'),
+              child: const Text('Cancel'),
               onPressed: () {
                 Navigator.of(context).pop(); // ปิด dialog
               },
             ),
             TextButton(
-              child: const Text('ยืนยัน'),
+              child: const Text('Confirm'),
               onPressed: () {
                 setState(() {
                   // ✅ อัปเดตในหน้า ChatDetail

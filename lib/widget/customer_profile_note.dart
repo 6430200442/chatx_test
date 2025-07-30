@@ -56,7 +56,7 @@ class _CustomerProfileNoteState extends State<CustomerProfileNote> {
             child: GestureDetector(
               onTap: toggleEditing,
               child: Text(
-                isEditing ? 'บันทึก' : 'แก้ไข',
+                isEditing ? 'Save' : 'Edit',
                 style: const TextStyle(
                   decoration: TextDecoration.underline,
                   color: Colors.grey,
