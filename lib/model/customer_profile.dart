@@ -42,7 +42,7 @@ class CustomerDetail {
 class CustomerTag {
   final String tagCategoryId;
   final String tagCategoryName;
-  final List<CustomerTagLabel> tags;
+  final List<ProfileTagLabel> tags;
 
   CustomerTag({
     required this.tagCategoryId,
@@ -51,12 +51,12 @@ class CustomerTag {
   });
 }
 
-class CustomerTagLabel {
+class ProfileTagLabel {
   final String tagLabelId; 
   final String tagLabelName;
   final Color tagColor;
 
-  CustomerTagLabel ({
+  ProfileTagLabel ({
     required this.tagLabelId,
     required this.tagLabelName,
     required this.tagColor,

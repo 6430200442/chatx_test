@@ -20,7 +20,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate A01',
             tagColor: Colors.red,
@@ -31,7 +31,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl002',
             tagLabelName: 'Cate A02',
             tagColor: Colors.orange,
@@ -42,7 +42,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl003',
             tagLabelName: 'Cate A03',
             tagColor: Colors.brown,
@@ -53,7 +53,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc002',
         tagCategoryName: 'Category B',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate B01',
             tagColor: Colors.green,
@@ -144,7 +144,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate A01',
             tagColor: Colors.red,
@@ -155,7 +155,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl002',
             tagLabelName: 'Cate A02',
             tagColor: Colors.orange,
@@ -166,7 +166,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc002',
         tagCategoryName: 'Category B',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl002',
             tagLabelName: 'Cate A02',
             tagColor: Colors.grey,
@@ -177,7 +177,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc002',
         tagCategoryName: 'Category B',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate B01',
             tagColor: Colors.green,
@@ -220,7 +220,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate A01',
             tagColor: Colors.red,
@@ -231,7 +231,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl002',
             tagLabelName: 'Cate A02',
             tagColor: Colors.orange,
@@ -242,7 +242,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl003',
             tagLabelName: 'Cate A03',
             tagColor: Colors.brown,
@@ -253,7 +253,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc002',
         tagCategoryName: 'Category B',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate B01',
             tagColor: Colors.green,
@@ -296,7 +296,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate A01',
             tagColor: Colors.red,
@@ -307,7 +307,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl002',
             tagLabelName: 'Cate A02',
             tagColor: Colors.orange,
@@ -318,7 +318,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl003',
             tagLabelName: 'Cate A03',
             tagColor: Colors.brown,
@@ -329,7 +329,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc002',
         tagCategoryName: 'Category B',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate B01',
             tagColor: Colors.green,
@@ -372,7 +372,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate A01',
             tagColor: Colors.red,
@@ -383,7 +383,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl002',
             tagLabelName: 'Cate A02',
             tagColor: Colors.orange,
@@ -394,7 +394,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl003',
             tagLabelName: 'Cate A03',
             tagColor: Colors.brown,
@@ -405,7 +405,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc002',
         tagCategoryName: 'Category B',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate B01',
             tagColor: Colors.green,
@@ -448,7 +448,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate A01',
             tagColor: Colors.red,
@@ -459,7 +459,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl002',
             tagLabelName: 'Cate A02',
             tagColor: Colors.orange,
@@ -470,7 +470,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl003',
             tagLabelName: 'Cate A03',
             tagColor: Colors.brown,
@@ -481,7 +481,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc002',
         tagCategoryName: 'Category B',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate B01',
             tagColor: Colors.green,
@@ -524,7 +524,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate A01',
             tagColor: Colors.red,
@@ -535,7 +535,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl002',
             tagLabelName: 'Cate A02',
             tagColor: Colors.orange,
@@ -546,7 +546,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl003',
             tagLabelName: 'Cate A03',
             tagColor: Colors.brown,
@@ -557,7 +557,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc002',
         tagCategoryName: 'Category B',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate B01',
             tagColor: Colors.green,
@@ -678,7 +678,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate A01',
             tagColor: Colors.red,
@@ -689,7 +689,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl002',
             tagLabelName: 'Cate A02',
             tagColor: Colors.orange,
@@ -700,7 +700,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl003',
             tagLabelName: 'Cate A03',
             tagColor: Colors.brown,
@@ -711,7 +711,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc002',
         tagCategoryName: 'Category B',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate B01',
             tagColor: Colors.green,
@@ -754,7 +754,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate A01',
             tagColor: Colors.red,
@@ -765,7 +765,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl002',
             tagLabelName: 'Cate A02',
             tagColor: Colors.orange,
@@ -776,7 +776,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl003',
             tagLabelName: 'Cate A03',
             tagColor: Colors.brown,
@@ -787,7 +787,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc002',
         tagCategoryName: 'Category B',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate B01',
             tagColor: Colors.green,
@@ -830,7 +830,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate A01',
             tagColor: Colors.red,
@@ -841,7 +841,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl002',
             tagLabelName: 'Cate A02',
             tagColor: Colors.orange,
@@ -852,7 +852,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl003',
             tagLabelName: 'Cate A03',
             tagColor: Colors.brown,
@@ -863,7 +863,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc002',
         tagCategoryName: 'Category B',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate B01',
             tagColor: Colors.green,
@@ -906,7 +906,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate A01',
             tagColor: Colors.red,
@@ -917,7 +917,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl002',
             tagLabelName: 'Cate A02',
             tagColor: Colors.orange,
@@ -928,7 +928,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl003',
             tagLabelName: 'Cate A03',
             tagColor: Colors.brown,
@@ -939,7 +939,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc002',
         tagCategoryName: 'Category B',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate B01',
             tagColor: Colors.green,
@@ -982,7 +982,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate A01',
             tagColor: Colors.red,
@@ -993,7 +993,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl002',
             tagLabelName: 'Cate A02',
             tagColor: Colors.orange,
@@ -1004,7 +1004,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl003',
             tagLabelName: 'Cate A03',
             tagColor: Colors.brown,
@@ -1015,7 +1015,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc002',
         tagCategoryName: 'Category B',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate B01',
             tagColor: Colors.green,
@@ -1058,7 +1058,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate A01',
             tagColor: Colors.red,
@@ -1069,7 +1069,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl002',
             tagLabelName: 'Cate A02',
             tagColor: Colors.orange,
@@ -1080,7 +1080,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl003',
             tagLabelName: 'Cate A03',
             tagColor: Colors.brown,
@@ -1091,7 +1091,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc002',
         tagCategoryName: 'Category B',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate B01',
             tagColor: Colors.green,
@@ -1134,7 +1134,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate A01',
             tagColor: Colors.red,
@@ -1145,7 +1145,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl002',
             tagLabelName: 'Cate A02',
             tagColor: Colors.orange,
@@ -1156,7 +1156,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl003',
             tagLabelName: 'Cate A03',
             tagColor: Colors.brown,
@@ -1167,7 +1167,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc002',
         tagCategoryName: 'Category B',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate B01',
             tagColor: Colors.green,
@@ -1210,7 +1210,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate A01',
             tagColor: Colors.red,
@@ -1221,7 +1221,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl002',
             tagLabelName: 'Cate A02',
             tagColor: Colors.orange,
@@ -1232,7 +1232,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc001',
         tagCategoryName: 'Category A',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl003',
             tagLabelName: 'Cate A03',
             tagColor: Colors.brown,
@@ -1243,7 +1243,7 @@ List<CustomerProfile> mockCustomer = [
         tagCategoryId: 'tc002',
         tagCategoryName: 'Category B',
         tags: [
-          CustomerTagLabel(
+          ProfileTagLabel(
             tagLabelId: 'tl001',
             tagLabelName: 'Cate B01',
             tagColor: Colors.green,

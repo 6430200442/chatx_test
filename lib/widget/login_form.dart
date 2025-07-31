@@ -106,13 +106,13 @@ class _LoginFormState extends State<LoginForm> {
           ),
           ),
         ),
-        // const SizedBox(height: 10),
+        const SizedBox(height: 10),
         if (error != null)
           Text(error!, style: const TextStyle(color: Colors.red)),
         // const SizedBox(height: 10),
         SizedBox(
           width: MediaQuery.of(context).size.width,
-          height: 30,
+          height: 80,
           child: ElevatedButton(
             onPressed: _login,
             style: ElevatedButton.styleFrom(

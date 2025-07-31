@@ -1,6 +1,7 @@
-// import 'package:chatx_test/widget/profile_tag_show.dart';
+import 'package:chatx_test/widget/profile_tag_add.dart';
+import 'package:chatx_test/widget/profile_tag_item.dart';
+import 'package:chatx_test/widget/profile_tag_selector.dart';
 import 'package:flutter/material.dart';
-// import 'package:chatx_test/widget/profile_tag_edit.dart';
 import 'package:chatx_test/model/customer_profile.dart';
 import 'package:chatx_test/model/tag.dart';
 import 'package:chatx_test/data/mock_tag_data.dart';
@@ -19,18 +20,17 @@ class _CustomerProfileTagState extends State<CustomerProfileTag> {
 
   bool showAvailableTags = false;
 
-  late List<CustomerTagLabel> customerTags; // tag ของลูกค้า
+  late List<ProfileTagLabel> customerTags; // tag ของลูกค้า
   late List<TagLabel> allTagLabels; // tag ทั้งหมดในระบบ
   late List<TagLabel> _availableTags;
 
   @override
   void initState() {
     super.initState();
-    
+
     // ดึง tag ของลูกค้า (flatten ให้เป็น list ของ CustomerTagLabel)
-    customerTags = widget.profile.customerTags
-        .expand((tag) => tag.tags)
-        .toList();
+    customerTags =
+        widget.profile.customerTags.expand((tag) => tag.tags).toList();
 
     // ดึง tag ทั้งหมดจาก mock (flatten ให้เป็น list ของ TagLabel)
     allTagLabels = allTags.expand((t) => t.tags).toList();
@@ -48,15 +48,15 @@ class _CustomerProfileTagState extends State<CustomerProfileTag> {
     setState(() {
       isEditing = !isEditing;
       if (!isEditing) {
-      showAvailableTags = false; // ออกจากโหมดแก้ไขค่อยปิด
-    }
+        showAvailableTags = false; // ออกจากโหมดแก้ไขค่อยปิด
+      }
     });
   }
 
   void addTag(TagLabel newTag) {
     setState(() {
       customerTags.add(
-        CustomerTagLabel(
+        ProfileTagLabel(
           tagLabelId: newTag.tagLabelId,
           tagLabelName: newTag.tagLabelName,
           tagColor: newTag.tagColor,
@@ -74,12 +74,11 @@ class _CustomerProfileTagState extends State<CustomerProfileTag> {
   }
 
   void _refreshAvailableTags() {
-  final customerTagIds = customerTags.map((e) => e.tagLabelId).toSet();
-  _availableTags = allTagLabels
-      .where((tag) => !customerTagIds.contains(tag.tagLabelId))
-      .toList();
-}
-
+    final customerTagIds = customerTags.map((e) => e.tagLabelId).toSet();
+    _availableTags = allTagLabels
+        .where((tag) => !customerTagIds.contains(tag.tagLabelId))
+        .toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,86 +99,22 @@ class _CustomerProfileTagState extends State<CustomerProfileTag> {
             runSpacing: 6,
             children: [
               for (int i = 0; i < customerTags.length; i++)
-                Stack(
-                  clipBehavior: Clip.none,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 14, vertical: 2),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6),
-                        color: customerTags[i].tagColor,
-                      ),
-                      child: Text(
-                        customerTags[i].tagLabelName,
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    if (isEditing)
-                      Positioned(
-                        top: -6,
-                        right: -6,
-                        child: GestureDetector(
-                          onTap: () => removeTag(i),
-                          child: const CircleAvatar(
-                            radius: 10,
-                            backgroundColor: Colors.red,
-                            child: Icon(Icons.close,
-                                size: 12, color: Colors.white),
-                          ),
-                        ),
-                      ),
-                  ],
+                ProfileTagItem(
+                  tag: customerTags[i],
+                  isEditing: isEditing,
+                  onRemove: () => removeTag(i),
                 ),
               if (isEditing)
-                GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      showAvailableTags = !showAvailableTags;
-                    });
-                  },
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: const Icon(Icons.add),
-                  ),
-                ),
+                ProfileTagAdd(onTap: () {
+                  setState(() => showAvailableTags = !showAvailableTags);
+                }),
             ],
           ),
         ),
         if (isEditing && showAvailableTags && _availableTags.isNotEmpty)
-          Container(
-            margin: const EdgeInsets.only(top: 6),
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: Colors.grey[100],
-              border: Border.all(color: Colors.grey),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Wrap(
-              spacing: 8,
-              children: _availableTags.map((tag) {
-                return GestureDetector(
-                  onTap: () => addTag(tag),
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.blue[100],
-                    ),
-                    child: Text(
-                      tag.tagLabelName,
-                      style: const TextStyle(color: Colors.black),
-                    ),
-                  ),
-                );
-              }).toList(),
-            ),
+          ProfileTagSelector(
+            availableTags: _availableTags,
+            onTagSelected: (tag) => addTag(tag),
           ),
         Align(
           alignment: Alignment.topRight,
