@@ -41,3 +41,10 @@ class OwnerInfo {
   static const String ownerName = 'Me';
   static const String ownerImage = 'assets/imgs/agent1.jpg';
 }
+
+class AppConstants {
+  static const String appName = 'ChatX Login';
+  static const double defaultPadding = 40.0;
+  static const String backgroundLogin = 'assets/imgs/rectangle.png';
+  static const String logoLogin = 'assets/imgs/logoName.png';
+}

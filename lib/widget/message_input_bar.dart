@@ -71,8 +71,8 @@ class MessageInputBar extends StatelessWidget {
                   ),
                   child: InkWell(
                     onTap: onSend,
-                    child: Row(
-                      children: const [
+                    child: const Row(
+                      children: [
                         Text(
                           'Send',
                           style: TextStyle(color: Colors.white),

@@ -509,14 +509,14 @@ List<CustomerProfile> mockCustomer = [
   CustomerProfile(
     chatRoomId: 'CR007',
     customerId: 'C007',
-    customerImage: 'assets/imgs/female1.jpg',
-    customerName: 'Janejira',
-    channelName: 'instagram',
-    customerNote: 'ลูกค้าสนใจสินค้าชุดใหม่ มีแนวโน้มสั่งซื้อสูง',
+    customerImage: 'assets/imgs/male2.jpg',
+    customerName: 'Jack',
+    channelName: 'facebook',
+    customerNote: '..........',
     customerDetail: CustomerDetail(
-      firstName: 'Janejira',
-      lastName: 'Smith',
-      email: 'Janejira.smith@example.com',
+      firstName: 'Jack',
+      lastName: 'Nathan',
+      email: 'Jack.nathan@example.com',
       phoneNumber: '080-123-4567',
     ),
     customerTags: [
@@ -569,14 +569,92 @@ List<CustomerProfile> mockCustomer = [
       CustomerSentImage(
         imageId: 'si001',
         imageUrl:
-            'https://www.cuteness.com/cuteness/17-super-wholesome-dog-memes-to-warm-your-heart/20e09723c51f41b5bebe1fbda21472c9.jpg',
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3110.jpg',
         sentAt: DateTime.now().subtract(Duration(days: 1)),
       ),
       CustomerSentImage(
         imageId: 'si002',
         imageUrl:
-            'https://ih1.redbubble.net/image.3127263335.9602/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg',
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3113.jpg',
         sentAt: DateTime.now().subtract(Duration(days: 2)),
+      ),
+      CustomerSentImage(
+        imageId: 'si001',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3110.jpg',
+        sentAt: DateTime.now().subtract(Duration(days: 1)),
+      ),
+      CustomerSentImage(
+        imageId: 'si002',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3113.jpg',
+        sentAt: DateTime.now().subtract(Duration(days: 2)),
+      ),
+      CustomerSentImage(
+        imageId: 'si001',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3110.jpg',
+        sentAt: DateTime.now().subtract(Duration(days: 1)),
+      ),
+      CustomerSentImage(
+        imageId: 'si002',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3113.jpg',
+        sentAt: DateTime.now().subtract(Duration(days: 2)),
+      ),
+      CustomerSentImage(
+        imageId: 'si001',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3110.jpg',
+        sentAt: DateTime.now().subtract(Duration(days: 1)),
+      ),
+      CustomerSentImage(
+        imageId: 'si002',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3113.jpg',
+        sentAt: DateTime.now().subtract(Duration(days: 2)),
+      ),
+      CustomerSentImage(
+        imageId: 'si001',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3110.jpg',
+        sentAt: DateTime.now().subtract(Duration(days: 1)),
+      ),
+      CustomerSentImage(
+        imageId: 'si002',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3113.jpg',
+        sentAt: DateTime.now().subtract(Duration(days: 2)),
+      ),
+      CustomerSentImage(
+        imageId: 'si001',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3110.jpg',
+        sentAt: DateTime.now().subtract(Duration(days: 1)),
+      ),
+      CustomerSentImage(
+        imageId: 'si002',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3113.jpg',
+        sentAt: DateTime.now().subtract(Duration(days: 2)),
+      ),
+      CustomerSentImage(
+        imageId: 'si001',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3110.jpg',
+        sentAt: DateTime.now().subtract(Duration(days: 1)),
+      ),
+      CustomerSentImage(
+        imageId: 'si002',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3113.jpg',
+        sentAt: DateTime.now().subtract(Duration(days: 2)),
+      ),
+      CustomerSentImage(
+        imageId: 'si001',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3110.jpg',
+        sentAt: DateTime.now().subtract(Duration(days: 1)),
       ),
     ],
   ),
