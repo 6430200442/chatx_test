@@ -50,7 +50,7 @@ class LoginPage extends StatelessWidget {
                             const LoginForm(),
                             const SizedBox(height: 20),
                             Text(
-                              '__________or__________',
+                              '______________or______________',
                               style: TextStyle(color: Colors.grey[100]),
                             ),
                             const SizedBox(height: 20),

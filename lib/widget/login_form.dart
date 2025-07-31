@@ -43,10 +43,11 @@ class _LoginFormState extends State<LoginForm> {
       children: [
         SizedBox(
           width: MediaQuery.of(context).size.width,
-          // height: 30,
+          // height: 50,
           child: TextField(
             controller: emailController,
             decoration: InputDecoration(
+              prefixIcon: const Icon(Icons.people),
               labelText: 'Username',
               filled: true,
               fillColor: Colors.white,
@@ -66,14 +67,16 @@ class _LoginFormState extends State<LoginForm> {
             style: TextStyle(color: Colors.white),
           ),
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 20),
         SizedBox(
           width: MediaQuery.of(context).size.width,
-          // height: 70,
+          // height: 50,
           child: TextField(
             controller: passwordController,
             obscureText: true,
             decoration: InputDecoration(
+              prefixIcon: const Icon(Icons.lock),
+              suffixIcon: const Icon(Icons.remove_red_eye),
               labelText: 'Password',
               filled: true,
               fillColor: Colors.white,
@@ -112,7 +115,7 @@ class _LoginFormState extends State<LoginForm> {
         // const SizedBox(height: 10),
         SizedBox(
           width: MediaQuery.of(context).size.width,
-          height: 80,
+          height: 50,
           child: ElevatedButton(
             onPressed: _login,
             style: ElevatedButton.styleFrom(
