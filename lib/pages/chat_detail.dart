@@ -28,7 +28,26 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
   final TextEditingController _messageController = TextEditingController();
   //final FocusNode _focusNode = FocusNode();
   bool _showEmojiBar = false;
+  bool _showQuickReplies = false;
   String? selectedTransfer;
+
+  final List<String> quickReplies = [
+    'ขอบคุณค่ะ',
+    'เดี๋ยวดำเนินการให้นะคะ',
+    'ขอเวลาเช็กข้อมูลก่อนนะคะ',
+    'รอสักครู่ค่ะ...',
+    'ขออภัยในความไม่สะดวกค่ะ',
+    'ขอชื่อ-เบอร์โทรติดต่อกลับด้วยค่ะ',
+  ];
+
+  void _onQuickReplyTap(String message) {
+    // ส่งข้อความ (คุณอาจเปลี่ยนไปใช้ controller หรือ state management แทน)
+    print('ส่งข้อความ: $message');
+    setState(() {
+      _messageController.clear();
+      _showQuickReplies = false;
+    });
+  }
 
   void _handleSend() {
     final text = _messageController.text.trim();
@@ -92,7 +111,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                 setState(() {
                   widget.chatDetail.status = 'done';
 
-                  // หรือถ้าคุณใช้ mock data list ก็ต้องอัปเดตใน mockChatDetailData ด้วย
+                  // หรือใช้ mock data list ก็ต้องอัปเดตใน mockChatDetailData
                   final index = mockChatDetailData.indexWhere(
                       (m) => m.chatRoomId == widget.chatDetail.chatRoomId);
                   if (index != -1) {
@@ -204,6 +223,22 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
               controller: _messageController,
               onSend: _handleSend,
               onEmojiPressed: _toggleEmojiBar,
+              onQuickReplyToggle: () {
+                setState(() {
+                  _showQuickReplies = !_showQuickReplies;
+                });
+              },
+              showQuickReplies: _showQuickReplies,
+              quickReplies: quickReplies,
+              onQuickReplyTap: (msg) {
+                setState(() {
+                  _messageController.text = msg;
+                  _messageController.selection = TextSelection.fromPosition(
+                    TextPosition(offset: _messageController.text.length),
+                  );
+                  _showQuickReplies = false;
+                });
+              },
             ),
           ],
         ),

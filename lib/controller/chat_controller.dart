@@ -108,30 +108,6 @@ class ChatController {
     }
   }
 
-  // void updateAgent(String chatRoomId, String newAgent) {
-  //   final index =
-  //       filteredChats.value.indexWhere((c) => c.chatRoomId == chatRoomId);
-  //   if (index != -1) {
-  //     final old = filteredChats.value[index];
-  //     filteredChats.value[index] = ChatMessage(
-  //       chatRoomId: old.chatRoomId,
-  //       customerId: old.customerId,
-  //       customerImage: old.customerImage,
-  //       customerName: old.customerName,
-  //       lastMessage: old.lastMessage,
-  //       time: old.time,
-  //       unreadCount: old.unreadCount,
-  //       status: newAgent,
-  //       statusColor: Colors.blue,
-  //       channel: old.channel,
-  //       agentId: old.agentId,
-  //       agentImage: old.agentImage,
-  //       agentName: old.agentName,
-  //     );
-  //     filteredChats.notifyListeners(); // รีเฟรช UI
-  //   }
-  // }
-
   void updateTransfer(String chatRoomId, String newAgent) {
   final index =
       filteredChats.value.indexWhere((c) => c.chatRoomId == chatRoomId);

@@ -32,7 +32,7 @@ class LoginPage extends StatelessWidget {
                             const EdgeInsets.all(AppConstants.defaultPadding),
                         child: Column(
                           children: [
-                            const SizedBox(height: 80),
+                            const SizedBox(height: 100),
                             Image.asset(
                               AppConstants.logoLogin,
                               width: MediaQuery.of(context).size.width,
@@ -49,33 +49,7 @@ class LoginPage extends StatelessWidget {
                             const SizedBox(height: 30),
                             const LoginForm(),
                             const SizedBox(height: 20),
-                            Text(
-                              '______________or______________',
-                              style: TextStyle(color: Colors.grey[100]),
-                            ),
-                            const SizedBox(height: 20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: Image.asset(
-                                    'assets/imgs/google.png',
-                                    width: 40,
-                                    height: 40,
-                                  ),
-                                ),
-                                const SizedBox(width: 10),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: Image.asset(
-                                    'assets/imgs/facebook.png',
-                                    width: 40,
-                                    height: 40,
-                                  ),
-                                ),
-                              ],
-                            ),
+                            
                           ],
                         ),
                       ),

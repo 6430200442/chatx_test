@@ -13,7 +13,10 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  bool _obscurePassword = true;
   String? error;
+  String? emailError;
+  String? passwordError;
 
   void _login() {
     final email = emailController.text;
@@ -48,7 +51,8 @@ class _LoginFormState extends State<LoginForm> {
             controller: emailController,
             decoration: InputDecoration(
               prefixIcon: const Icon(Icons.people),
-              labelText: 'Username',
+              hintText: 'Username01',
+              // labelText: 'Username02',
               filled: true,
               fillColor: Colors.white,
               border: OutlineInputBorder(
@@ -76,8 +80,18 @@ class _LoginFormState extends State<LoginForm> {
             obscureText: true,
             decoration: InputDecoration(
               prefixIcon: const Icon(Icons.lock),
-              suffixIcon: const Icon(Icons.remove_red_eye),
-              labelText: 'Password',
+              suffixIcon: IconButton(
+                icon: Icon(
+                  _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _obscurePassword = !_obscurePassword;
+                  });
+                },
+              ),
+              hintText: 'Password',
+              // labelText: 'Password',
               filled: true,
               fillColor: Colors.white,
               border: OutlineInputBorder(
@@ -92,21 +106,22 @@ class _LoginFormState extends State<LoginForm> {
         const Align(
           alignment: Alignment.centerRight,
           child: Text(
-            'Password must be at least 8 characters',
+            'At least 8 characters',
             style: TextStyle(color: Colors.white),
           ),
         ),
         const SizedBox(height: 10),
         const Align(
           alignment: Alignment.centerRight,
-          child: TextButton(onPressed: null,
-          child: Text(
-            'forgot password',
-            style: TextStyle(
-                color: Colors.white,
-                decoration: TextDecoration.underline,
-                decorationColor: Colors.white),
-          ),
+          child: TextButton(
+            onPressed: null,
+            child: Text(
+              'Forgot password',
+              style: TextStyle(
+                  color: Colors.white,
+                  decoration: TextDecoration.underline,
+                  decorationColor: Colors.white),
+            ),
           ),
         ),
         const SizedBox(height: 10),

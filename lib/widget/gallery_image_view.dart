@@ -28,7 +28,8 @@ class _GalleryImageViewState extends State<GalleryImageView> {
 
   Future<void> _downloadImage(String imagePath) async {
     try {
-      // await ImageDownloader.downloadImage(imagePath); // ใช้ path แบบเน็ตจะง่ายกว่า asset
+      // await ImageDownloader.downloadImage(imagePath); 
+      // ใช้ path แบบเน็ตจะง่ายกว่า asset
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Image downloaded')),
       );

@@ -1,16 +1,26 @@
+// import 'package:chatx_test/model/quick_reply_message.dart';
 import 'package:flutter/material.dart';
 import 'emoji_button.dart';
+import 'quick_reply_label.dart';
 
 class MessageInputBar extends StatelessWidget {
   final TextEditingController controller;
   final VoidCallback onSend;
   final VoidCallback onEmojiPressed;
+  final VoidCallback onQuickReplyToggle;
+  final bool showQuickReplies;
+  final List<String> quickReplies;
+  final Function(String) onQuickReplyTap;
 
   const MessageInputBar({
     Key? key,
     required this.controller,
     required this.onSend,
     required this.onEmojiPressed,
+    required this.onQuickReplyToggle,
+    required this.showQuickReplies,
+    required this.quickReplies,
+    required this.onQuickReplyTap,
   }) : super(key: key);
 
   @override
@@ -33,6 +43,7 @@ class MessageInputBar extends StatelessWidget {
         child: Column(
           children: [
             // TextField สูงขึ้นและไม่มีเส้นกรอบ
+            // mainAxisSize: MainAxisSize.min,
             TextField(
               controller: controller,
               minLines: 2, // ความสูงเริ่มต้น
@@ -48,6 +59,16 @@ class MessageInputBar extends StatelessWidget {
                 focusedBorder: InputBorder.none,
               ),
             ),
+
+            if (showQuickReplies)
+              Padding(
+                padding: const EdgeInsets.only(top: 4.0, bottom: 8),
+                child: QuickReplyRow(
+                  replies: quickReplies,
+                  onTap: onQuickReplyTap,
+                ),
+              ),
+
             Row(
               children: [
                 IconButton(
@@ -61,12 +82,17 @@ class MessageInputBar extends StatelessWidget {
                   onPressed: onSend,
                   color: Colors.grey,
                 ),
+                IconButton(
+                  icon: const Icon(Icons.menu_rounded),
+                  onPressed: onQuickReplyToggle, // <-- Toggle Quick Reply
+                  color: Colors.grey,
+                ),
                 const Spacer(),
                 Container(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 14, 80, 223),
+                    color: const Color.fromARGB(255, 14, 80, 223),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: InkWell(
