@@ -48,3 +48,10 @@ class AppConstants {
   static const String backgroundLogin = 'assets/imgs/rectangle.png';
   static const String logoLogin = 'assets/imgs/logoName.png';
 }
+
+final Map<String, String> agentImages = {
+  'Me': 'assets/imgs/agent1.jpg',
+  'Agent Anna': 'assets/imgs/agent2.jpg',
+  'Agent Mook': 'assets/imgs/agent3.jpg',
+  // เพิ่มตามรายชื่อ agent
+};

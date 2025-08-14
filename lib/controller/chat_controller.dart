@@ -1,3 +1,4 @@
+import 'package:chatx_test/constant/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:chatx_test/model/chat_message.dart';
 import 'package:chatx_test/data/mock_chat_data.dart';
@@ -111,6 +112,7 @@ class ChatController {
   void updateTransfer(String chatRoomId, String newAgent) {
   final index =
       filteredChats.value.indexWhere((c) => c.chatRoomId == chatRoomId);
+  final image = agentImages[newAgent] ?? 'assets/images/user_blue.png';
   if (index != -1) {
     final old = filteredChats.value[index];
     filteredChats.value[index] = ChatMessage(
@@ -125,10 +127,11 @@ class ChatController {
       statusColor: _getColorByStatus(old.status),
       channel: old.channel,
       agentId: old.agentId,
-      agentImage: old.agentImage,
-      agentName: newAgent, // ✅ เปลี่ยนตรงนี้
+      // agentImage: old.agentImage,
+      agentImage: image,
+      agentName: newAgent, // เปลี่ยนตรงนี้
     );
-    filteredChats.notifyListeners(); // ✅ รีเฟรช UI
+    filteredChats.notifyListeners(); // รีเฟรช UI
   }
 }
 

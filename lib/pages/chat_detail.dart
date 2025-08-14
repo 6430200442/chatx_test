@@ -2,6 +2,7 @@ import 'package:chatx_test/constant/app_constants.dart';
 import 'package:chatx_test/controller/chat_controller.dart';
 import 'package:chatx_test/data/mock_chat_detail_data.dart';
 import 'package:chatx_test/data/mock_customer_profile.dart';
+import 'package:chatx_test/data/mock_quick_reply_data.dart';
 import 'package:chatx_test/model/chat_detail_message.dart';
 import 'package:chatx_test/widget/chat_detail_app_bar.dart';
 import 'package:chatx_test/widget/chat_detail_close_transfer.dart';
@@ -30,24 +31,6 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
   bool _showEmojiBar = false;
   bool _showQuickReplies = false;
   String? selectedTransfer;
-
-  final List<String> quickReplies = [
-    'ขอบคุณค่ะ',
-    'เดี๋ยวดำเนินการให้นะคะ',
-    'ขอเวลาเช็กข้อมูลก่อนนะคะ',
-    'รอสักครู่ค่ะ...',
-    'ขออภัยในความไม่สะดวกค่ะ',
-    'ขอชื่อ-เบอร์โทรติดต่อกลับด้วยค่ะ',
-  ];
-
-  void _onQuickReplyTap(String message) {
-    // ส่งข้อความ (คุณอาจเปลี่ยนไปใช้ controller หรือ state management แทน)
-    print('ส่งข้อความ: $message');
-    setState(() {
-      _messageController.clear();
-      _showQuickReplies = false;
-    });
-  }
 
   void _handleSend() {
     final text = _messageController.text.trim();
@@ -121,7 +104,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
 
                   widget.chatController.updateStatus(
                       widget.chatDetail.chatRoomId,
-                      'done'); // ✅ อัปเดตที่ ChatList
+                      'done'); // อัปเดตที่ ChatList
                 });
 
                 Navigator.of(context).pop(); // ปิด dialog
@@ -154,19 +137,26 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
             TextButton(
               child: const Text('Confirm'),
               onPressed: () {
-                setState(() {
-                  // ✅ อัปเดตในหน้า ChatDetail
-                  widget.chatDetail.agentName = selectedTransfer;
 
-                  // ✅ อัปเดตใน mockChatDetailData
+                final image = agentImages[selectedTransfer] ??
+                    'assets/images/user_blue.png'; // ใช้ภาพ default ถ้าไม่มี
+
+                setState(() {
+                  // อัปเดตในหน้า ChatDetail
+                  widget.chatDetail.agentName = selectedTransfer;
+                  // widget.chatDetail.agentImage = image;
+
+                  // อัปเดตใน mockChatDetailData
                   final index = mockChatDetailData.indexWhere(
                       (m) => m.chatRoomId == widget.chatDetail.chatRoomId);
                   if (index != -1) {
                     mockChatDetailData[index] = mockChatDetailData[index]
-                        .copyWith(agentName: selectedTransfer);
+                        .copyWith(
+                          agentName: selectedTransfer,
+                          agentImage: image,);
                   }
 
-                  // ✅ เรียก controller เพื่อ sync กลับไปหน้า ChatList
+                  // เรียก controller เพื่อ sync กลับไปหน้า ChatList
                   widget.chatController.updateTransfer(
                       widget.chatDetail.chatRoomId, selectedTransfer!);
                 });
@@ -201,14 +191,17 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
       body: SafeArea(
         child: Column(
           children: [
-            ChatDetailCloseTransfer(
-              selectedTransfer: selectedTransfer,
-              onTransferChanged: (value) {
-                setState(() => selectedTransfer = value!);
-                onPressedTransfer();
-              },
-              onClosePressed: onPressedClose,
-            ),
+            if (widget.chatDetail.status == 'have agent' ||
+                widget.chatDetail.status == 'no agent')
+              ChatDetailCloseTransfer(
+                selectedTransfer: selectedTransfer,
+                onTransferChanged: (value) {
+                  setState(() => selectedTransfer = value!);
+                  onPressedTransfer();
+                },
+                onClosePressed: onPressedClose,
+                agentName: widget.chatDetail.agentName,
+              ),
             Expanded(child: ChatDetailMessageList(messages: messages)),
             if (_showEmojiBar)
               SizedBox(
@@ -229,7 +222,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                 });
               },
               showQuickReplies: _showQuickReplies,
-              quickReplies: quickReplies,
+              quickReplies: mockQuickReplies,
               onQuickReplyTap: (msg) {
                 setState(() {
                   _messageController.text = msg;
