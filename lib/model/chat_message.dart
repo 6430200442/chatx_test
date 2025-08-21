@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ChatMessage {
+class CustomerProfile {
   final String chatRoomId; // Unique identifier for each chat message
   final String customerId;
   final String customerImage;
@@ -17,7 +17,7 @@ class ChatMessage {
   
   //final AgentInfo? agent;
 
-  ChatMessage({
+  CustomerProfile({
     required this.chatRoomId,
     required this.customerId,
     required this.customerImage,

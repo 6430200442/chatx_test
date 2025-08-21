@@ -1,10 +1,10 @@
 import 'package:chatx_test/model/chat_message.dart';
 import 'package:flutter/material.dart';
 
-List<ChatMessage> mockChatData = [
+List<CustomerProfile> mockChatData = [
 
   // person 1
-  ChatMessage(
+  CustomerProfile(
     chatRoomId: 'CR001',
     customerId: 'C001',
     customerImage: 'assets/imgs/female1.jpg',
@@ -18,7 +18,7 @@ List<ChatMessage> mockChatData = [
   ),
 
   // person 2
-  ChatMessage(
+  CustomerProfile(
     chatRoomId: 'CR002',
     customerId: 'C002',
     customerImage: 'assets/imgs/male1.jpg',
@@ -32,7 +32,7 @@ List<ChatMessage> mockChatData = [
   ),
 
   // person 3
-  ChatMessage(
+  CustomerProfile(
     chatRoomId: 'CR003',
     customerId: 'C003',
     customerImage: 'assets/imgs/female2.jpg',
@@ -50,7 +50,7 @@ List<ChatMessage> mockChatData = [
   ),
 
   // person 4
-  ChatMessage(
+  CustomerProfile(
     chatRoomId: 'CR004',
     customerId: 'C004',
     customerImage: 'assets/imgs/female3.jpg',
@@ -68,7 +68,7 @@ List<ChatMessage> mockChatData = [
   ),
 
   // person 5
-  ChatMessage(
+  CustomerProfile(
     chatRoomId: 'CR005',
     customerId: 'C005',
     customerImage: 'assets/imgs/female4.jpg',
@@ -82,7 +82,7 @@ List<ChatMessage> mockChatData = [
   ),
 
   // person 6
-  ChatMessage(
+  CustomerProfile(
     chatRoomId: 'CR006',
     customerId: 'C006',
     customerImage: 'assets/imgs/female5.jpg',
@@ -100,7 +100,7 @@ List<ChatMessage> mockChatData = [
   ),
 
   // person 7
-  ChatMessage(
+  CustomerProfile(
     chatRoomId: 'CR007',
     customerId: 'C007',
     customerImage: 'assets/imgs/male2.jpg',
@@ -118,7 +118,7 @@ List<ChatMessage> mockChatData = [
   ),
 
   // person 8
-  ChatMessage(
+  CustomerProfile(
     chatRoomId: 'CR008',
     customerId: 'C008',
     customerImage: 'assets/imgs/male3.jpg',
@@ -132,7 +132,7 @@ List<ChatMessage> mockChatData = [
   ),
 
   // person 9
-  ChatMessage(
+  CustomerProfile(
     chatRoomId: 'CR009',
     customerId: 'C009',
     customerImage: 'assets/imgs/male4.jpg',
@@ -146,7 +146,7 @@ List<ChatMessage> mockChatData = [
   ),
 
   // person 10
-  ChatMessage(
+  CustomerProfile(
     chatRoomId: 'CR010',
     customerId: 'C010',
     customerImage: 'assets/imgs/female6.jpg',
@@ -160,7 +160,7 @@ List<ChatMessage> mockChatData = [
   ),
 
   // person 11
-  ChatMessage(
+  CustomerProfile(
     chatRoomId: 'CR011',
     customerId: 'C011',
     customerImage: 'assets/imgs/female7.jpg',
@@ -174,7 +174,7 @@ List<ChatMessage> mockChatData = [
   ),
 
   // person 12
-  ChatMessage(
+  CustomerProfile(
     chatRoomId: 'CR012',
     customerId: 'C012',
     customerImage: 'assets/imgs/male5.jpg',
@@ -188,7 +188,7 @@ List<ChatMessage> mockChatData = [
   ),
 
   // person 13
-  ChatMessage(
+  CustomerProfile(
     chatRoomId: 'CR013',
     customerId: 'C013',
     customerImage: 'assets/imgs/female8.jpg',
@@ -202,7 +202,7 @@ List<ChatMessage> mockChatData = [
   ),
 
   // person 14
-  ChatMessage(
+  CustomerProfile(
     chatRoomId: 'CR014',
     customerId: 'C014',
     customerImage: 'assets/imgs/female9.jpg',
@@ -220,7 +220,7 @@ List<ChatMessage> mockChatData = [
   ),
 
   // person 15
-  ChatMessage(
+  CustomerProfile(
     chatRoomId: 'CR015',
     customerId: 'C015',
     customerImage: 'assets/imgs/female10.jpg',

@@ -1,12 +1,14 @@
 import 'package:chatx_test/constant/app_constants.dart';
+import 'package:chatx_test/data/mock_customer_contact.dart';
+import 'package:chatx_test/model/customer_contact.dart';
 import 'package:flutter/material.dart';
 import 'package:chatx_test/model/chat_message.dart';
 import 'package:chatx_test/data/mock_chat_data.dart';
 
 class ChatController {
   final TextEditingController searchController = TextEditingController();
-  final ValueNotifier<List<ChatMessage>> filteredChats =
-      ValueNotifier<List<ChatMessage>>(mockChatData);
+  final ValueNotifier<List<CustomerProfile>> filteredChats =
+      ValueNotifier<List<CustomerProfile>>(mockChatData);
 
   void search(String filter) {
     if (filter.isEmpty) {
@@ -77,7 +79,7 @@ class ChatController {
         filteredChats.value.indexWhere((c) => c.chatRoomId == chatRoomId);
     if (index != -1) {
       final old = filteredChats.value[index];
-      filteredChats.value[index] = ChatMessage(
+      filteredChats.value[index] = CustomerProfile(
         chatRoomId: old.chatRoomId,
         customerId: old.customerId,
         customerImage: old.customerImage,
@@ -110,29 +112,69 @@ class ChatController {
   }
 
   void updateTransfer(String chatRoomId, String newAgent) {
-  final index =
-      filteredChats.value.indexWhere((c) => c.chatRoomId == chatRoomId);
-  final image = agentImages[newAgent] ?? 'assets/images/user_blue.png';
-  if (index != -1) {
-    final old = filteredChats.value[index];
-    filteredChats.value[index] = ChatMessage(
-      chatRoomId: old.chatRoomId,
-      customerId: old.customerId,
-      customerImage: old.customerImage,
-      customerName: old.customerName,
-      lastMessage: old.lastMessage,
-      time: old.time,
-      unreadCount: old.unreadCount,
-      status: old.status,
-      statusColor: _getColorByStatus(old.status),
-      channel: old.channel,
-      agentId: old.agentId,
-      // agentImage: old.agentImage,
-      agentImage: image,
-      agentName: newAgent, // เปลี่ยนตรงนี้
-    );
-    filteredChats.notifyListeners(); // รีเฟรช UI
+    final index =
+        filteredChats.value.indexWhere((c) => c.chatRoomId == chatRoomId);
+    final image = agentImages[newAgent] ?? 'assets/images/user_blue.png';
+    if (index != -1) {
+      final old = filteredChats.value[index];
+      filteredChats.value[index] = CustomerProfile(
+        chatRoomId: old.chatRoomId,
+        customerId: old.customerId,
+        customerImage: old.customerImage,
+        customerName: old.customerName,
+        lastMessage: old.lastMessage,
+        time: old.time,
+        unreadCount: old.unreadCount,
+        status: old.status,
+        statusColor: _getColorByStatus(old.status),
+        channel: old.channel,
+        agentId: old.agentId,
+        // agentImage: old.agentImage,
+        agentImage: image,
+        agentName: newAgent, // เปลี่ยนตรงนี้
+      );
+      filteredChats.notifyListeners(); // รีเฟรช UI
+    }
   }
 }
 
+class CustomerContactController {
+  final TextEditingController searchController = TextEditingController();
+  final ValueNotifier<List<CustomerContact>> filteredContacts =
+      ValueNotifier<List<CustomerContact>>(mockCustomerContact);
+
+  void filter({String? search, String? channel, String? group, String? tag}) {
+    filteredContacts.value = mockCustomerContact.where((customer) {
+      final matchSearch = search == null || search.isEmpty
+          ? true
+          : customer.customerName
+                  .toLowerCase()
+                  .contains(search.toLowerCase()) ||
+              customer.customerNote
+                  .toLowerCase()
+                  .contains(search.toLowerCase());
+
+      final matchChannel = channel == null || channel == 'All Channel'
+          ? true
+          : customer.channelName.toLowerCase().contains(channel.toLowerCase());
+
+      final matchGroup = group == null || group == 'All Group'
+          ? true
+          : customer.groupName.toLowerCase().contains(group.toLowerCase());
+
+      final matchTagStatus = tag == null || tag == 'All Tag'
+          ? true
+          : (customer.tag?.toLowerCase() == tag.toLowerCase() ||
+              customer.status.toLowerCase() == tag.toLowerCase());
+
+      return matchSearch && matchChannel && matchGroup && matchTagStatus;
+    }).toList();
+
+    filteredContacts.notifyListeners();
+  }
+
+  void dispose() {
+    searchController.dispose();
+    filteredContacts.dispose();
+  }
 }

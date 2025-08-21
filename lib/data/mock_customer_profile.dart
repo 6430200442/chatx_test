@@ -190,13 +190,13 @@ List<CustomerProfile> mockCustomer = [
         imageId: 'si001',
         imageUrl:
             'https://media.printler.com/media/photo/125232.jpg?rmode=crop&width=638&height=900',
-        sentAt: DateTime.now().subtract(Duration(days: 1)),
+        sentAt: DateTime.now().subtract(const Duration(days: 1)),
       ),
       CustomerSentImage(
         imageId: 'si002',
         imageUrl:
             'https://upload.wikimedia.org/wikipedia/en/5/5f/Original_Doge_meme.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 2)),
+        sentAt: DateTime.now().subtract(const Duration(days: 2)),
       ),
     ],
   ),
@@ -266,13 +266,13 @@ List<CustomerProfile> mockCustomer = [
         imageId: 'si001',
         imageUrl:
             'https://www.cuteness.com/cuteness/17-super-wholesome-dog-memes-to-warm-your-heart/20e09723c51f41b5bebe1fbda21472c9.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 1)),
+        sentAt: DateTime.now().subtract(const Duration(days: 1)),
       ),
       CustomerSentImage(
         imageId: 'si002',
         imageUrl:
             'https://ih1.redbubble.net/image.3127263335.9602/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 2)),
+        sentAt: DateTime.now().subtract(const Duration(days: 2)),
       ),
     ],
   ),
@@ -342,13 +342,13 @@ List<CustomerProfile> mockCustomer = [
         imageId: 'si001',
         imageUrl:
             'https://www.cuteness.com/cuteness/17-super-wholesome-dog-memes-to-warm-your-heart/20e09723c51f41b5bebe1fbda21472c9.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 1)),
+        sentAt: DateTime.now().subtract(const Duration(days: 1)),
       ),
       CustomerSentImage(
         imageId: 'si002',
         imageUrl:
             'https://ih1.redbubble.net/image.3127263335.9602/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 2)),
+        sentAt: DateTime.now().subtract(const Duration(days: 2)),
       ),
     ],
   ),
@@ -418,13 +418,13 @@ List<CustomerProfile> mockCustomer = [
         imageId: 'si001',
         imageUrl:
             'https://www.cuteness.com/cuteness/17-super-wholesome-dog-memes-to-warm-your-heart/20e09723c51f41b5bebe1fbda21472c9.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 1)),
+        sentAt: DateTime.now().subtract(const Duration(days: 1)),
       ),
       CustomerSentImage(
         imageId: 'si002',
         imageUrl:
             'https://ih1.redbubble.net/image.3127263335.9602/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 2)),
+        sentAt: DateTime.now().subtract(const Duration(days: 2)),
       ),
     ],
   ),
@@ -494,13 +494,13 @@ List<CustomerProfile> mockCustomer = [
         imageId: 'si001',
         imageUrl:
             'https://www.cuteness.com/cuteness/17-super-wholesome-dog-memes-to-warm-your-heart/20e09723c51f41b5bebe1fbda21472c9.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 1)),
+        sentAt: DateTime.now().subtract(const Duration(days: 1)),
       ),
       CustomerSentImage(
         imageId: 'si002',
         imageUrl:
             'https://ih1.redbubble.net/image.3127263335.9602/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 2)),
+        sentAt: DateTime.now().subtract(const Duration(days: 2)),
       ),
     ],
   ),
@@ -567,94 +567,94 @@ List<CustomerProfile> mockCustomer = [
     ],
     sentImages: [
       CustomerSentImage(
-        imageId: 'si001',
+        imageId: 'si015',
         imageUrl:
             'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3110.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 1)),
+        sentAt: DateTime.now().subtract(const Duration(days: 4)),
+      ),
+      CustomerSentImage(
+        imageId: 'si014',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3113.jpg',
+        sentAt: DateTime.now().subtract(const Duration(days: 3)),
+      ),
+      CustomerSentImage(
+        imageId: 'si013',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3110.jpg',
+        sentAt: DateTime.now().subtract(const Duration(days: 3)),
+      ),
+      CustomerSentImage(
+        imageId: 'si012',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3113.jpg',
+        sentAt: DateTime.now().subtract(const Duration(days: 3)),
+      ),
+      CustomerSentImage(
+        imageId: 'si011',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3110.jpg',
+        sentAt: DateTime.now().subtract(const Duration(days: 3)),
+      ),
+      CustomerSentImage(
+        imageId: 'si010',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3113.jpg',
+        sentAt: DateTime.now().subtract(const Duration(days: 3)),
+      ),
+      CustomerSentImage(
+        imageId: 'si009',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3110.jpg',
+        sentAt: DateTime.now().subtract(const Duration(days: 3)),
+      ),
+      CustomerSentImage(
+        imageId: 'si008',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3113.jpg',
+        sentAt: DateTime.now().subtract(const Duration(days: 2)),
+      ),
+      CustomerSentImage(
+        imageId: 'si007',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3110.jpg',
+        sentAt: DateTime.now().subtract(const Duration(days: 2)),
+      ),
+      CustomerSentImage(
+        imageId: 'si006',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3113.jpg',
+        sentAt: DateTime.now().subtract(const Duration(days: 2)),
+      ),
+      CustomerSentImage(
+        imageId: 'si005',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3110.jpg',
+        sentAt: DateTime.now().subtract(const Duration(days: 1)),
+      ),
+      CustomerSentImage(
+        imageId: 'si004',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3113.jpg',
+        sentAt: DateTime.now().subtract(const Duration(days: 1)),
+      ),
+      CustomerSentImage(
+        imageId: 'si003',
+        imageUrl:
+            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3110.jpg',
+        sentAt: DateTime.now().subtract(const Duration(days: 1)),
       ),
       CustomerSentImage(
         imageId: 'si002',
         imageUrl:
             'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3113.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 2)),
+        sentAt: DateTime.now().subtract(const Duration(days: 1)),
       ),
       CustomerSentImage(
         imageId: 'si001',
         imageUrl:
             'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3110.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 1)),
-      ),
-      CustomerSentImage(
-        imageId: 'si002',
-        imageUrl:
-            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3113.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 2)),
-      ),
-      CustomerSentImage(
-        imageId: 'si001',
-        imageUrl:
-            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3110.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 1)),
-      ),
-      CustomerSentImage(
-        imageId: 'si002',
-        imageUrl:
-            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3113.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 2)),
-      ),
-      CustomerSentImage(
-        imageId: 'si001',
-        imageUrl:
-            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3110.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 1)),
-      ),
-      CustomerSentImage(
-        imageId: 'si002',
-        imageUrl:
-            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3113.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 2)),
-      ),
-      CustomerSentImage(
-        imageId: 'si001',
-        imageUrl:
-            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3110.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 1)),
-      ),
-      CustomerSentImage(
-        imageId: 'si002',
-        imageUrl:
-            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3113.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 2)),
-      ),
-      CustomerSentImage(
-        imageId: 'si001',
-        imageUrl:
-            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3110.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 1)),
-      ),
-      CustomerSentImage(
-        imageId: 'si002',
-        imageUrl:
-            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3113.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 2)),
-      ),
-      CustomerSentImage(
-        imageId: 'si001',
-        imageUrl:
-            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3110.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 1)),
-      ),
-      CustomerSentImage(
-        imageId: 'si002',
-        imageUrl:
-            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3113.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 2)),
-      ),
-      CustomerSentImage(
-        imageId: 'si001',
-        imageUrl:
-            'https://img.freepik.com/premium-vector/test-icon-vector-design-templates_1172029-3110.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 1)),
+        sentAt: DateTime.now().subtract(const Duration(days: 1)),
       ),
     ],
   ),
@@ -724,13 +724,13 @@ List<CustomerProfile> mockCustomer = [
         imageId: 'si001',
         imageUrl:
             'https://www.cuteness.com/cuteness/17-super-wholesome-dog-memes-to-warm-your-heart/20e09723c51f41b5bebe1fbda21472c9.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 1)),
+        sentAt: DateTime.now().subtract(const Duration(days: 1)),
       ),
       CustomerSentImage(
         imageId: 'si002',
         imageUrl:
             'https://ih1.redbubble.net/image.3127263335.9602/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 2)),
+        sentAt: DateTime.now().subtract(const Duration(days: 2)),
       ),
     ],
   ),
@@ -800,13 +800,13 @@ List<CustomerProfile> mockCustomer = [
         imageId: 'si001',
         imageUrl:
             'https://www.cuteness.com/cuteness/17-super-wholesome-dog-memes-to-warm-your-heart/20e09723c51f41b5bebe1fbda21472c9.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 1)),
+        sentAt: DateTime.now().subtract(const Duration(days: 1)),
       ),
       CustomerSentImage(
         imageId: 'si002',
         imageUrl:
             'https://ih1.redbubble.net/image.3127263335.9602/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 2)),
+        sentAt: DateTime.now().subtract(const Duration(days: 2)),
       ),
     ],
   ),
@@ -876,13 +876,13 @@ List<CustomerProfile> mockCustomer = [
         imageId: 'si001',
         imageUrl:
             'https://www.cuteness.com/cuteness/17-super-wholesome-dog-memes-to-warm-your-heart/20e09723c51f41b5bebe1fbda21472c9.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 1)),
+        sentAt: DateTime.now().subtract(const Duration(days: 1)),
       ),
       CustomerSentImage(
         imageId: 'si002',
         imageUrl:
             'https://ih1.redbubble.net/image.3127263335.9602/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 2)),
+        sentAt: DateTime.now().subtract(const Duration(days: 2)),
       ),
     ],
   ),
@@ -952,13 +952,13 @@ List<CustomerProfile> mockCustomer = [
         imageId: 'si001',
         imageUrl:
             'https://www.cuteness.com/cuteness/17-super-wholesome-dog-memes-to-warm-your-heart/20e09723c51f41b5bebe1fbda21472c9.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 1)),
+        sentAt: DateTime.now().subtract(const Duration(days: 1)),
       ),
       CustomerSentImage(
         imageId: 'si002',
         imageUrl:
             'https://ih1.redbubble.net/image.3127263335.9602/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 2)),
+        sentAt: DateTime.now().subtract(const Duration(days: 2)),
       ),
     ],
   ),
@@ -1028,13 +1028,13 @@ List<CustomerProfile> mockCustomer = [
         imageId: 'si001',
         imageUrl:
             'https://www.cuteness.com/cuteness/17-super-wholesome-dog-memes-to-warm-your-heart/20e09723c51f41b5bebe1fbda21472c9.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 1)),
+        sentAt: DateTime.now().subtract(const Duration(days: 1)),
       ),
       CustomerSentImage(
         imageId: 'si002',
         imageUrl:
             'https://ih1.redbubble.net/image.3127263335.9602/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 2)),
+        sentAt: DateTime.now().subtract(const Duration(days: 2)),
       ),
     ],
   ),
@@ -1104,13 +1104,13 @@ List<CustomerProfile> mockCustomer = [
         imageId: 'si001',
         imageUrl:
             'https://www.cuteness.com/cuteness/17-super-wholesome-dog-memes-to-warm-your-heart/20e09723c51f41b5bebe1fbda21472c9.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 1)),
+        sentAt: DateTime.now().subtract(const Duration(days: 1)),
       ),
       CustomerSentImage(
         imageId: 'si002',
         imageUrl:
             'https://ih1.redbubble.net/image.3127263335.9602/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 2)),
+        sentAt: DateTime.now().subtract(const Duration(days: 2)),
       ),
     ],
   ),
@@ -1180,13 +1180,13 @@ List<CustomerProfile> mockCustomer = [
         imageId: 'si001',
         imageUrl:
             'https://www.cuteness.com/cuteness/17-super-wholesome-dog-memes-to-warm-your-heart/20e09723c51f41b5bebe1fbda21472c9.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 1)),
+        sentAt: DateTime.now().subtract(const Duration(days: 1)),
       ),
       CustomerSentImage(
         imageId: 'si002',
         imageUrl:
             'https://ih1.redbubble.net/image.3127263335.9602/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 2)),
+        sentAt: DateTime.now().subtract(const Duration(days: 2)),
       ),
     ],
   ),
@@ -1256,13 +1256,13 @@ List<CustomerProfile> mockCustomer = [
         imageId: 'si001',
         imageUrl:
             'https://www.cuteness.com/cuteness/17-super-wholesome-dog-memes-to-warm-your-heart/20e09723c51f41b5bebe1fbda21472c9.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 1)),
+        sentAt: DateTime.now().subtract(const Duration(days: 1)),
       ),
       CustomerSentImage(
         imageId: 'si002',
         imageUrl:
             'https://ih1.redbubble.net/image.3127263335.9602/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg',
-        sentAt: DateTime.now().subtract(Duration(days: 2)),
+        sentAt: DateTime.now().subtract(const Duration(days: 2)),
       ),
     ],
   ),

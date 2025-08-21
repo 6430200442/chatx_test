@@ -30,15 +30,17 @@ class MessageInputBar extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
         decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
           color: Colors.white,
+          border: Border.all(color: Colors.white),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.08),
-              blurRadius: 8,
-              offset: const Offset(0, 2),
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: const Offset(0, 3),
             ),
           ],
-          borderRadius: BorderRadius.circular(2),
         ),
         child: Column(
           children: [

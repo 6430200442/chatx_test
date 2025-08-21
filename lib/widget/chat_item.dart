@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:chatx_test/model/chat_message.dart';
 
 class ChatItem extends StatelessWidget {
-  final ChatMessage chatMessage;
+  final CustomerProfile chatMessage;
   final VoidCallback onTap;
 
   const ChatItem({

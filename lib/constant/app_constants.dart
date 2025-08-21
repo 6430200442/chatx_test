@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   static const Color primaryColor = Color.fromARGB(255, 14, 80, 223);
+  static const Color primaryColor2 = Color.fromARGB(255, 27, 34, 196);
+  static const Color secondaryColor = Color.fromARGB(255, 72, 128, 255);
   static const Color white = Colors.white;
   static const Color grey = Colors.grey;
   static const Color background = Color(0xFFF5F5F5);
@@ -28,12 +30,49 @@ class ChannelList {
   ];
 }
 
+class GroupList {
+  static const List<String> groups = [
+    'All Group',
+    'Group XXX',
+    'Group YZX',
+    'Group XYZ',
+  ];
+}
+
 class StatusList {
   static const List<String> statuses = [
     'All Status',
     'no agent',
     'have agent',
     'done',
+  ];
+}
+
+class TagStatusList {
+  static const List<String> tags = [
+    'All Tag',
+    'no agent',
+    'have agent',
+    'done',
+    'track',
+    'refund',
+  ];
+}
+
+class TagList {
+  static const List<String> tags = [
+    'All Tags',
+    'no agent',
+    'have agent',
+    'done',
+    'tla001',
+    'tla002',
+    'tla003',
+    'tla004',
+    'tlb001',
+    'tlb002',
+    'tlb003',
+    'tlb004',
   ];
 }
 
