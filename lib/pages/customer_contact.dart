@@ -51,6 +51,7 @@ class _CustomerContactPageState extends State<CustomerContactPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
+        toolbarHeight: 80,
         backgroundColor: AppColors.primaryColor,
         titleTextStyle: Theme.of(context).textTheme.headlineMedium?.copyWith(
               color: Colors.white,

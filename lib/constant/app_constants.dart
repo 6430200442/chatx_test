@@ -48,6 +48,16 @@ class StatusList {
   ];
 }
 
+class RoleList {
+  static const List<String> roles = [
+    'All Role',
+    'Business Owner',
+    'Supervisor',
+    'Marketing',
+    'Agent',
+  ];
+}
+
 class TagStatusList {
   static const List<String> tags = [
     'All Tag',

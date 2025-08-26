@@ -28,8 +28,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/chat',
       routes: {
         // '/home': (context) => const HomePage(),
-        '/chat': (context) => const ChatListPage(),
         // '/notification': (context) => const NotificationPage(),
+        '/chat': (context) => const ChatListPage(),
         '/customer': (context) => const CustomerContactPage(),
         '/group': (context) => const GroupManagePage(),
         '/channel': (context) => const ChannelManagePage(),

@@ -55,7 +55,7 @@ class CustomerItem extends StatelessWidget {
                     customerContact.customerName,
                     style: const TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 16,
+                        fontSize: 15,
                         color: Colors.black87),
                     overflow: TextOverflow.ellipsis,
                   ),

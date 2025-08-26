@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:chatx_test/model/chat_message.dart';
 
 class ChatItem extends StatelessWidget {
-  final CustomerProfile chatMessage;
+  final ChatMessage chatMessage;
   final VoidCallback onTap;
 
   const ChatItem({
@@ -52,13 +52,13 @@ class ChatItem extends StatelessWidget {
               child: Text(
                 chatMessage.customerName,
                 style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black87),
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black87),
                 overflow: TextOverflow.ellipsis,
               ),
             ),
             Text(
               chatMessage.time,
-              style: const TextStyle(fontSize: 13, color: Colors.grey),
+              style: const TextStyle(fontSize: 12, color: Colors.grey),
             ),
           ],
         ),

@@ -58,6 +58,7 @@ class _ChatListPageState extends State<ChatListPage> {
           fontSize: 20,
         ),
         centerTitle: true,
+        toolbarHeight: 80,
         backgroundColor: AppColors.primaryColor,
         elevation: 0,
       ),
@@ -67,7 +68,7 @@ class _ChatListPageState extends State<ChatListPage> {
           color: Colors.white,
           child: Column(
             children: [
-              const SizedBox(height: 10.0),
+              const SizedBox(height: 15.0),
               Container(
                 color: Colors.white,
                 padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
@@ -141,7 +142,7 @@ class _ChatListPageState extends State<ChatListPage> {
                 ),
               const SizedBox(height: 2.0),
               Expanded(
-                child: ValueListenableBuilder<List<CustomerProfile>>(
+                child: ValueListenableBuilder<List<ChatMessage>>(
                   valueListenable: chatController.filteredChats,
                   builder: (context, filteredList, _) {
                     return ListView.builder(

@@ -1,14 +1,16 @@
 import 'package:chatx_test/constant/app_constants.dart';
 import 'package:chatx_test/data/mock_customer_contact.dart';
+import 'package:chatx_test/data/mock_group_manage.dart';
 import 'package:chatx_test/model/customer_contact.dart';
+import 'package:chatx_test/model/group_manage.dart';
 import 'package:flutter/material.dart';
 import 'package:chatx_test/model/chat_message.dart';
 import 'package:chatx_test/data/mock_chat_data.dart';
 
 class ChatController {
   final TextEditingController searchController = TextEditingController();
-  final ValueNotifier<List<CustomerProfile>> filteredChats =
-      ValueNotifier<List<CustomerProfile>>(mockChatData);
+  final ValueNotifier<List<ChatMessage>> filteredChats =
+      ValueNotifier<List<ChatMessage>>(mockChatData);
 
   void search(String filter) {
     if (filter.isEmpty) {
@@ -79,7 +81,7 @@ class ChatController {
         filteredChats.value.indexWhere((c) => c.chatRoomId == chatRoomId);
     if (index != -1) {
       final old = filteredChats.value[index];
-      filteredChats.value[index] = CustomerProfile(
+      filteredChats.value[index] = ChatMessage(
         chatRoomId: old.chatRoomId,
         customerId: old.customerId,
         customerImage: old.customerImage,
@@ -117,7 +119,7 @@ class ChatController {
     final image = agentImages[newAgent] ?? 'assets/images/user_blue.png';
     if (index != -1) {
       final old = filteredChats.value[index];
-      filteredChats.value[index] = CustomerProfile(
+      filteredChats.value[index] = ChatMessage(
         chatRoomId: old.chatRoomId,
         customerId: old.customerId,
         customerImage: old.customerImage,
@@ -176,5 +178,34 @@ class CustomerContactController {
   void dispose() {
     searchController.dispose();
     filteredContacts.dispose();
+  }
+}
+
+class GroupManageController {
+  final TextEditingController searchController = TextEditingController();
+  final ValueNotifier<List<GroupManage>> filteredGroup =
+      ValueNotifier<List<GroupManage>>(mockGroupManage);
+
+  void filter({String? search, String? role}) {
+    filteredGroup.value = mockGroupManage.where((group) {
+      final matchSearch = search == null || search.isEmpty
+          ? true
+          : group.groupName
+                  .toLowerCase()
+                  .contains(search.toLowerCase());
+
+      final matchRole = role == null || role == 'All Role'
+          ? true
+          : group.groupMember?.any((member) => member.role.toLowerCase() == role.toLowerCase());
+
+      return matchSearch && matchRole! ;
+    }).toList();
+
+    filteredGroup.notifyListeners();
+  }
+
+  void dispose() {
+    searchController.dispose();
+    filteredGroup.dispose();
   }
 }
