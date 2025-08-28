@@ -6,10 +6,10 @@ class CreateGroupButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const FloatingActionButton(
-      onPressed: null, /*ยังไม่เสร็จ*/
+    return FloatingActionButton(
+      onPressed: onPressed, 
       backgroundColor: Colors.grey,
-      child: Icon(Icons.group_add_rounded),
+      child: const Icon(Icons.group_add_rounded),
       );
   }
 }

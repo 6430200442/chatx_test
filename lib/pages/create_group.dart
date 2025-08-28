@@ -12,6 +12,14 @@ class CreateGroup extends StatefulWidget {
 }
 
 class _CreateGroupState extends State<CreateGroup> {
+  final TextEditingController groupNameController = TextEditingController();
+
+  @override
+  void dispose() {
+    groupNameController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +32,7 @@ class _CreateGroupState extends State<CreateGroup> {
               fontWeight: FontWeight.bold,
               fontSize: 20,
             ),
-        title: const Text('Group Manage'),
+        title: const Text('Create Group'),
       ),
       body: ClipPath(
         clipper: CurveBodyClipper(),
@@ -39,16 +47,24 @@ class _CreateGroupState extends State<CreateGroup> {
                     const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: Column(
                   children: [
-                    Center(child: Text('สร้างกลุ่ม')),
-                    Text('ใส่อีเมล'),
-                    //ตรงนี้ต้องเพิ่มฟิลดืกรอกอีเมล
-                    Text('กรอก'),
-                    // ปุ่มยืนยีน ชิดขวา
-                    Align(
-                      child: 
-                        Text('ยืนยัน'),
-                        
+                    const Center(child: Text('สร้างกลุ่ม')),
+                    TextField(
+                      controller: groupNameController,
+                      decoration: const InputDecoration(
+                        labelText: 'ใส่ชื่อกลุ่ม',
+                        border: OutlineInputBorder(),
                       ),
+                    ),
+                    const SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed: () {
+                        final groupName = groupNameController.text.trim();
+                        if (groupName.isNotEmpty) {
+                          Navigator.pop(context, groupName); // ส่งค่ากลับ
+                        }
+                      },
+                      child: const Text('สร้างกลุ่ม'),
+                    ),
                   ],
                 ),
               ),
@@ -57,7 +73,7 @@ class _CreateGroupState extends State<CreateGroup> {
         ),
       ),
       // floatingActionButton: CreateGroupButton(onPressed:() {} ),
-      bottomNavigationBar: const BottomNavBar(currentIndex: 1),
+      // bottomNavigationBar: const BottomNavBar(currentIndex: 1),
       backgroundColor: AppColors.primaryColor,
     );
   }

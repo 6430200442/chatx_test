@@ -29,51 +29,48 @@ class GroupItem extends StatelessWidget {
       ),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundImage: AssetImage(groupItem.groupImage), 
+          backgroundImage: AssetImage(groupItem.groupImage),
           radius: 24,
         ),
         title: Text(
           groupItem.groupName,
-          style:
-              const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black87),
+          style: const TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 15, color: Colors.black87),
           overflow: TextOverflow.ellipsis,
         ),
-        subtitle: ListView.separated(
-          itemCount: groupItem.groupMember?.length ?? 0,
-          separatorBuilder: (context, index) => const SizedBox(width: 8),
-          itemBuilder: (context, index) { 
-            final member = groupItem.groupMember![index];
-            return Row(
-              children: [
-                for (index = 0; index < 4; index++ )
-                  CircleAvatar(
-                    backgroundImage: AssetImage(member.memberImage),
-                  ),
-                if (index > 3)
-                  Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.grey,
-                      shape: BoxShape.circle,
-                    ),
-                    width: 24,
-                    height: 24,
-                    child: Center(
-                      child: Text(
-                        '${index - 4} +',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+        subtitle: Row(
+          children: [
+            for (var member in groupItem.groupMember!.take(4))
+              Padding(
+                padding: const EdgeInsets.only(right: 4),
+                child: CircleAvatar(
+                  backgroundImage: AssetImage(member.memberImage),
+                  radius: 12,
+                ),
+              ),
+            if ((groupItem.groupMember?.length ?? 0) > 4)
+              Container(
+                width: 24,
+                height: 24,
+                decoration: const BoxDecoration(
+                  color: Colors.grey,
+                  shape: BoxShape.circle,
+                ),
+                child: Center(
+                  child: Text(
+                    '+${(groupItem.groupMember?.length ?? 0) - 4}',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-              ],
-            );
-          },
+                ),
+              ),
+          ],
         ),
-        onTap: onTap, 
-        ),
-      );
+        onTap: onTap,
+      ),
+    );
   }
 }

@@ -196,9 +196,10 @@ class GroupManageController {
 
       final matchRole = role == null || role == 'All Role'
           ? true
-          : group.groupMember?.any((member) => member.role.toLowerCase() == role.toLowerCase());
+          : (group.groupMember?.any((member) => member.role.toLowerCase() == role.toLowerCase(),) ?? false);
 
-      return matchSearch && matchRole! ;
+      return matchSearch && matchRole;
+
     }).toList();
 
     filteredGroup.notifyListeners();
@@ -208,4 +209,16 @@ class GroupManageController {
     searchController.dispose();
     filteredGroup.dispose();
   }
+
+  void addGroup(String groupName) {
+  final newGroup = GroupManage(
+    groupId: DateTime.now().millisecondsSinceEpoch.toString(),
+    groupImage: 'assets/imgs/user_blue.png',
+    groupName: groupName,
+    groupMember: [],
+  );
+  filteredGroup.value = [...filteredGroup.value, newGroup];
+  filteredGroup.notifyListeners();
+}
+
 }
