@@ -1,7 +1,7 @@
 import 'package:chatx_test/constant/app_constants.dart';
 import 'package:chatx_test/controller/chat_controller.dart';
 // import 'package:chatx_test/model/group_manage.dart';
-import 'package:chatx_test/widget/bottom_nav_bar.dart';
+// import 'package:chatx_test/widget/bottom_nav_bar.dart';
 // import 'package:chatx_test/widget/create_group_button.dart';
 import 'package:chatx_test/widget/curve_body_clipper.dart';
 // import 'package:chatx_test/widget/group_item.dart';
@@ -19,7 +19,7 @@ class GroupMemberPage extends StatefulWidget {
 class _GroupMemberPageState extends State<GroupMemberPage> {
   late final GroupManageController groupController;
   String? selectedRole = 'All Role';
-  bool _showFilterBar = false;
+  // bool _showFilterBar = false;
 
   @override
   void initState() {
@@ -133,7 +133,7 @@ class _GroupMemberPageState extends State<GroupMemberPage> {
         ),
       ),
       // floatingActionButton: CreateGroupButton(onPressed:() {} ),
-      bottomNavigationBar: const BottomNavBar(currentIndex: 1),
+      // bottomNavigationBar: const BottomNavBar(currentIndex: 1),
       backgroundColor: AppColors.primaryColor,
     );
   }

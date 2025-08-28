@@ -1,5 +1,5 @@
 import 'package:chatx_test/model/customer_contact.dart';
-import 'package:chatx_test/widget/bottom_nav_bar.dart';
+// import 'package:chatx_test/widget/bottom_nav_bar.dart';
 import 'package:chatx_test/widget/curve_body_clipper.dart';
 import 'package:chatx_test/widget/customer_item.dart';
 import 'package:chatx_test/widget/group_dropdown.dart';
@@ -163,7 +163,7 @@ class _CustomerContactPageState extends State<CustomerContactPage> {
           ),
         ),
       ),
-      bottomNavigationBar: const BottomNavBar(currentIndex: 1),
+      // bottomNavigationBar: const BottomNavBar(currentIndex: 1),
       backgroundColor: AppColors.primaryColor,
     );
   }

@@ -213,7 +213,7 @@ class GroupManageController {
   void addGroup(String groupName) {
   final newGroup = GroupManage(
     groupId: DateTime.now().millisecondsSinceEpoch.toString(),
-    groupImage: 'assets/imgs/user_blue.png',
+    groupImage: 'https://cdn-icons-png.freepik.com/512/9073/9073405.png',
     groupName: groupName,
     groupMember: [],
   );

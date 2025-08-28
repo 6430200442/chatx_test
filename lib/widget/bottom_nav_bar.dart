@@ -3,20 +3,22 @@ import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatelessWidget {
   final int currentIndex;
-  const BottomNavBar({super.key, required this.currentIndex});
+  final Function(int) onItemTap;
 
-  void onItemTap(BuildContext context, int index) {
-    if (index == currentIndex) return;
-    if (index == 0) {
-      Navigator.pushReplacementNamed(context, '/chat');
-    } else if (index == 1) {
-      Navigator.pushReplacementNamed(context, '/customer');
-    } else if (index == 2) {
-      Navigator.pushReplacementNamed(context, '/group');
-    } else if (index == 3) {
-      Navigator.pushReplacementNamed(context, '/channel');
-    }
-  }
+  const BottomNavBar({super.key, required this.currentIndex, required this.onItemTap});
+
+  // void onItemTap(BuildContext context, int index) {
+  //   if (index == currentIndex) return;
+  //   if (index == 0) {
+  //     Navigator.pushReplacementNamed(context, '/chat');
+  //   } else if (index == 1) {
+  //     Navigator.pushReplacementNamed(context, '/customer');
+  //   } else if (index == 2) {
+  //     Navigator.pushReplacementNamed(context, '/group');
+  //   } else if (index == 3) {
+  //     Navigator.pushReplacementNamed(context, '/channel');
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,7 @@ class BottomNavBar extends StatelessWidget {
         children: List.generate(items.length, (index) {
           final isSelected = index == currentIndex;
           return GestureDetector(
-            onTap: () => onItemTap(context, index),
+            onTap: () => onItemTap(index),
             child: Container(
               width: 80,
               height: 70,

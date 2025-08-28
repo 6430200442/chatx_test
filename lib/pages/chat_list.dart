@@ -11,7 +11,7 @@ import 'package:chatx_test/widget/chat_item.dart';
 import 'package:chatx_test/controller/chat_controller.dart';
 import 'package:chatx_test/widget/status_dropdown.dart';
 import 'package:chatx_test/constant/app_constants.dart';
-import 'package:chatx_test/widget/bottom_nav_bar.dart';
+// import 'package:chatx_test/widget/bottom_nav_bar.dart';
 
 class ChatListPage extends StatefulWidget {
   const ChatListPage({super.key});
@@ -181,7 +181,7 @@ class _ChatListPageState extends State<ChatListPage> {
           ),
         ),
       ),
-      bottomNavigationBar: const BottomNavBar(currentIndex: 0),
+      // bottomNavigationBar: const BottomNavBar(currentIndex: 0),
       backgroundColor: AppColors.primaryColor,
     );
   }

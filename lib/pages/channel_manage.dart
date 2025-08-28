@@ -1,5 +1,5 @@
 import 'package:chatx_test/constant/app_constants.dart';
-import 'package:chatx_test/widget/bottom_nav_bar.dart';
+// import 'package:chatx_test/widget/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 
 class ChannelManagePage extends StatefulWidget {
@@ -23,7 +23,7 @@ class _ChannelManagePageState extends State<ChannelManagePage> {
           title: const Text('ChatX'),
         ),
       body: const Center(child: Text("นี่คือหน้าแชแนล")),
-      bottomNavigationBar: const BottomNavBar(currentIndex: 3),
+      // bottomNavigationBar: const BottomNavBar(currentIndex: 3),
     );
   }
 }

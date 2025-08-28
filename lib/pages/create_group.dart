@@ -1,7 +1,8 @@
 import 'package:chatx_test/constant/app_constants.dart';
-import 'package:chatx_test/widget/bottom_nav_bar.dart';
+import 'package:chatx_test/widget/confirm_button.dart';
 // import 'package:chatx_test/widget/create_group_button.dart';
 import 'package:chatx_test/widget/curve_body_clipper.dart';
+import 'package:chatx_test/widget/input_field.dart';
 import 'package:flutter/material.dart';
 
 class CreateGroup extends StatefulWidget {
@@ -24,6 +25,7 @@ class _CreateGroupState extends State<CreateGroup> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: AppColors.backButton),
         centerTitle: true,
         toolbarHeight: 80,
         backgroundColor: AppColors.primaryColor,
@@ -47,23 +49,20 @@ class _CreateGroupState extends State<CreateGroup> {
                     const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: Column(
                   children: [
-                    const Center(child: Text('สร้างกลุ่ม')),
-                    TextField(
-                      controller: groupNameController,
-                      decoration: const InputDecoration(
-                        labelText: 'ใส่ชื่อกลุ่ม',
-                        border: OutlineInputBorder(),
+                    const Center(child: Text('สร้างกลุ่ม', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
+                    const SizedBox(height: 32),
+                    InputField(controller: groupNameController),
+                    const SizedBox(height: 18),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: ConfirmButton(
+                        onPressed: () {
+                          final groupName = groupNameController.text.trim();
+                          if (groupName.isNotEmpty) {
+                            Navigator.pop(context, groupName); // ส่งค่ากลับ
+                          }
+                        },
                       ),
-                    ),
-                    const SizedBox(height: 16),
-                    ElevatedButton(
-                      onPressed: () {
-                        final groupName = groupNameController.text.trim();
-                        if (groupName.isNotEmpty) {
-                          Navigator.pop(context, groupName); // ส่งค่ากลับ
-                        }
-                      },
-                      child: const Text('สร้างกลุ่ม'),
                     ),
                   ],
                 ),
@@ -72,8 +71,6 @@ class _CreateGroupState extends State<CreateGroup> {
           ),
         ),
       ),
-      // floatingActionButton: CreateGroupButton(onPressed:() {} ),
-      // bottomNavigationBar: const BottomNavBar(currentIndex: 1),
       backgroundColor: AppColors.primaryColor,
     );
   }

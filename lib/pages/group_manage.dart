@@ -2,7 +2,7 @@ import 'package:chatx_test/constant/app_constants.dart';
 import 'package:chatx_test/controller/chat_controller.dart';
 import 'package:chatx_test/model/group_manage.dart';
 import 'package:chatx_test/pages/create_group.dart';
-import 'package:chatx_test/widget/bottom_nav_bar.dart';
+// import 'package:chatx_test/widget/bottom_nav_bar.dart';
 import 'package:chatx_test/widget/create_group_button.dart';
 import 'package:chatx_test/widget/curve_body_clipper.dart';
 import 'package:chatx_test/widget/group_item.dart';
@@ -141,13 +141,11 @@ class _GroupManagePageState extends State<GroupManagePage> {
           );
 
           if (newGroupName != null && newGroupName is String) {
-            setState(() {
-              groupController.addGroup(newGroupName);
-            });
+            groupController.addGroup(newGroupName);
           }
         },
       ),
-      bottomNavigationBar: const BottomNavBar(currentIndex: 2),
+      // bottomNavigationBar: const BottomNavBar(currentIndex: 2),
       backgroundColor: AppColors.primaryColor,
     );
   }

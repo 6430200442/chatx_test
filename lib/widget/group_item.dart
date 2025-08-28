@@ -29,7 +29,7 @@ class GroupItem extends StatelessWidget {
       ),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundImage: AssetImage(groupItem.groupImage),
+          backgroundImage: NetworkImage(groupItem.groupImage),
           radius: 24,
         ),
         title: Text(
@@ -44,7 +44,7 @@ class GroupItem extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 4),
                 child: CircleAvatar(
-                  backgroundImage: AssetImage(member.memberImage),
+                  backgroundImage: NetworkImage(member.memberImage),
                   radius: 12,
                 ),
               ),
