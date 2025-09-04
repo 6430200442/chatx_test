@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class CreateGroupButton extends StatelessWidget {
+class CreateMemberButton extends StatelessWidget {
   final VoidCallback onPressed;
-  const CreateGroupButton({super.key, required this.onPressed});
+  const CreateMemberButton({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class CreateGroupButton extends StatelessWidget {
         onPressed: onPressed, 
         backgroundColor: Colors.grey.shade200,
         shape: const CircleBorder(),
-        child: const Icon(Icons.group_add_rounded),
+        child: const Icon(Icons.person_add_alt_1),
         ),
     );
   }

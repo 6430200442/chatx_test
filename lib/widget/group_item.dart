@@ -13,6 +13,9 @@ class GroupItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final members = groupItem.groupMember ?? [];
+    final extra = (members.length > 4) ? members.length - 4 : 0;
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
       decoration: BoxDecoration(
@@ -40,15 +43,15 @@ class GroupItem extends StatelessWidget {
         ),
         subtitle: Row(
           children: [
-            for (var member in groupItem.groupMember!.take(4))
+            for (final m in members.take(4))
               Padding(
                 padding: const EdgeInsets.only(right: 4),
                 child: CircleAvatar(
-                  backgroundImage: NetworkImage(member.memberImage),
+                  backgroundImage: NetworkImage(m.memberImage),
                   radius: 12,
                 ),
               ),
-            if ((groupItem.groupMember?.length ?? 0) > 4)
+            if (extra > 0)
               Container(
                 width: 24,
                 height: 24,
@@ -58,7 +61,7 @@ class GroupItem extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    '+${(groupItem.groupMember?.length ?? 0) - 4}',
+                    '+$extra',
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 12,

@@ -190,16 +190,16 @@ class GroupManageController {
     filteredGroup.value = mockGroupManage.where((group) {
       final matchSearch = search == null || search.isEmpty
           ? true
-          : group.groupName
-                  .toLowerCase()
-                  .contains(search.toLowerCase());
+          : group.groupName.toLowerCase().contains(search.toLowerCase());
 
       final matchRole = role == null || role == 'All Role'
           ? true
-          : (group.groupMember?.any((member) => member.role.toLowerCase() == role.toLowerCase(),) ?? false);
+          : (group.groupMember?.any(
+                (member) => member.role.toLowerCase() == role.toLowerCase(),
+              ) ??
+              false);
 
       return matchSearch && matchRole;
-
     }).toList();
 
     filteredGroup.notifyListeners();
@@ -211,14 +211,81 @@ class GroupManageController {
   }
 
   void addGroup(String groupName) {
-  final newGroup = GroupManage(
-    groupId: DateTime.now().millisecondsSinceEpoch.toString(),
-    groupImage: 'https://cdn-icons-png.freepik.com/512/9073/9073405.png',
-    groupName: groupName,
-    groupMember: [],
-  );
-  filteredGroup.value = [...filteredGroup.value, newGroup];
-  filteredGroup.notifyListeners();
-}
+    final newGroup = GroupManage(
+      groupId: DateTime.now().millisecondsSinceEpoch.toString(),
+      groupImage: 'https://cdn-icons-png.freepik.com/512/9073/9073405.png',
+      groupName: groupName,
+      groupMember: [],
+    );
+    filteredGroup.value = [...filteredGroup.value, newGroup];
+    filteredGroup.notifyListeners();
+  }
 
+//   void addMember(String memberName) {
+//   final newMember = GroupMember(
+//     memberId: DateTime.now().millisecondsSinceEpoch.toString(),
+//     memberImage: 'https://cdn-icons-png.freepik.com/512/9073/9073405.png',
+//     firstName: memberName,
+//     lastName: '',
+//     role: 'Agent',
+//   );
+//   filteredGroup.value = [...filteredGroup.value, newMember];
+//   filteredGroup.notifyListeners();
+// }
+
+  void addMember(String groupId, String memberName) {
+    final newMember = GroupMember(
+      memberId: DateTime.now().millisecondsSinceEpoch.toString(),
+      memberImage: 'https://cdn-icons-png.freepik.com/512/9073/9073405.png',
+      firstName: '',
+      lastName: '',
+      role: 'Agent',
+    );
+
+    // หา group ที่จะเพิ่มสมาชิก
+    final index = filteredGroup.value.indexWhere((g) => g.groupId == groupId);
+    if (index != -1) {
+      final group = filteredGroup.value[index];
+      final updatedGroup = GroupManage(
+        groupId: group.groupId,
+        groupImage: group.groupImage,
+        groupName: group.groupName,
+        groupMember: [...(group.groupMember ?? []), newMember],
+      );
+
+      filteredGroup.value = [...filteredGroup.value..[index] = updatedGroup];
+      filteredGroup.notifyListeners();
+    }
+  }
+
+  void deleteGroup(String groupId) {
+    filteredGroup.value =
+        filteredGroup.value.where((g) => g.groupId != groupId).toList();
+    filteredGroup.notifyListeners();
+  }
+
+  void deleteMembers(String groupId, List<String> memberIds) {
+    final index = filteredGroup.value.indexWhere((g) => g.groupId == groupId);
+    if (index != -1) {
+      final group = filteredGroup.value[index];
+      final updatedGroup = group.copyWith(
+        groupMember: group.groupMember
+            ?.where((m) => !memberIds.contains(m.memberId))
+            .toList(),
+      );
+
+      filteredGroup.value = [...filteredGroup.value..[index] = updatedGroup];
+      filteredGroup.notifyListeners();
+    }
+  }
+
+  void deleteAllMembers(String groupId) {
+    final index = filteredGroup.value.indexWhere((g) => g.groupId == groupId);
+    if (index != -1) {
+      final group = filteredGroup.value[index];
+      final updatedGroup = group.copyWith(groupMember: []);
+      filteredGroup.value = [...filteredGroup.value..[index] = updatedGroup];
+      filteredGroup.notifyListeners();
+    }
+  }
 }

@@ -7,7 +7,7 @@ class InputField extends StatelessWidget {
   const InputField({
     super.key,
     required this.controller,
-    this.label = 'ใส่ชื่อกลุ่ม',
+    this.label = 'กรอกชื่อ...',
   });
 
   @override

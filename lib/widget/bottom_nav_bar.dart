@@ -7,19 +7,6 @@ class BottomNavBar extends StatelessWidget {
 
   const BottomNavBar({super.key, required this.currentIndex, required this.onItemTap});
 
-  // void onItemTap(BuildContext context, int index) {
-  //   if (index == currentIndex) return;
-  //   if (index == 0) {
-  //     Navigator.pushReplacementNamed(context, '/chat');
-  //   } else if (index == 1) {
-  //     Navigator.pushReplacementNamed(context, '/customer');
-  //   } else if (index == 2) {
-  //     Navigator.pushReplacementNamed(context, '/group');
-  //   } else if (index == 3) {
-  //     Navigator.pushReplacementNamed(context, '/channel');
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     final items = [

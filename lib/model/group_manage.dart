@@ -13,6 +13,22 @@ class GroupManage {
     this.groupMember,
     
   });
+
+  // copyWith method สำหรับ immutable pattern
+  GroupManage copyWith({
+    String? groupId,
+    String? groupName,
+    String? groupImage,
+    List<GroupMember>? groupMember,
+  }) {
+    return GroupManage(
+      groupId: groupId ?? this.groupId,
+      groupName: groupName ?? this.groupName,
+      groupImage: groupImage ?? this.groupImage,
+      groupMember: groupMember ?? this.groupMember,
+    );
+  }
+
 }
 
 class GroupMember {
@@ -29,4 +45,21 @@ class GroupMember {
     required this.lastName,
     required this.role,
   });
+
+  GroupMember copyWith({
+    String? memberId,
+    String? firstName,
+    String? lastName,
+    String? memberImage,
+    String? role,
+  }) {
+    return GroupMember(
+      memberId: memberId ?? this.memberId,
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
+      memberImage: memberImage ?? this.memberImage,
+      role: role ?? this.role,
+    );
+  }
 }
+
