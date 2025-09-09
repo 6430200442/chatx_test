@@ -6,6 +6,7 @@ import 'package:chatx_test/pages/edit_member_role.dart';
 import 'package:chatx_test/widget/create_member_button.dart';
 import 'package:chatx_test/widget/curve_body_clipper.dart';
 import 'package:chatx_test/widget/delete_button_bar.dart';
+import 'package:chatx_test/widget/delete_dialog.dart';
 import 'package:chatx_test/widget/edit_group_name.dart';
 import 'package:chatx_test/widget/member_item.dart';
 import 'package:chatx_test/widget/role_dropdown.dart';
@@ -25,11 +26,11 @@ class GroupMemberPage extends StatefulWidget {
 
 class _GroupMemberPageState extends State<GroupMemberPage> {
   late final GroupManageController memberController;
+  late GroupManage currentGroup;
   String? selectedRole = 'All Role';
   bool _showFilterBar = false;
-  late GroupManage currentGroup;
-  Set<String> _selectedMembers = {};
   bool _isDeleteMode = false;
+  Set<String> _selectedMembers = {};
 
   @override
   void initState() {
@@ -54,46 +55,15 @@ class _GroupMemberPageState extends State<GroupMemberPage> {
   void _deleteGroup() {
     showDialog(
       context: context,
-      builder: (_) => AlertDialog(
-        title: const Text("ยืนยันการลบกลุ่ม",
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-        content: const Text("คุณต้องการลบกลุ่มนี้หรือไม่?",
-            style: TextStyle(fontSize: 13, fontWeight: FontWeight.normal)),
-        actions: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  style: TextButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12), // ความโค้งมน
-                    ),
-                  ),
-                  child: const Text(
-                    "ยกเลิก",
-                    style: TextStyle(color: Colors.white, fontSize: 12),
-                  )),
-              const SizedBox(width: 40),
-              TextButton(
-                onPressed: () {
-                  widget.controller.deleteGroup(widget.group.groupId);
-                  Navigator.pop(context);
-                  Navigator.pop(context); // กลับไปหน้า GroupManagePage
-                },
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                child: const Text("ลบ",
-                    style: TextStyle(color: Colors.white, fontSize: 12)),
-              ),
-            ],
-          ),
-        ],
+      builder: (_) => DeleteDialog(
+        title: "ยืนยันการลบกลุ่ม",
+        content: "คุณต้องการลบกลุ่มนี้หรือไม่?",
+        confirmText: "ลบ",
+        onConfirm: () {
+          widget.controller.deleteGroup(widget.group.groupId);
+          Navigator.pop(context);
+          Navigator.pop(context); // กลับไปหน้า GroupManagePage
+        },
       ),
     );
   }
@@ -103,56 +73,26 @@ class _GroupMemberPageState extends State<GroupMemberPage> {
 
     showDialog(
       context: context,
-      builder: (_) => AlertDialog(
-        title: const Text("ยืนยันการลบสมาชิก",
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-        content: Text(
+      builder: (_) => DeleteDialog(
+        title: "ยืนยันการลบสมาชิก",
+        content:
             "คุณต้องการลบสมาชิกจำนวน ${_selectedMembers.length} คน หรือไม่?",
-            style:
-                const TextStyle(fontSize: 13, fontWeight: FontWeight.normal)),
-        actions: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  style: TextButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: const Text("ยกเลิก",
-                      style: TextStyle(color: Colors.white, fontSize: 12))),
-              const SizedBox(width: 40),
-              TextButton(
-                onPressed: () {
-                  widget.controller.deleteMembers(
-                      widget.group.groupId, _selectedMembers.toList());
-                  setState(() {
-                    // อัปเดต currentGroup
-                    currentGroup = currentGroup.copyWith(
-                      groupMember: currentGroup.groupMember
-                          ?.where((m) => !_selectedMembers.contains(m.memberId))
-                          .toList(),
-                    );
-                    _selectedMembers.clear();
-                    _isDeleteMode = false;
-                  });
-                  Navigator.pop(context);
-                },
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                child: const Text("ลบ",
-                    style: TextStyle(color: Colors.white, fontSize: 12)),
-              ),
-            ],
-          ),
-        ],
+        confirmText: "ลบ",
+        onConfirm: () {
+          widget.controller
+              .deleteMembers(widget.group.groupId, _selectedMembers.toList());
+          setState(() {
+            // อัปเดต currentGroup
+            currentGroup = currentGroup.copyWith(
+              groupMember: currentGroup.groupMember
+                  ?.where((m) => !_selectedMembers.contains(m.memberId))
+                  .toList(),
+            );
+            _selectedMembers.clear();
+            _isDeleteMode = false;
+          });
+          Navigator.pop(context);
+        },
       ),
     );
   }
@@ -160,53 +100,44 @@ class _GroupMemberPageState extends State<GroupMemberPage> {
   void _deleteAllMembers() {
     showDialog(
       context: context,
-      builder: (_) => AlertDialog(
-        title: const Text(
-          "ยืนยันการลบสมาชิกทั้งหมด",
-          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+      builder: (_) => DeleteDialog(
+        title: "ยืนยันการลบสมาชิกทั้งหมด",
+        content: "คุณต้องการลบสมาชิกทั้งหมดในกลุ่มนี้หรือไม่?",
+        confirmText: "ลบทั้งหมด",
+        onConfirm: () {
+          widget.controller.deleteAllMembers(widget.group.groupId);
+          setState(() {
+            // อัปเดต currentGroup
+            currentGroup = currentGroup.copyWith(groupMember: []);
+            _selectedMembers.clear();
+            _isDeleteMode = false;
+          });
+          Navigator.pop(context);
+        },
+      ),
+    );
+  }
+
+  void _editMemberRole(GroupMember member) {
+    List<String> availableRoles =
+        RoleList.roles.where((role) => role != member.role).toList();
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => EditMemberRolePage(
+          group: currentGroup,
+          member: member,
+          availableRoles: availableRoles,
+          onRoleUpdated: (newRole) {
+            setState(() {
+              int index = currentGroup.groupMember!
+                  .indexWhere((m) => m.memberId == member.memberId);
+              currentGroup.groupMember![index] =
+                  currentGroup.groupMember![index].copyWith(role: newRole);
+            });
+          },
         ),
-        content: const Text(
-          "คุณต้องการลบสมาชิกทั้งหมดในกลุ่มนี้หรือไม่?",
-          style: TextStyle(fontSize: 13, fontWeight: FontWeight.normal),
-        ),
-        actions: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  style: TextButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: const Text("ยกเลิก",
-                      style: TextStyle(color: Colors.white, fontSize: 12))),
-              const SizedBox(width: 40),
-              TextButton(
-                onPressed: () {
-                  widget.controller.deleteAllMembers(widget.group.groupId);
-                  setState(() {
-                    // อัปเดต currentGroup
-                    currentGroup = currentGroup.copyWith(groupMember: []);
-                    _selectedMembers.clear();
-                    _isDeleteMode = false;
-                  });
-                  Navigator.pop(context);
-                },
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                child: const Text("ลบทั้งหมด",
-                    style: TextStyle(color: Colors.white, fontSize: 12)),
-              ),
-            ],
-          ),
-        ],
       ),
     );
   }
@@ -341,7 +272,6 @@ class _GroupMemberPageState extends State<GroupMemberPage> {
                               selectedRole!.toLowerCase())
                           .toList();
                     }
-
                     // filter by search
                     if (searchValue.text.isNotEmpty) {
                       filteredMembers = filteredMembers
@@ -351,7 +281,6 @@ class _GroupMemberPageState extends State<GroupMemberPage> {
                                   .contains(searchValue.text.toLowerCase()))
                           .toList();
                     }
-
                     return ListView.builder(
                       itemCount: filteredMembers.length,
                       itemBuilder: (context, index) {
@@ -371,33 +300,7 @@ class _GroupMemberPageState extends State<GroupMemberPage> {
                               }
                             });
                           },
-                          onEdit: () {
-                            // กรอง role ที่ไม่ซ้ำกับสมาชิกคนอื่น
-                            List<String> allRoles = RoleList.roles;
-                            // ตัด role ปัจจุบันของสมาชิกออก
-                            List<String> availableRoles = allRoles
-                                .where((role) => role != member.role)
-                                .toList();
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => EditMemberRolePage(
-                                    group: currentGroup,
-                                    member: member,
-                                    availableRoles: availableRoles,
-                                    onRoleUpdated: (newRole) {
-                                      setState(() {
-                                        int index = currentGroup.groupMember!
-                                            .indexWhere((m) =>
-                                                m.memberId == member.memberId);
-                                        currentGroup.groupMember![index] =
-                                            currentGroup.groupMember![index]
-                                                .copyWith(role: newRole);
-                                      });
-                                    },
-                                  ),
-                                ));
-                          },
+                          onEdit: () => _editMemberRole(member),
                         );
                       },
                     );
