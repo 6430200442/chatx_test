@@ -306,7 +306,9 @@ class ChannelManageController {
       final matchChannel = channel == null || channel == 'All Channel'
           ? true
           : (channels.groupChannel?.any(
-                (member) => member.channelName.toLowerCase() == channel.toLowerCase(),
+                (member) =>
+                    member.isConnect && // กรองอันที่ connect แล้ว
+                    member.channelName.toLowerCase() == channel.toLowerCase(),
               ) ??
               false);
 
@@ -320,5 +322,4 @@ class ChannelManageController {
     searchController.dispose();
     filteredChannel.dispose();
   }
-
 }

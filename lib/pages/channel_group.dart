@@ -17,6 +17,32 @@ class ChannelGroupPage extends StatefulWidget {
 }
 
 class _ChannelGroupPageState extends State<ChannelGroupPage> {
+  // late ChannelManage currentChannel;
+  // late TextEditingController searchController;
+  // late ValueNotifier<List<GroupChannel>> filteredMembers;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   currentChannel = widget.channel;
+  //   searchController = TextEditingController();
+  //   filteredMembers = ValueNotifier(currentChannel.groupChannel ?? []);
+  // }
+
+  // void filterChats() {
+  //   final search = searchController.text.toLowerCase();
+  //   filteredMembers.value = (currentChannel.groupChannel ?? []).where((m) {
+  //     return search.isEmpty || m.channelName.toLowerCase().contains(search);
+  //   }).toList();
+  // }
+
+  // @override
+  // void dispose() {
+  //   searchController.dispose();
+  //   filteredMembers.dispose();
+  //   super.dispose();
+  // }
+
   // late final ChannelManageController channelMemberController;
   late ChannelManage currentChannel;
 
@@ -67,6 +93,10 @@ class _ChannelGroupPageState extends State<ChannelGroupPage> {
                 ),
                 child: Row(
                   children: [
+                    CircleAvatar(
+                      backgroundImage: NetworkImage(widget.channel.groupImage),
+                    ),
+                    const SizedBox(width: 10.0),
                     Text(
                       'Group ${currentChannel.groupName} ',
                       style: const TextStyle(
@@ -77,26 +107,35 @@ class _ChannelGroupPageState extends State<ChannelGroupPage> {
                   ],
                 ),
               ),
-              const SizedBox(height: 2.0),
-              Container(
-                color: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      backgroundImage: NetworkImage(widget.channel.groupImage),
-                    ),
-                    Flexible(
-                      child: SearchBox(
-                        controller: widget.controller.searchController,
-                        onSearch: () {
-                          filterChats();
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              const SizedBox(height: 10.0),
+              // Container(
+              //   color: Colors.white,
+              //   padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              //   child: Row(
+              //     children: [
+              //       CircleAvatar(
+              //         backgroundImage: NetworkImage(widget.channel.groupImage),
+              //       ),
+              //       const SizedBox(width: 5.0),
+              //       Flexible(
+              //         child:
+              //             // SearchBox(
+              //             //   controller: widget.controller.searchController,
+              //             //   onSearch: () {
+              //             //     filterChats();
+              //             //   },
+              //             // ),
+              //             Text(
+              //           'Group ${currentChannel.groupName} ',
+              //           style: const TextStyle(
+              //             fontSize: 18,
+              //             fontWeight: FontWeight.bold,
+              //           ),
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               const SizedBox(height: 2.0),
               Expanded(
                 child: ValueListenableBuilder<List<ChannelManage>>(
