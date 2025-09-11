@@ -104,3 +104,30 @@ final Map<String, String> agentImages = {
   'Agent Mook': 'assets/imgs/agent3.jpg',
   // เพิ่มตามรายชื่อ agent
 };
+
+class ChannelImage {
+  static const String instagramRgb = 'assets/imgs/instagram-rgb.png';
+  static const String lineRgb = 'assets/imgs/line-rgb.png';
+  static const String facebookRgb = 'assets/imgs/facebook-rgb.png';
+  static const String webChatRgb = 'assets/imgs/webchat-rgb.png';
+  static const String instagramGrey = 'assets/imgs/instagram-grey.png';
+  static const String lineGrey = 'assets/imgs/line-grey.png';
+  static const String facebookGrey = 'assets/imgs/facebook-grey.png';
+  static const String webChatGrey = 'assets/imgs/webchat-grey.png';
+}
+
+class ChannelImage2 {
+  static const Map<String, String> rgb = {
+    'facebook': 'assets/imgs/facebook-rgb.png',
+    'instagram': 'assets/imgs/instagram-rgb.png',
+    'line': 'assets/imgs/line-rgb.png',
+    'webchat': 'assets/imgs/webchat-rgb.png',
+  };
+
+  static const Map<String, String> grey = {
+    'facebook': 'assets/imgs/facebook-grey.png',
+    'instagram': 'assets/imgs/instagram-grey.png',
+    'line': 'assets/imgs/line-grey.png',
+    'webchat': 'assets/imgs/webchat-grey.png',
+  };
+}

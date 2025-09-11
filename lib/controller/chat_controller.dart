@@ -1,6 +1,8 @@
 import 'package:chatx_test/constant/app_constants.dart';
+import 'package:chatx_test/data/mock_channel_manage.dart';
 import 'package:chatx_test/data/mock_customer_contact.dart';
 import 'package:chatx_test/data/mock_group_manage.dart';
+import 'package:chatx_test/model/channel_manage.dart';
 import 'package:chatx_test/model/customer_contact.dart';
 import 'package:chatx_test/model/group_manage.dart';
 import 'package:flutter/material.dart';
@@ -288,4 +290,35 @@ class GroupManageController {
       filteredGroup.notifyListeners();
     }
   }
+}
+
+class ChannelManageController {
+  final TextEditingController searchController = TextEditingController();
+  final ValueNotifier<List<ChannelManage>> filteredChannel =
+      ValueNotifier<List<ChannelManage>>(mockChannelManage);
+
+  void filter({String? search, String? channel}) {
+    filteredChannel.value = mockChannelManage.where((channels) {
+      final matchSearch = search == null || search.isEmpty
+          ? true
+          : channels.groupName.toLowerCase().contains(search.toLowerCase());
+
+      final matchChannel = channel == null || channel == 'All Channel'
+          ? true
+          : (channels.groupChannel?.any(
+                (member) => member.channelName.toLowerCase() == channel.toLowerCase(),
+              ) ??
+              false);
+
+      return matchSearch && matchChannel;
+    }).toList();
+
+    filteredChannel.notifyListeners();
+  }
+
+  void dispose() {
+    searchController.dispose();
+    filteredChannel.dispose();
+  }
+
 }
