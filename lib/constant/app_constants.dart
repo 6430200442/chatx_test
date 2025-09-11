@@ -125,9 +125,9 @@ class ChannelImage2 {
   };
 
   static const Map<String, String> grey = {
-    'facebook': 'assets/imgs/facebook-grey.png',
-    'instagram': 'assets/imgs/instagram-grey.png',
-    'line': 'assets/imgs/line-grey.png',
-    'webchat': 'assets/imgs/webchat-grey.png',
+    'facebook': 'assets/imgs/facebook-grey2.png',
+    'instagram': 'assets/imgs/instagram-grey2.png',
+    'line': 'assets/imgs/line-grey2.png',
+    'webchat': 'assets/imgs/webchat-grey2.png',
   };
 }

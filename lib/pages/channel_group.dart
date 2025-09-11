@@ -17,25 +17,25 @@ class ChannelGroupPage extends StatefulWidget {
 }
 
 class _ChannelGroupPageState extends State<ChannelGroupPage> {
-  late final ChannelManageController channelMemberController;
+  // late final ChannelManageController channelMemberController;
   late ChannelManage currentChannel;
 
   @override
   void initState() {
     super.initState();
-    channelMemberController = ChannelManageController();
+    // channelMemberController = ChannelManageController();
     currentChannel = widget.channel;
   }
 
   void filterChats() {
-    channelMemberController.filter(
-      search: channelMemberController.searchController.text,
+    widget.controller.filter(
+      search: widget.controller.searchController.text,
     );
   }
 
   @override
   void dispose() {
-    channelMemberController.dispose();
+    // widget.controller.dispose();
     super.dispose();
   }
 
@@ -88,7 +88,7 @@ class _ChannelGroupPageState extends State<ChannelGroupPage> {
                     ),
                     Flexible(
                       child: SearchBox(
-                        controller: channelMemberController.searchController,
+                        controller: widget.controller.searchController,
                         onSearch: () {
                           filterChats();
                         },
@@ -100,9 +100,8 @@ class _ChannelGroupPageState extends State<ChannelGroupPage> {
               const SizedBox(height: 2.0),
               Expanded(
                 child: ValueListenableBuilder<List<ChannelManage>>(
-                  valueListenable: channelMemberController.filteredChannel,
+                  valueListenable: widget.controller.filteredChannel,
                   builder: (context, filteredList, _) {
-                    
                     final channels = currentChannel.groupChannel ?? [];
 
                     return ListView.builder(
@@ -111,8 +110,34 @@ class _ChannelGroupPageState extends State<ChannelGroupPage> {
                         final channel = channels[index];
                         return ChannelGroupItem(
                           channelGroupItem: channel,
-                          onTap: () {
-                            // handle
+                          onTap: () {},
+                          onUpdate: (updatedChannel) {
+                            setState(() {
+                              // อัปเดตค่าใน currentChannel
+                              final channels =
+                                  currentChannel.groupChannel ?? [];
+                              final idx = channels.indexWhere((c) =>
+                                  c.channelId == updatedChannel.channelId);
+
+                              if (idx != -1) {
+                                channels[idx] = updatedChannel;
+                                currentChannel = currentChannel
+                                    .copyWith(groupChannel: [...channels]);
+                              }
+                            });
+
+                            // อัปเดตค่าใน controller ด้วย
+                            final groups =
+                                widget.controller.filteredChannel.value;
+                            final gIdx = groups.indexWhere(
+                                (g) => g.groupId == currentChannel.groupId);
+
+                            if (gIdx != -1) {
+                              groups[gIdx] = currentChannel;
+                              widget.controller.filteredChannel.value = [
+                                ...groups
+                              ];
+                            }
                           },
                         );
                       },
