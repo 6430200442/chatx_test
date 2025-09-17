@@ -3,7 +3,6 @@ import 'package:chatx_test/controller/chat_controller.dart';
 import 'package:chatx_test/model/channel_manage.dart';
 import 'package:chatx_test/widget/channel_group_item.dart';
 import 'package:chatx_test/widget/curve_body_clipper.dart';
-import 'package:chatx_test/widget/search_box.dart';
 import 'package:flutter/material.dart';
 
 class ChannelGroupPage extends StatefulWidget {
@@ -17,51 +16,22 @@ class ChannelGroupPage extends StatefulWidget {
 }
 
 class _ChannelGroupPageState extends State<ChannelGroupPage> {
-  // late ChannelManage currentChannel;
-  // late TextEditingController searchController;
-  // late ValueNotifier<List<GroupChannel>> filteredMembers;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   currentChannel = widget.channel;
-  //   searchController = TextEditingController();
-  //   filteredMembers = ValueNotifier(currentChannel.groupChannel ?? []);
-  // }
-
-  // void filterChats() {
-  //   final search = searchController.text.toLowerCase();
-  //   filteredMembers.value = (currentChannel.groupChannel ?? []).where((m) {
-  //     return search.isEmpty || m.channelName.toLowerCase().contains(search);
-  //   }).toList();
-  // }
-
-  // @override
-  // void dispose() {
-  //   searchController.dispose();
-  //   filteredMembers.dispose();
-  //   super.dispose();
-  // }
-
-  // late final ChannelManageController channelMemberController;
   late ChannelManage currentChannel;
 
   @override
   void initState() {
     super.initState();
-    // channelMemberController = ChannelManageController();
     currentChannel = widget.channel;
   }
 
-  void filterChats() {
-    widget.controller.filter(
-      search: widget.controller.searchController.text,
-    );
-  }
+  // void filterChats() {
+  //   widget.controller.filter(
+  //     search: widget.controller.searchController.text,
+  //   );
+  // }
 
   @override
   void dispose() {
-    // widget.controller.dispose();
     super.dispose();
   }
 
@@ -108,35 +78,6 @@ class _ChannelGroupPageState extends State<ChannelGroupPage> {
                 ),
               ),
               const SizedBox(height: 10.0),
-              // Container(
-              //   color: Colors.white,
-              //   padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              //   child: Row(
-              //     children: [
-              //       CircleAvatar(
-              //         backgroundImage: NetworkImage(widget.channel.groupImage),
-              //       ),
-              //       const SizedBox(width: 5.0),
-              //       Flexible(
-              //         child:
-              //             // SearchBox(
-              //             //   controller: widget.controller.searchController,
-              //             //   onSearch: () {
-              //             //     filterChats();
-              //             //   },
-              //             // ),
-              //             Text(
-              //           'Group ${currentChannel.groupName} ',
-              //           style: const TextStyle(
-              //             fontSize: 18,
-              //             fontWeight: FontWeight.bold,
-              //           ),
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              const SizedBox(height: 2.0),
               Expanded(
                 child: ValueListenableBuilder<List<ChannelManage>>(
                   valueListenable: widget.controller.filteredChannel,
@@ -148,37 +89,37 @@ class _ChannelGroupPageState extends State<ChannelGroupPage> {
                       itemBuilder: (context, index) {
                         final channel = channels[index];
                         return ChannelGroupItem(
-                          channelGroupItem: channel,
-                          onTap: () {},
-                          onUpdate: (updatedChannel) {
-                            setState(() {
-                              // อัปเดตค่าใน currentChannel
-                              final channels =
+                            channelGroupItem: channel,
+                            onTap: () {},
+                            onUpdate: (updatedChannel) {
+                              // 1) update local currentChannel
+                              final oldChannels =
                                   currentChannel.groupChannel ?? [];
-                              final idx = channels.indexWhere((c) =>
+                              final idx = oldChannels.indexWhere((c) =>
                                   c.channelId == updatedChannel.channelId);
 
                               if (idx != -1) {
-                                channels[idx] = updatedChannel;
-                                currentChannel = currentChannel
-                                    .copyWith(groupChannel: [...channels]);
+                                final updatedChannels =
+                                    List<GroupChannel>.from(oldChannels);
+                                updatedChannels[idx] = updatedChannel;
+                                setState(() {
+                                  currentChannel = currentChannel.copyWith(
+                                      groupChannel: updatedChannels);
+                                });
+                              }
+
+                              // update ค่า controller
+                              final oldGroups = List<ChannelManage>.from(
+                                  widget.controller.filteredChannel.value);
+                              final gIdx = oldGroups.indexWhere(
+                                  (g) => g.groupId == currentChannel.groupId);
+
+                              if (gIdx != -1) {
+                                oldGroups[gIdx] = currentChannel;
+                                widget.controller.filteredChannel.value =
+                                    oldGroups; // เรียก notify listeners
                               }
                             });
-
-                            // อัปเดตค่าใน controller ด้วย
-                            final groups =
-                                widget.controller.filteredChannel.value;
-                            final gIdx = groups.indexWhere(
-                                (g) => g.groupId == currentChannel.groupId);
-
-                            if (gIdx != -1) {
-                              groups[gIdx] = currentChannel;
-                              widget.controller.filteredChannel.value = [
-                                ...groups
-                              ];
-                            }
-                          },
-                        );
                       },
                     );
                   },

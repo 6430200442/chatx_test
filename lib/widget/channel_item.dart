@@ -1,6 +1,6 @@
 import 'package:chatx_test/constant/app_constants.dart';
 import 'package:chatx_test/model/channel_manage.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; 
 
 class ChannelItem extends StatelessWidget {
   final ChannelManage channelItem;
