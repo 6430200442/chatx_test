@@ -1,6 +1,7 @@
 import 'package:chatx_test/data/mock_chat_detail_data.dart';
 import 'package:chatx_test/model/chat_message.dart';
 import 'package:chatx_test/pages/chat_detail.dart';
+import 'package:chatx_test/pages/user_profile.dart';
 import 'package:chatx_test/widget/curve_body_clipper.dart';
 import 'package:flutter/material.dart';
 import 'package:chatx_test/widget/search_box.dart';
@@ -71,11 +72,22 @@ class _ChatListPageState extends State<ChatListPage> {
               const SizedBox(height: 15.0),
               Container(
                 color: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: Row(
                   children: [
-                    const CircleAvatar(
-                      backgroundImage: AssetImage(OwnerInfo.ownerImage),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const UserProfilePage(),
+                          ),
+                        );
+                      },
+                      child: const CircleAvatar(
+                        backgroundImage: AssetImage(OwnerInfo.ownerImage),
+                      ),
                     ),
                     Flexible(
                       child: SearchBox(
@@ -98,8 +110,8 @@ class _ChatListPageState extends State<ChatListPage> {
               ),
               if (_showFilterBar)
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16.0, vertical: 5.0),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0, vertical: 5.0),
                   child: Column(
                     children: [
                       ChannelDropdown(
@@ -149,7 +161,7 @@ class _ChatListPageState extends State<ChatListPage> {
                       itemCount: filteredList.length,
                       itemBuilder: (context, index) {
                         final chat = filteredList[index];
-          
+
                         // หา ChatDetailMessage ที่ตรงกับ id ของ ChatMessage
                         final chatDetail = mockChatDetailData.firstWhere(
                           (d) => d.customerId == chat.customerId,

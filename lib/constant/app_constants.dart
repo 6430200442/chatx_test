@@ -88,6 +88,8 @@ class TagList {
 
 class OwnerInfo {
   static const String ownerName = 'Me';
+  static const String ownerUserName = 'James Cameron';
+  static const String ownerRole = 'Business Owner';
   static const String ownerImage = 'assets/imgs/agent1.jpg';
 }
 
