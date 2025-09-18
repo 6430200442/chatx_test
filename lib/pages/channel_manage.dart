@@ -1,5 +1,6 @@
 import 'package:chatx_test/constant/app_constants.dart';
 import 'package:chatx_test/controller/chat_controller.dart';
+import 'package:chatx_test/controller/profile_controller.dart';
 import 'package:chatx_test/model/channel_manage.dart';
 import 'package:chatx_test/pages/channel_group.dart';
 import 'package:chatx_test/widget/channel_dropdown.dart';
@@ -66,8 +67,12 @@ class _ChannelManagePageState extends State<ChannelManagePage> {
                     const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: Row(
                   children: [
-                    const CircleAvatar(
-                      backgroundImage: AssetImage(OwnerInfo.ownerImage),
+                    AnimatedBuilder(
+                      animation: profileController,
+                      builder: (context, _) => CircleAvatar(
+                        radius: 24,
+                        backgroundImage: profileController.currentImage,
+                      ),
                     ),
                     Flexible(
                       child: SearchBox(

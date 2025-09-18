@@ -1,5 +1,6 @@
 import 'package:chatx_test/constant/app_constants.dart';
 import 'package:chatx_test/controller/chat_controller.dart';
+import 'package:chatx_test/controller/profile_controller.dart';
 import 'package:chatx_test/model/group_manage.dart';
 import 'package:chatx_test/pages/create_group.dart';
 import 'package:chatx_test/pages/group_member.dart';
@@ -69,8 +70,12 @@ class _GroupManagePageState extends State<GroupManagePage> {
                     const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: Row(
                   children: [
-                    const CircleAvatar(
-                      backgroundImage: AssetImage(OwnerInfo.ownerImage),
+                    AnimatedBuilder(
+                      animation: profileController,
+                      builder: (context, _) => CircleAvatar(
+                        radius: 24,
+                        backgroundImage: profileController.currentImage,
+                      ),
                     ),
                     Flexible(
                       child: SearchBox(

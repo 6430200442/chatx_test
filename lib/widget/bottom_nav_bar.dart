@@ -10,10 +10,10 @@ class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final items = [
-      {'icon': Icons.chat, 'label': 'แชท'},
-      {'icon': Icons.perm_contact_cal_rounded, 'label': 'รายชื่อ'},
-      {'icon': Icons.group, 'label': 'กลุ่ม'},
-      {'icon': Icons.switch_account, 'label': 'แชแนล'},
+      {'icon': Icons.chat, 'label': 'Chat'},
+      {'icon': Icons.perm_contact_cal_rounded, 'label': 'Contact'},
+      {'icon': Icons.group, 'label': 'Group'},
+      {'icon': Icons.switch_account, 'label': 'Channel'},
     ];
 
     return Container(
@@ -47,6 +47,7 @@ class BottomNavBar extends StatelessWidget {
                     style: TextStyle(
                       color: isSelected ? Colors.white : AppColors.secondaryColor,
                       fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                      fontSize: 12,
                     ),
                   ),
                 ],

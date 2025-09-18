@@ -1,3 +1,4 @@
+import 'package:chatx_test/controller/profile_controller.dart';
 import 'package:chatx_test/model/customer_contact.dart';
 // import 'package:chatx_test/widget/bottom_nav_bar.dart';
 import 'package:chatx_test/widget/curve_body_clipper.dart';
@@ -73,8 +74,12 @@ class _CustomerContactPageState extends State<CustomerContactPage> {
                     const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: Row(
                   children: [
-                    const CircleAvatar(
-                      backgroundImage: AssetImage(OwnerInfo.ownerImage),
+                    AnimatedBuilder(
+                      animation: profileController,
+                      builder: (context, _) => CircleAvatar(
+                        radius: 24,
+                        backgroundImage: profileController.currentImage,
+                      ),
                     ),
                     Flexible(
                       child: SearchBox(

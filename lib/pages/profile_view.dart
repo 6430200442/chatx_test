@@ -49,9 +49,15 @@ class _ProfileViewPageState extends State<ProfileViewPage> {
         ],
       ),
       body: Center(
-        child: Image(
-          image: profileController.currentImage,
-          fit: BoxFit.contain,
+        child: ClipRRect( 
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width, // กำหนดขนาดความกว้าง
+            height: MediaQuery.of(context).size.width, // กำหนดให้เท่ากับความกว้าง => เป็นสี่เหลี่ยม
+            child: Image(
+              image: profileController.currentImage,
+              fit: BoxFit.cover, // ทำให้ภาพเต็มกรอบสี่เหลี่ยม
+            ),
+          ),
         ),
       ),
     );

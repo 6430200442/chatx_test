@@ -1,3 +1,4 @@
+import 'package:chatx_test/controller/profile_controller.dart';
 import 'package:chatx_test/data/mock_chat_detail_data.dart';
 import 'package:chatx_test/model/chat_message.dart';
 import 'package:chatx_test/pages/chat_detail.dart';
@@ -85,8 +86,12 @@ class _ChatListPageState extends State<ChatListPage> {
                           ),
                         );
                       },
-                      child: const CircleAvatar(
-                        backgroundImage: AssetImage(OwnerInfo.ownerImage),
+                      child: AnimatedBuilder(
+                        animation: profileController,
+                        builder: (context, _) => CircleAvatar(
+                          radius: 24,
+                          backgroundImage: profileController.currentImage,
+                        ),
                       ),
                     ),
                     Flexible(
