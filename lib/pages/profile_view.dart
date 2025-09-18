@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:chatx_test/constant/app_constants.dart';
 import 'package:chatx_test/controller/profile_controller.dart';
 import 'package:chatx_test/widget/edit_profile_sheet.dart';
@@ -28,8 +27,6 @@ class _ProfileViewPageState extends State<ProfileViewPage> {
 
   @override
   Widget build(BuildContext context) {
-    final File? profileImage = profileController.profileImage;
-
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       appBar: AppBar(
@@ -52,9 +49,10 @@ class _ProfileViewPageState extends State<ProfileViewPage> {
         ],
       ),
       body: Center(
-        child: profileImage != null
-            ? Image.file(profileImage, fit: BoxFit.contain)
-            : Image.asset(OwnerInfo.ownerImage, fit: BoxFit.contain),
+        child: Image(
+          image: profileController.currentImage,
+          fit: BoxFit.contain,
+        ),
       ),
     );
   }

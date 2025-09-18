@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:chatx_test/constant/app_constants.dart';
 import 'package:chatx_test/controller/profile_controller.dart';
 import 'package:chatx_test/pages/profile_view.dart';
@@ -28,8 +27,6 @@ class _UserProfilePageState extends State<UserProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    final File? profileImage = profileController.profileImage;
-
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -53,25 +50,33 @@ class _UserProfilePageState extends State<UserProfilePage> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const ProfileViewPage()),
+                    MaterialPageRoute(
+                      builder: (context) => const ProfileViewPage(),
+                    ),
                   );
                 },
                 child: CircleAvatar(
                   radius: 40,
-                  backgroundImage: profileImage != null
-                      ? FileImage(profileImage)
-                      : const AssetImage(OwnerInfo.ownerImage) as ImageProvider,
+                  backgroundImage: profileController.currentImage,
                 ),
               ),
               const SizedBox(height: 20),
               const Text(
                 OwnerInfo.ownerUserName,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
               const SizedBox(height: 10),
               const Text(
                 OwnerInfo.ownerRole,
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal, color: Colors.white),
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                  color: Colors.white,
+                ),
               ),
             ],
           ),
