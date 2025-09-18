@@ -10,7 +10,11 @@ class ProfileController extends ChangeNotifier {
     _profileImage = newImage;
     notifyListeners();
   }
+
+  void deleteProfileImage() {
+    _profileImage = null;
+    notifyListeners();
+  }
 }
 
-// ตัวแปร global
-final profileController = ProfileController();
+final profileController = ProfileController(); // ใช้งานแบบ global ง่ายๆ

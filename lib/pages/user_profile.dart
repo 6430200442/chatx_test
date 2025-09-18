@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:chatx_test/constant/app_constants.dart';
+import 'package:chatx_test/controller/profile_controller.dart';
 import 'package:chatx_test/pages/profile_view.dart';
 import 'package:flutter/material.dart';
 
@@ -11,60 +13,54 @@ class UserProfilePage extends StatefulWidget {
 
 class _UserProfilePageState extends State<UserProfilePage> {
   @override
+  void initState() {
+    super.initState();
+    profileController.addListener(_refresh);
+  }
+
+  @override
+  void dispose() {
+    profileController.removeListener(_refresh);
+    super.dispose();
+  }
+
+  void _refresh() => setState(() {});
+
+  @override
   Widget build(BuildContext context) {
+    final File? profileImage = profileController.profileImage;
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         iconTheme: const IconThemeData(color: AppColors.backButton),
-        backgroundColor: Colors.transparent, // ทำให้โปร่งใส
+        backgroundColor: Colors.transparent,
         elevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings, color: Colors.white),
-            onPressed: () {
-              // TODO: ใส่ action เวลากดตั้งค่า เช่น เปิดหน้า SettingsPage
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => const SettingsPage(), // <- หน้า settings
-              //   ),
-              // );
-            },
-          ),
-          const SizedBox(width: 5),
-          IconButton(
-            icon: const Icon(Icons.manage_accounts, color: Colors.white),
-            onPressed: () {
-              // TODO: ใส่ action เวลากดหัวใจ เช่น favorite
-            },
-          ),
-        ],
       ),
       body: Container(
         width: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/imgs/rectangle.png"),
-            fit: BoxFit.cover, // ปรับรูปให้เต็มจอ
+            fit: BoxFit.cover,
           ),
         ),
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center, // จัดกึ่งกลางแนวตั้ง
-            crossAxisAlignment: CrossAxisAlignment.center, // จัดกึ่งกลางแนวนอน
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => const ProfileViewPage(),
-                    ),
+                    MaterialPageRoute(builder: (context) => const ProfileViewPage()),
                   );
                 },
-                child: const CircleAvatar(
+                child: CircleAvatar(
                   radius: 40,
-                  backgroundImage: AssetImage(OwnerInfo.ownerImage),
+                  backgroundImage: profileImage != null
+                      ? FileImage(profileImage)
+                      : const AssetImage(OwnerInfo.ownerImage) as ImageProvider,
                 ),
               ),
               const SizedBox(height: 20),
