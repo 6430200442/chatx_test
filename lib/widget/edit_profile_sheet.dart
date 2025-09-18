@@ -6,10 +6,20 @@ import 'package:chatx_test/controller/profile_controller.dart';
 class EditProfileSheet extends StatelessWidget {
   const EditProfileSheet({super.key});
 
-  Future<void> _pickImage(BuildContext context) async {
+  // ฟังก์ชันเลือกภาพจาก Gallery
+  Future<void> _pickFromGallery(BuildContext context) async {
     final picker = ImagePicker();
     final picked = await picker.pickImage(source: ImageSource.gallery);
+    if (picked != null) {
+      profileController.updateProfileImage(File(picked.path));
+    }
+    Navigator.pop(context);
+  }
 
+  // ฟังก์ชันถ่ายภาพจาก Camera
+  Future<void> _pickFromCamera(BuildContext context) async {
+    final picker = ImagePicker();
+    final picked = await picker.pickImage(source: ImageSource.camera);
     if (picked != null) {
       profileController.updateProfileImage(File(picked.path));
     }
@@ -24,15 +34,12 @@ class EditProfileSheet extends StatelessWidget {
         ListTile(
           leading: const Icon(Icons.camera),
           title: const Text('Camera'),
-          onTap: () {
-            // TODO: เปิดกล้อง (เหมือน pickImage แต่ source: camera)
-            Navigator.pop(context);
-          },
+          onTap: () => _pickFromCamera(context),
         ),
         ListTile(
           leading: const Icon(Icons.photo),
           title: const Text('Select Picture'),
-          onTap: () => _pickImage(context),
+          onTap: () => _pickFromGallery(context),
         ),
         ListTile(
           leading: const Icon(Icons.delete),
