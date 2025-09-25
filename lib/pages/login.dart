@@ -37,15 +37,15 @@ class LoginPage extends StatelessWidget {
                               AppConstants.logoLogin,
                               width: MediaQuery.of(context).size.width,
                             ),
-                            const SizedBox(height: 30),
-                            const Text(
-                              "ADMIN",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                              ),
-                            ),
+                            // const SizedBox(height: 30),
+                            // const Text(
+                            //   "ADMIN",
+                            //   style: TextStyle(
+                            //     color: Colors.white,
+                            //     fontWeight: FontWeight.bold,
+                            //     fontSize: 20,
+                            //   ),
+                            // ),
                             const SizedBox(height: 30),
                             const LoginForm(),
                             const SizedBox(height: 20),

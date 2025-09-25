@@ -48,18 +48,21 @@ class _ProfileViewPageState extends State<ProfileViewPage> {
           ),
         ],
       ),
-      body: Center(
-        child: ClipRRect( 
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width, // กำหนดขนาดความกว้าง
-            height: MediaQuery.of(context).size.width, // กำหนดให้เท่ากับความกว้าง => เป็นสี่เหลี่ยม
+      body: Column(
+        children: [
+          const Spacer(), 
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.width,
             child: Image(
               image: profileController.currentImage,
-              fit: BoxFit.cover, // ทำให้ภาพเต็มกรอบสี่เหลี่ยม
+              fit: BoxFit.cover,
             ),
           ),
-        ),
+          const Spacer(), 
+        ],
       ),
+      
     );
   }
 }

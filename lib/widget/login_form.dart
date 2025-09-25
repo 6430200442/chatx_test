@@ -1,3 +1,4 @@
+import 'package:chatx_test/app.dart';
 import 'package:chatx_test/model/user_login.dart';
 import 'package:chatx_test/pages/chat_list.dart';
 import 'package:flutter/material.dart';
@@ -46,9 +47,10 @@ class _LoginFormState extends State<LoginForm> {
         passwordError = null;
       });
 
-      Navigator.pushReplacement(
+      Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => const ChatListPage()),
+        MaterialPageRoute(builder: (context) => const MainPage()),
+        (route) => false, // ล้าง stack เก่าออก
       );
     }
   }
@@ -128,7 +130,7 @@ class _LoginFormState extends State<LoginForm> {
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide.none,
               ), // ไม่มีขอบ
-              
+
               // errorText: passwordError,
               contentPadding:
                   const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -165,7 +167,6 @@ class _LoginFormState extends State<LoginForm> {
           ),
         ),
         const SizedBox(height: 10),
-        
         SizedBox(
           width: MediaQuery.of(context).size.width,
           height: 50,

@@ -12,8 +12,8 @@ class BottomNavBar extends StatelessWidget {
     final items = [
       {'icon': Icons.chat, 'label': 'Chat'},
       {'icon': Icons.perm_contact_cal_rounded, 'label': 'Contact'},
-      {'icon': Icons.group, 'label': 'Group'},
-      {'icon': Icons.switch_account, 'label': 'Channel'},
+      {'icon': Icons.groups, 'label': 'Group'},
+      {'icon': Icons.language, 'label': 'Channel'},
     ];
 
     return Container(

@@ -28,34 +28,48 @@ class EditProfileSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        ListTile(
-          leading: const Icon(Icons.camera),
-          title: const Text('Camera'),
-          onTap: () => _pickFromCamera(context),
-        ),
-        ListTile(
-          leading: const Icon(Icons.photo),
-          title: const Text('Select Picture'),
-          onTap: () => _pickFromGallery(context),
-        ),
-        ListTile(
-          leading: const Icon(Icons.delete),
-          title: const Text('Delete Picture'),
-          onTap: () {
-            profileController.deleteProfileImage();
-            Navigator.pop(context);
-          },
-        ),
-        ListTile(
-          title: TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ListTile(
+            leading: const Icon(Icons.camera),
+            title: const Text('Camera'),
+            onTap: () => _pickFromCamera(context),
           ),
-        ),
-      ],
+          const Divider(height: 10),
+          ListTile(
+            leading: const Icon(Icons.photo),
+            title: const Text('Select Picture'),
+            onTap: () => _pickFromGallery(context),
+          ),
+          const Divider(height: 10,),
+          ListTile(
+            leading: const Icon(Icons.delete),
+            title: const Text('Delete Picture'),
+            onTap: () {
+              profileController.deleteProfileImage();
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            title: TextButton(
+              onPressed: () => Navigator.pop(context),
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.black, 
+                side: const BorderSide(color: Colors.grey), 
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 12), 
+              ),
+              child: const Text('Cancel'),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

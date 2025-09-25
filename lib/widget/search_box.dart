@@ -31,9 +31,10 @@ class SearchBox extends StatelessWidget {
           controller: controller,
           decoration: const InputDecoration(
             hintText: 'Search...',
-            hintStyle: TextStyle(color: Colors.grey),
-            prefixIcon: Icon(Icons.search),
+            hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
+            prefixIcon: Icon(Icons.search, size: 20),
             border: InputBorder.none,
+            contentPadding: EdgeInsets.symmetric(vertical: 12),
           ),
           onChanged: (_) => onSearch(),
         ),

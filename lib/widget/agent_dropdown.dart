@@ -51,3 +51,47 @@ class AgentDropdown extends StatelessWidget {
     );
   }
 }
+
+
+
+// import 'package:flutter/material.dart';
+
+// class AgentDropdown extends StatelessWidget {
+//   final List<String> agents;
+//   final String? selectedAgent;
+//   final ValueChanged<String?>? onChanged;
+
+//   const AgentDropdown({
+//     super.key,
+//     required this.agents,
+//     this.selectedAgent,
+//     this.onChanged,
+//   });
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return DropdownButtonFormField<String>(
+//       value: selectedAgent,
+//       decoration: InputDecoration(
+//         labelText: "Label", // ข้อความด้านบน
+//         border: OutlineInputBorder(
+//           borderRadius: BorderRadius.circular(8),
+//         ),
+//         focusedBorder: OutlineInputBorder(
+//           borderRadius: BorderRadius.circular(8),
+//           borderSide: const BorderSide(
+//             color: Colors.deepPurple,
+//             width: 2,
+//           ),
+//         ),
+//       ),
+//       items: agents.map((String agent) {
+//         return DropdownMenuItem<String>(
+//           value: agent,
+//           child: Text(agent),
+//         );
+//       }).toList(),
+//       onChanged: onChanged,
+//     );
+//   }
+// }

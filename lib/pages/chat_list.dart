@@ -198,7 +198,6 @@ class _ChatListPageState extends State<ChatListPage> {
           ),
         ),
       ),
-      // bottomNavigationBar: const BottomNavBar(currentIndex: 0),
       backgroundColor: AppColors.primaryColor,
     );
   }
