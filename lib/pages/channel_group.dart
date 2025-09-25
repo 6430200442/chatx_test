@@ -65,6 +65,7 @@ class _ChannelGroupPageState extends State<ChannelGroupPage> {
                   children: [
                     CircleAvatar(
                       backgroundImage: NetworkImage(widget.channel.groupImage),
+                      radius: 24,
                     ),
                     const SizedBox(width: 10.0),
                     Text(
@@ -90,6 +91,7 @@ class _ChannelGroupPageState extends State<ChannelGroupPage> {
                         final channel = channels[index];
                         return ChannelGroupItem(
                             channelGroupItem: channel,
+                            groupName: currentChannel.groupName,
                             onTap: () {},
                             onUpdate: (updatedChannel) {
                               // 1) update local currentChannel

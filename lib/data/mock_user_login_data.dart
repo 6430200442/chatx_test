@@ -2,5 +2,5 @@
 import 'package:chatx_test/model/user_login.dart';
 
 final mockUsers = [
-  User(email: 'test', password: '123456'),
+  User(email: 'test', password: '123'),
 ];

@@ -18,6 +18,7 @@ class _SettingPageState extends State<SettingPage> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          backgroundColor: Colors.white,
           title: const Text("Logout?",
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
           content: const Text("Are you sure want to log out?",
@@ -29,7 +30,7 @@ class _SettingPageState extends State<SettingPage> {
                 TextButton(
                   onPressed: () => Navigator.pop(context),
                   style: TextButton.styleFrom(
-                    backgroundColor: Colors.black,
+                    backgroundColor: Colors.red,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12)),
                   ),
@@ -48,11 +49,11 @@ class _SettingPageState extends State<SettingPage> {
                     );
                   },
                   style: TextButton.styleFrom(
-                    backgroundColor: Colors.red,
+                    backgroundColor: Colors.blue,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12)),
                   ),
-                  child: const Text("Logout",
+                  child: const Text("Confirm",
                       style: TextStyle(color: Colors.white, fontSize: 12)),
                 ),
               ],
