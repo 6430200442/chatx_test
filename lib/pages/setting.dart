@@ -13,6 +13,7 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
+  
   void _showLogoutDialog() {
     showDialog(
       context: context,

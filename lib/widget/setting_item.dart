@@ -18,7 +18,6 @@ class SettingMenuItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // const SizedBox(height: 3),
         ListTile(
           leading: CircleAvatar(
             radius: 18,
@@ -36,7 +35,6 @@ class SettingMenuItem extends StatelessWidget {
           ),
           onTap: onTap,
         ),
-        // const SizedBox(height: 3),
         const Divider(height: 1),
       ],
     );
