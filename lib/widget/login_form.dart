@@ -1,5 +1,6 @@
 import 'package:chatx_test/app.dart';
 import 'package:chatx_test/model/user_login.dart';
+import 'package:chatx_test/pages/forgot_password_email.dart';
 // import 'package:chatx_test/pages/chat_list.dart';
 import 'package:flutter/material.dart';
 import 'package:chatx_test/data/mock_user_login_data.dart';
@@ -153,16 +154,24 @@ class _LoginFormState extends State<LoginForm> {
           ],
         ),
         const SizedBox(height: 10),
-        const Align(
+        Align(
           alignment: Alignment.centerRight,
           child: TextButton(
-            onPressed: null,
-            child: Text(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const ForgotPasswordEmailPage(),
+                ),
+              );
+            },
+            child: const Text(
               'Forgot password',
               style: TextStyle(
-                  color: Colors.white,
-                  decoration: TextDecoration.underline,
-                  decorationColor: Colors.white),
+                color: Colors.white,
+                decoration: TextDecoration.underline,
+                decorationColor: Colors.white,
+              ),
             ),
           ),
         ),

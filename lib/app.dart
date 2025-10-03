@@ -1,3 +1,4 @@
+import 'package:chatx_test/pages/login.dart';
 import 'package:chatx_test/widget/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:chatx_test/pages/chat_list.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         ).copyWith(surface: Colors.white),
         useMaterial3: true,
       ),
-      home: const MainPage(),
+      home: const LoginPage(),
       debugShowCheckedModeBanner: false,
     );
   }
