@@ -4,10 +4,10 @@ import 'package:chatx_test/pages/forgot_password_email.dart';
 // import 'package:chatx_test/pages/chat_list.dart';
 import 'package:flutter/material.dart';
 import 'package:chatx_test/data/mock_user_login_data.dart';
-import 'package:chatx_test/crypto/key_manager.dart';
-import 'package:chatx_test/crypto/encryption_utils.dart';
-import 'package:chatx_test/api/key_exchange_service.dart';
-import 'package:chatx_test/crypto/secure_storage.dart';
+// import 'package:chatx_test/crypto/key_manager.dart';
+// import 'package:chatx_test/crypto/encryption_utils.dart';
+// import 'package:chatx_test/api/key_exchange_service.dart';
+// import 'package:chatx_test/crypto/secure_storage.dart';
 import 'dart:convert';
 
 class LoginForm extends StatefulWidget {
@@ -53,35 +53,35 @@ class _LoginFormState extends State<LoginForm> {
         passwordError = null;
       });
 
-      //ขั้นตอนที่ 1: สร้างคู่กุญแจ
-      final keyManager = KeyManager();
-      await keyManager.generateKeyPair();
-      final clientPublicKey = await keyManager.getPublicKeyBase64();
-      // Debug: ตรวจสอบว่ามีกุญแจจริงไหม
-      print('Client public key (Base64): $clientPublicKey');
-      print('Client key pair: ${keyManager.keyPair}');
+      // //ขั้นตอนที่ 1: สร้างคู่กุญแจ
+      // final keyManager = KeyManager();
+      // await keyManager.generateKeyPair();
+      // final clientPublicKey = await keyManager.getPublicKeyBase64();
+      // // Debug: ตรวจสอบว่ามีกุญแจจริงไหม
+      // print('Client public key (Base64): $clientPublicKey');
+      // print('Client key pair: ${keyManager.keyPair}');
 
-      //ขั้นตอนที่ 2: แลกเปลี่ยนกุญแจ
-      final keyExchangeService = KeyExchangeService();
-      final serverPublicKeyBase64 =
-          await keyExchangeService.exchangeKeys(clientPublicKey);
-      print('clientPublicKey length: ${clientPublicKey.length}');
-      print('serverPublicKeyBase64: $serverPublicKeyBase64');
+      // //ขั้นตอนที่ 2: แลกเปลี่ยนกุญแจ
+      // final keyExchangeService = KeyExchangeService();
+      // final serverPublicKeyBase64 =
+      //     await keyExchangeService.exchangeKeys(clientPublicKey);
+      // print('clientPublicKey length: ${clientPublicKey.length}');
+      // print('serverPublicKeyBase64: $serverPublicKeyBase64');
 
-      //ขั้นตอนที่ 3: สร้าง derived key ถ้ามี server key
-      if (serverPublicKeyBase64 != null) {
-        final derivedKey =
-            await deriveSharedKey(keyManager.keyPair, serverPublicKeyBase64);
+      // //ขั้นตอนที่ 3: สร้าง derived key ถ้ามี server key
+      // if (serverPublicKeyBase64 != null) {
+      //   final derivedKey =
+      //       await deriveSharedKey(keyManager.keyPair, serverPublicKeyBase64);
 
-        final derivedKeyBase64 = base64Encode(derivedKey);
-        print('Derived Key Created: $derivedKeyBase64');
+      //   final derivedKeyBase64 = base64Encode(derivedKey);
+      //   print('Derived Key Created: $derivedKeyBase64');
 
-        //ขั้นตอนที่ 4: เก็บใน SecureStorage
-        await SecureStorageHelper.saveDerivedKey(derivedKeyBase64);
-        print('Derived Key Saved to SecureStorage');
-      } else {
-        print('Key Exchange Failed');
-      }
+      //   //ขั้นตอนที่ 4: เก็บใน SecureStorage
+      //   await SecureStorageHelper.saveDerivedKey(derivedKeyBase64);
+      //   print('Derived Key Saved to SecureStorage');
+      // } else {
+      //   print('Key Exchange Failed');
+      // }
 
       Navigator.pushAndRemoveUntil(
         context,
