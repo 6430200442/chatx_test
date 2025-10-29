@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 
 class AgentDropdown extends StatelessWidget {
   final List<String> agents;
@@ -17,42 +18,68 @@ class AgentDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 50,
-      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 5.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        border: Border.all(color: Colors.white),
+        borderRadius: BorderRadius.circular(25.0),
+        border: Border.all(color: Colors.grey),
         color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 1,
-            blurRadius: 5,
-            offset: const Offset(0, 3),
-          ),
-        ],
       ),
       child: DropdownButtonHideUnderline(
-        child: DropdownButton<String>(
-          value: selectedAgent,
-          hint: const Text('Select Agent'),
-          style: TextStyle(color: Colors.grey.shade600),
+        child: DropdownButton2<String>(
           isExpanded: true,
+          value: selectedAgent,
           items: agents.map((String agent) {
             return DropdownMenuItem<String>(
               value: agent,
-              child: Text(agent),
+              child: Row(
+                children: [
+                  const Icon(Icons.support_agent, color: Colors.grey, size: 18),
+                  const SizedBox(width: 8),
+                  Text(
+                    agent,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      // fontWeight: FontWeight.w600,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
+              ),
             );
           }).toList(),
           onChanged: onChanged,
+
+          buttonStyleData: const ButtonStyleData(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+          ),
+
+          dropdownStyleData: const DropdownStyleData(
+            maxHeight: 200, // แสดงได้สูงสุดประมาณ 4 item (scroll ได้)
+            width: 180,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(25),
+                bottomRight: Radius.circular(25),
+              ), // โค้งเฉพาะขอบล่าง
+              border: Border(
+                left: BorderSide(color: Colors.grey,),
+                right: BorderSide(color: Colors.grey),
+                bottom: BorderSide(color: Colors.grey,),
+                top: BorderSide.none, // ไม่มีขอบบน
+              ),
+            ),
+            elevation: 0,
+          ),
+
+          menuItemStyleData: const MenuItemStyleData(
+            overlayColor: WidgetStatePropertyAll(Colors.grey),
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          ),
         ),
       ),
     );
   }
 }
-
-
 
 // import 'package:flutter/material.dart';
 

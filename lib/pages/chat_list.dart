@@ -133,118 +133,181 @@ class _ChatListPageState extends State<ChatListPage> {
           ],
         ),
       ),
-
       body: ClipPath(
         clipper: CurveBodyClipper(),
         child: Container(
           color: Colors.white,
-          child: Column(
-            children: [
-              const SizedBox(height: 15.0),
-              Container(
-                color: Colors.white,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                child: Row(
-                  children: [
-                    Flexible(
-                      child: SearchBox(
-                        controller: chatController.searchController,
-                        onSearch: () {
-                          filterChats();
-                        },
-                        onFilter: () {
-                          setState(() {
-                            _showFilterBar = !_showFilterBar;
-                          });
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              if (_showFilterBar)
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0, vertical: 5.0),
-                  child: Column(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              children: [
+                const SizedBox(height: 20.0),
+                Container(
+                  color: Colors.white,
+                  child: Row(
                     children: [
-                      ChannelDropdown(
-                        channels: ChannelList.channels,
-                        selectedChannel: selectedChannel,
-                        onChanged: (value) {
-                          setState(() {
-                            selectedChannel = value;
+                      Flexible(
+                        child: SearchBox(
+                          controller: chatController.searchController,
+                          onSearch: () {
                             filterChats();
-                          });
-                        },
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      const SizedBox(height: 8),
-                      AgentDropdown(
-                        agents: AgentList.agents,
-                        selectedAgent: selectedAgent,
-                        onChanged: (value) {
-                          setState(() {
-                            selectedAgent = value;
-                            filterChats();
-                          });
-                        },
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      const SizedBox(height: 8),
-                      StatusDropdown(
-                        statuses: StatusList.statuses,
-                        selectedStatus: selectedStatus,
-                        onChanged: (value) {
-                          setState(() {
-                            selectedStatus = value;
-                            filterChats();
-                          });
-                        },
-                        borderRadius: BorderRadius.circular(8.0),
+                          },
+                          onFilter: () {
+                            setState(() {
+                              _showFilterBar = !_showFilterBar;
+                            });
+                          },
+                        ),
                       ),
                     ],
                   ),
                 ),
-              const SizedBox(height: 2.0),
-              Expanded(
-                child: ValueListenableBuilder<List<ChatMessage>>(
-                  valueListenable: chatController.filteredChats,
-                  builder: (context, filteredList, _) {
-                    return ListView.builder(
-                      itemCount: filteredList.length,
-                      itemBuilder: (context, index) {
-                        final chat = filteredList[index];
-
-                        // หา ChatDetailMessage ที่ตรงกับ id ของ ChatMessage
-                        final chatDetail = mockChatDetailData.firstWhere(
-                          (d) => d.customerId == chat.customerId,
-                          orElse: () =>
-                              mockChatDetailData.first, // fallback ถ้าไม่เจอ
-                        );
-                        // สร้าง ChatItem และส่ง chatDetail ไปยัง ChatDetailPage
-                        return ChatItem(
-                          chatMessage: chat,
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ChatDetailPage(
-                                  chatDetail: chatDetail,
-                                  chatController:
-                                      chatController, // <--- ส่ง controller
-                                ),
+                if (_showFilterBar) ...[
+                  const SizedBox(height: 10.0),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 10.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: Colors.white,
+                      border: Border.all(color: Colors.white),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.2),
+                          spreadRadius: 1,
+                          blurRadius: 5,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            const Text(
+                              'Channel',
+                              style: TextStyle(
+                                fontSize: 16,
+                                // fontWeight: FontWeight.bold,
                               ),
-                            );
-                          },
-                        );
-                      },
-                    );
-                  },
+                            ),
+                            const Spacer(), // เว้นระยะ
+                            SizedBox(
+                              width: 180, 
+                              height: 30,
+                              child: ChannelDropdown(
+                                channels: ChannelList.channels,
+                                selectedChannel: selectedChannel,
+                                onChanged: (value) {
+                                  setState(() {
+                                    selectedChannel = value;
+                                    filterChats();
+                                  });
+                                },
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 8),
+                        Row(
+                          children: [
+                            const Text(
+                              'Agent',
+                              style: TextStyle(
+                                fontSize: 16,
+                                // fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const Spacer(),
+                            SizedBox(
+                              width: 180, 
+                              height: 30,
+                              child: AgentDropdown(
+                                agents: AgentList.agents,
+                                selectedAgent: selectedAgent,
+                                onChanged: (value) {
+                                  setState(() {
+                                    selectedAgent = value;
+                                    filterChats();
+                                  });
+                                },
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 8),
+                        Row(
+                          children: [
+                            const Text(
+                              'Status',
+                              style: TextStyle(
+                                fontSize: 16,
+                                // fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const Spacer(),
+                            SizedBox(
+                              width: 180, 
+                              height: 30,
+                              child: StatusDropdown(
+                                statuses: StatusList.statuses,
+                                selectedStatus: selectedStatus,
+                                onChanged: (value) {
+                                  setState(() {
+                                    selectedStatus = value;
+                                    filterChats();
+                                  });
+                                },
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+                const SizedBox(height: 15.0),
+                Expanded(
+                  child: ValueListenableBuilder<List<ChatMessage>>(
+                    valueListenable: chatController.filteredChats,
+                    builder: (context, filteredList, _) {
+                      return ListView.builder(
+                        itemCount: filteredList.length,
+                        itemBuilder: (context, index) {
+                          final chat = filteredList[index];
+
+                          // หา ChatDetailMessage ที่ตรงกับ id ของ ChatMessage
+                          final chatDetail = mockChatDetailData.firstWhere(
+                            (d) => d.customerId == chat.customerId,
+                            orElse: () =>
+                                mockChatDetailData.first, // fallback ถ้าไม่เจอ
+                          );
+                          // สร้าง ChatItem และส่ง chatDetail ไปยัง ChatDetailPage
+                          return ChatItem(
+                            chatMessage: chat,
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ChatDetailPage(
+                                    chatDetail: chatDetail,
+                                    chatController:
+                                        chatController, // <--- ส่ง controller
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

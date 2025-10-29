@@ -154,51 +154,28 @@ class ChannelDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25.0),
         color: Colors.white,
-        border: Border.all(color: Colors.white),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 1,
-            blurRadius: 5,
-            offset: const Offset(0, 3),
-          ),
-        ],
+        border: Border.all(color: Colors.grey),
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton2<String>(
           isExpanded: true,
           value: selectedChannel,
-          hint: Row(
-            children: const [
-              Icon(Icons.favorite, color: Colors.red, size: 18),
-              SizedBox(width: 8),
-              Text(
-                'Select Channel',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ],
-          ),
           items: channels.map((String channel) {
             return DropdownMenuItem<String>(
               value: channel,
               child: Row(
                 children: [
-                  const Icon(Icons.star, color: Colors.amber, size: 18),
+                  const Icon(Icons.language, color: Colors.grey, size: 18),
                   const SizedBox(width: 8),
                   Text(
                     channel,
                     style: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87,
+                      fontSize: 14,
+                      // fontWeight: FontWeight.w600,
+                      color: Colors.grey,
                     ),
                   ),
                 ],
@@ -210,39 +187,32 @@ class ChannelDropdown extends StatelessWidget {
           // 🎨 ปรับสไตล์ของ dropdown button
           buttonStyleData: const ButtonStyleData(
             padding: EdgeInsets.symmetric(horizontal: 16),
-            height: 50,
           ),
 
           // 📋 ปรับสไตล์ของเมนู
           dropdownStyleData: DropdownStyleData(
             maxHeight: 200, // แสดงได้สูงสุดประมาณ 4 item (scroll ได้)
-            width: MediaQuery.of(context).size.width - 32,
+            width: 180,
             decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(25),
                 bottomRight: Radius.circular(25),
-              ), // โค้งเฉพาะขอบล่าง
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 6,
-                  offset: Offset(0, 3),
-                ),
-              ],
+              ),
+              border: Border(
+                left: BorderSide(color: Colors.grey,),
+                right: BorderSide(color: Colors.grey),
+                bottom: BorderSide(color: Colors.grey,),
+                top: BorderSide.none, // ไม่มีขอบบน
+              ),
             ),
-            elevation: 3,
-            offset: const Offset(0, 0),
+            elevation: 0,
           ),
 
-          // 🩶 แถบสีเทาเมื่อ hover / กด
+          // แถบสีเทาเมื่อ hover / กด
           menuItemStyleData: const MenuItemStyleData(
             overlayColor: WidgetStatePropertyAll(Colors.grey),
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-          ),
-
-          iconStyleData: const IconStyleData(
-            icon: Icon(Icons.keyboard_arrow_down, color: Colors.black54),
           ),
         ),
       ),
