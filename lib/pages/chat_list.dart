@@ -53,18 +53,6 @@ class _ChatListPageState extends State<ChatListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('ChatX'),
-      //   titleTextStyle: const TextStyle(
-      //     color: Colors.white,
-      //     fontWeight: FontWeight.bold,
-      //     fontSize: 20,
-      //   ),
-      //   centerTitle: true,
-      //   toolbarHeight: 80,
-      //   backgroundColor: AppColors.primaryColor,
-      //   elevation: 0,
-      // ),
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
         elevation: 0,
@@ -159,38 +147,18 @@ class _ChatListPageState extends State<ChatListPage> {
                     const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: Row(
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const UserProfilePage(),
-                          ),
-                        );
-                      },
-                      child: AnimatedBuilder(
-                        animation: profileController,
-                        builder: (context, _) => CircleAvatar(
-                          radius: 24,
-                          backgroundImage: profileController.currentImage,
-                        ),
-                      ),
-                    ),
                     Flexible(
                       child: SearchBox(
                         controller: chatController.searchController,
                         onSearch: () {
                           filterChats();
                         },
+                        onFilter: () {
+                          setState(() {
+                            _showFilterBar = !_showFilterBar;
+                          });
+                        },
                       ),
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.filter_list),
-                      onPressed: () {
-                        setState(() {
-                          _showFilterBar = !_showFilterBar;
-                        });
-                      },
                     ),
                   ],
                 ),

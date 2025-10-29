@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class SearchBox extends StatelessWidget {
   final TextEditingController controller;
   final VoidCallback onSearch;
+  final VoidCallback? onFilter;
 
   const SearchBox({
     super.key,
     required this.controller,
     required this.onSearch,
+    this.onFilter,
   });
 
   @override
@@ -29,12 +31,16 @@ class SearchBox extends StatelessWidget {
         ),
         child: TextField(
           controller: controller,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             hintText: 'Search...',
-            hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
-            prefixIcon: Icon(Icons.search, size: 20),
+            hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),
+            prefixIcon: const Icon(Icons.search, size: 20),
+            suffixIcon: IconButton(
+            icon: const Icon(Icons.filter_list, color: Colors.grey),
+            onPressed: onFilter, 
+          ),
             border: InputBorder.none,
-            contentPadding: EdgeInsets.symmetric(vertical: 12),
+            contentPadding: const EdgeInsets.symmetric(vertical: 12),
           ),
           onChanged: (_) => onSearch(),
         ),
