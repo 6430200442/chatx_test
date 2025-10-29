@@ -103,7 +103,7 @@ class _ChatListPageState extends State<ChatListPage> {
             Align(
               alignment: Alignment.centerRight,
               child: Padding(
-                padding: const EdgeInsets.only(right: 4.0),
+                padding: const EdgeInsets.only(right: 0.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [

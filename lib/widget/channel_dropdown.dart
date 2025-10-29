@@ -190,10 +190,10 @@ class ChannelDropdown extends StatelessWidget {
           ),
 
           // 📋 ปรับสไตล์ของเมนู
-          dropdownStyleData: DropdownStyleData(
+          dropdownStyleData: const DropdownStyleData(
             maxHeight: 200, // แสดงได้สูงสุดประมาณ 4 item (scroll ได้)
             width: 180,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(25),
