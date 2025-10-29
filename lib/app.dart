@@ -1,6 +1,6 @@
-import 'package:chatx_test/pages/login.dart';
-import 'package:chatx_test/widget/bottom_nav_bar.dart';
+import 'package:chatx_test/constant/app_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:chatx_test/pages/login.dart';
 import 'package:chatx_test/pages/chat_list.dart';
 import 'package:chatx_test/pages/customer_contact.dart';
 import 'package:chatx_test/pages/group_manage.dart';
@@ -19,8 +19,8 @@ class MyApp extends StatelessWidget {
       title: 'ChatX',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 14, 80, 223),
-        ).copyWith(surface: Colors.white),
+          seedColor: AppColors.primaryColor,
+        ),
         useMaterial3: true,
       ),
       home: const LoginPage(),
@@ -29,17 +29,18 @@ class MyApp extends StatelessWidget {
   }
 }
 
+/// หน้าหลักหลังล็อกอิน
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
   @override
-  State<MainPage> createState() => MainPageState();
+  State<MainPage> createState() => _MainPageState();
 }
 
-class MainPageState extends State<MainPage> {
-  int currentIndex = 0;
+class _MainPageState extends State<MainPage> {
+  int currentPageIndex = 0;
 
-  final pages = const [
+  final List<Widget> pages = const [
     ChatListPage(),
     CustomerContactPage(),
     GroupManagePage(),
@@ -50,16 +51,39 @@ class MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: IndexedStack(
-        index: currentIndex,
+        index: currentPageIndex,
         children: pages,
       ),
-      bottomNavigationBar: BottomNavBar(
-        currentIndex: currentIndex,
-        onItemTap: (index) {
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: currentPageIndex,
+        onDestinationSelected: (int index) {
           setState(() {
-            currentIndex = index;
+            currentPageIndex = index;
           });
         },
+        indicatorColor: AppColors.primaryColor,
+        destinations: const [
+          NavigationDestination(
+            selectedIcon: Icon(Icons.chat, color: Colors.white),
+            icon: Icon(Icons.chat),
+            label: 'Chat',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.perm_contact_cal_rounded, color: Colors.white),
+            icon: Icon(Icons.perm_contact_cal_rounded),
+            label: 'Contact',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.groups, color: Colors.white),
+            icon: Icon(Icons.groups),
+            label: 'Group',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.language, color: Colors.white),
+            icon: Icon(Icons.language),
+            label: 'Channel',
+          ),
+        ],
       ),
     );
   }

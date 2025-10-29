@@ -2,6 +2,7 @@ import 'package:chatx_test/controller/profile_controller.dart';
 import 'package:chatx_test/data/mock_chat_detail_data.dart';
 import 'package:chatx_test/model/chat_message.dart';
 import 'package:chatx_test/pages/chat_detail.dart';
+import 'package:chatx_test/pages/setting.dart';
 import 'package:chatx_test/pages/user_profile.dart';
 import 'package:chatx_test/widget/curve_body_clipper.dart';
 import 'package:flutter/material.dart';
@@ -52,18 +53,99 @@ class _ChatListPageState extends State<ChatListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: AppBar(
+      //   title: const Text('ChatX'),
+      //   titleTextStyle: const TextStyle(
+      //     color: Colors.white,
+      //     fontWeight: FontWeight.bold,
+      //     fontSize: 20,
+      //   ),
+      //   centerTitle: true,
+      //   toolbarHeight: 80,
+      //   backgroundColor: AppColors.primaryColor,
+      //   elevation: 0,
+      // ),
       appBar: AppBar(
-        title: const Text('ChatX'),
-        titleTextStyle: const TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 20,
-        ),
-        centerTitle: true,
-        toolbarHeight: 80,
         backgroundColor: AppColors.primaryColor,
         elevation: 0,
+        toolbarHeight: 80,
+        automaticallyImplyLeading: false,
+        titleSpacing: 0, // ให้ชิดขอบซ้ายสุด
+        title: Stack(
+          alignment: Alignment.center,
+          children: [
+            // 👤 รูปโปรไฟล์ (ซ้าย)
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const UserProfilePage(),
+                      ),
+                    );
+                  },
+                  child: AnimatedBuilder(
+                    animation: profileController,
+                    builder: (context, _) => CircleAvatar(
+                      radius: 14,
+                      backgroundImage: profileController.currentImage,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+            // 📄 ชื่อหน้า (ตรงกลางจริง)
+            const Center(
+              child: Text(
+                'ChatX',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+
+            // 🔔 กับ ⚙️ (ขวาสุดจริง)
+            Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 4.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.notifications),
+                      color: Colors.white,
+                      iconSize: 22,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SettingPage(),
+                          ),
+                        );
+                      },
+                      icon: const Icon(Icons.settings),
+                      color: Colors.white,
+                      iconSize: 22,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
+
       body: ClipPath(
         clipper: CurveBodyClipper(),
         child: Container(
