@@ -8,6 +8,8 @@ import 'package:chatx_test/widget/channel_item.dart';
 import 'package:chatx_test/widget/curve_body_clipper.dart';
 import 'package:chatx_test/widget/search_box.dart';
 import 'package:flutter/material.dart';
+import 'package:chatx_test/pages/setting.dart';
+import 'package:chatx_test/pages/user_profile.dart';
 
 class ChannelManagePage extends StatefulWidget {
   const ChannelManagePage({super.key});
@@ -44,106 +46,197 @@ class _ChannelManagePageState extends State<ChannelManagePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        toolbarHeight: 80,
         backgroundColor: AppColors.primaryColor,
-        titleTextStyle: Theme.of(context).textTheme.headlineMedium?.copyWith(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
+        elevation: 0,
+        toolbarHeight: 80,
+        automaticallyImplyLeading: false,
+        titleSpacing: 0, // ให้ชิดขอบซ้ายสุด
+        title: Stack(
+          alignment: Alignment.center,
+          children: [
+            // 👤 รูปโปรไฟล์ (ซ้าย)
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const UserProfilePage(),
+                      ),
+                    );
+                  },
+                  child: AnimatedBuilder(
+                    animation: profileController,
+                    builder: (context, _) => CircleAvatar(
+                      radius: 14,
+                      backgroundImage: profileController.currentImage,
+                    ),
+                  ),
+                ),
+              ),
             ),
-        title: const Text('Channel Manage'),
+
+            // 📄 ชื่อหน้า (ตรงกลางจริง)
+            const Center(
+              child: Text(
+                'Channel Manage',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+
+            // 🔔 กับ ⚙️ (ขวาสุดจริง)
+            Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 0.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.notifications),
+                      color: Colors.white,
+                      iconSize: 22,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SettingPage(),
+                          ),
+                        );
+                      },
+                      icon: const Icon(Icons.settings),
+                      color: Colors.white,
+                      iconSize: 22,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
       body: ClipPath(
         clipper: CurveBodyClipper(),
         child: Container(
           color: Colors.white,
-          child: Column(
-            children: [
-              const SizedBox(height: 15.0),
-              Container(
-                color: Colors.white,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                child: Row(
-                  children: [
-                    AnimatedBuilder(
-                      animation: profileController,
-                      builder: (context, _) => CircleAvatar(
-                        radius: 24,
-                        backgroundImage: profileController.currentImage,
-                      ),
-                    ),
-                    Flexible(
-                      child: SearchBox(
-                        controller: channelController.searchController,
-                        onSearch: () {
-                          filterChats();
-                        },
-                      ),
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.filter_list),
-                      onPressed: () {
-                        setState(() {
-                          _showFilterBar = !_showFilterBar;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-              ),
-              if (_showFilterBar)
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0, vertical: 5.0),
-                  child: Column(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              children: [
+                const SizedBox(height: 20.0),
+                Container(
+                  color: Colors.white,
+                  child: Row(
                     children: [
-                      ChannelDropdown(
-                        channels: ChannelList.channels,
-                        selectedChannel: selectedChannel,
-                        onChanged: (value) {
-                          setState(() {
-                            selectedChannel = value;
+                      Flexible(
+                        child: SearchBox(
+                          controller: channelController.searchController,
+                          onSearch: () {
                             filterChats();
-                          });
-                        },
-                        borderRadius: BorderRadius.circular(8.0),
+                          },
+                          onFilter: () {
+                            setState(() {
+                              _showFilterBar = !_showFilterBar;
+                            });
+                          },
+                        ),
                       ),
                     ],
                   ),
                 ),
-              const SizedBox(height: 2.0),
-              Expanded(
-                child: ValueListenableBuilder<List<ChannelManage>>(
-                  valueListenable: channelController.filteredChannel,
-                  builder: (context, filteredList, _) {
-                    return ListView.builder(
-                      itemCount: filteredList.length,
-                      itemBuilder: (context, index) {
-                        final channel = filteredList[index];
-                        // ส่ง group และ onTap ให้ ChannelItem
-                        return ChannelItem(
-                          channelItem: channel,
-                          onTap: () {
-                            // Handle channel item tap
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ChannelGroupPage(
-                                  channel: channel,
-                                  controller: channelController,
-                                ),
+                if (_showFilterBar) ... [
+                  const SizedBox(height: 10.0),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 10.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: Colors.white,
+                      border: Border.all(color: Colors.white),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.2),
+                          spreadRadius: 1,
+                          blurRadius: 5,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            const Text(
+                              'Channel',
+                              style: TextStyle(
+                                fontSize: 16,
+                                // fontWeight: FontWeight.bold,
                               ),
-                            );
-                          },
-                        );
-                      },
-                    );
-                  },
+                            ),
+                            const Spacer(),
+                            SizedBox(
+                              width: 180, 
+                              height: 30,
+                              child: ChannelDropdown(
+                                channels: ChannelList.channels,
+                                selectedChannel: selectedChannel,
+                                onChanged: (value) {
+                                  setState(() {
+                                    selectedChannel = value;
+                                    filterChats();
+                                  });
+                                },
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+              ],
+                const SizedBox(height: 15.0),
+                Expanded(
+                  child: ValueListenableBuilder<List<ChannelManage>>(
+                    valueListenable: channelController.filteredChannel,
+                    builder: (context, filteredList, _) {
+                      return ListView.builder(
+                        itemCount: filteredList.length,
+                        itemBuilder: (context, index) {
+                          final channel = filteredList[index];
+                          // ส่ง group และ onTap ให้ ChannelItem
+                          return ChannelItem(
+                            channelItem: channel,
+                            onTap: () {
+                              // Handle channel item tap
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ChannelGroupPage(
+                                    channel: channel,
+                                    controller: channelController,
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

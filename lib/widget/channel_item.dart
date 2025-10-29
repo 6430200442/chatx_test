@@ -17,7 +17,7 @@ class ChannelItem extends StatelessWidget {
     final members = channelItem.groupChannel ?? [];
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+      margin: const EdgeInsets.symmetric(horizontal: 2.0, vertical: 4.0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8.0),

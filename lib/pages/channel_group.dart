@@ -54,14 +54,12 @@ class _ChannelGroupPageState extends State<ChannelGroupPage> {
         clipper: CurveBodyClipper(),
         child: Container(
           color: Colors.white,
-          child: Column(
-            children: [
-              const SizedBox(height: 15.0),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                ),
-                child: Row(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              children: [
+                const SizedBox(height: 20.0),
+                Row(
                   children: [
                     CircleAvatar(
                       backgroundImage: NetworkImage(widget.channel.groupImage),
@@ -77,57 +75,57 @@ class _ChannelGroupPageState extends State<ChannelGroupPage> {
                     ),
                   ],
                 ),
-              ),
-              const SizedBox(height: 10.0),
-              Expanded(
-                child: ValueListenableBuilder<List<ChannelManage>>(
-                  valueListenable: widget.controller.filteredChannel,
-                  builder: (context, filteredList, _) {
-                    final channels = currentChannel.groupChannel ?? [];
-
-                    return ListView.builder(
-                      itemCount: channels.length,
-                      itemBuilder: (context, index) {
-                        final channel = channels[index];
-                        return ChannelGroupItem(
-                            channelGroupItem: channel,
-                            groupName: currentChannel.groupName,
-                            onTap: () {},
-                            onUpdate: (updatedChannel) {
-                              // 1) update local currentChannel
-                              final oldChannels =
-                                  currentChannel.groupChannel ?? [];
-                              final idx = oldChannels.indexWhere((c) =>
-                                  c.channelId == updatedChannel.channelId);
-
-                              if (idx != -1) {
-                                final updatedChannels =
-                                    List<GroupChannel>.from(oldChannels);
-                                updatedChannels[idx] = updatedChannel;
-                                setState(() {
-                                  currentChannel = currentChannel.copyWith(
-                                      groupChannel: updatedChannels);
-                                });
-                              }
-
-                              // update ค่า controller
-                              final oldGroups = List<ChannelManage>.from(
-                                  widget.controller.filteredChannel.value);
-                              final gIdx = oldGroups.indexWhere(
-                                  (g) => g.groupId == currentChannel.groupId);
-
-                              if (gIdx != -1) {
-                                oldGroups[gIdx] = currentChannel;
-                                widget.controller.filteredChannel.value =
-                                    oldGroups; // เรียก notify listeners
-                              }
-                            });
-                      },
-                    );
-                  },
+                const SizedBox(height: 10.0),
+                Expanded(
+                  child: ValueListenableBuilder<List<ChannelManage>>(
+                    valueListenable: widget.controller.filteredChannel,
+                    builder: (context, filteredList, _) {
+                      final channels = currentChannel.groupChannel ?? [];
+            
+                      return ListView.builder(
+                        itemCount: channels.length,
+                        itemBuilder: (context, index) {
+                          final channel = channels[index];
+                          return ChannelGroupItem(
+                              channelGroupItem: channel,
+                              groupName: currentChannel.groupName,
+                              onTap: () {},
+                              onUpdate: (updatedChannel) {
+                                // 1) update local currentChannel
+                                final oldChannels =
+                                    currentChannel.groupChannel ?? [];
+                                final idx = oldChannels.indexWhere((c) =>
+                                    c.channelId == updatedChannel.channelId);
+            
+                                if (idx != -1) {
+                                  final updatedChannels =
+                                      List<GroupChannel>.from(oldChannels);
+                                  updatedChannels[idx] = updatedChannel;
+                                  setState(() {
+                                    currentChannel = currentChannel.copyWith(
+                                        groupChannel: updatedChannels);
+                                  });
+                                }
+            
+                                // update ค่า controller
+                                final oldGroups = List<ChannelManage>.from(
+                                    widget.controller.filteredChannel.value);
+                                final gIdx = oldGroups.indexWhere(
+                                    (g) => g.groupId == currentChannel.groupId);
+            
+                                if (gIdx != -1) {
+                                  oldGroups[gIdx] = currentChannel;
+                                  widget.controller.filteredChannel.value =
+                                      oldGroups; // เรียก notify listeners
+                                }
+                              });
+                        },
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

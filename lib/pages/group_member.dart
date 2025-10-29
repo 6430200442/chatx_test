@@ -171,7 +171,7 @@ class _GroupMemberPageState extends State<GroupMemberPage> {
                     CircleAvatar(
                       backgroundImage: NetworkImage(widget.group.groupImage),
                     ),
-                    const SizedBox(width: 2.0),
+                    const SizedBox(width: 5.0),
                     const Text(
                       'Group ',
                       style: TextStyle(
@@ -192,7 +192,7 @@ class _GroupMemberPageState extends State<GroupMemberPage> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 2.0),
+                const SizedBox(height: 10.0),
                 Container(
                   color: Colors.white,
                   child: Row(
