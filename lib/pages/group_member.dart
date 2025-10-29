@@ -155,21 +155,23 @@ class _GroupMemberPageState extends State<GroupMemberPage> {
               fontWeight: FontWeight.bold,
               fontSize: 20,
             ),
-        title: const Text('Group Manage'),
+        title: const Text('Group Member'),
       ),
       body: ClipPath(
         clipper: CurveBodyClipper(),
         child: Container(
           color: Colors.white,
-          child: Column(
-            children: [
-              const SizedBox(height: 15.0),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                ),
-                child: Row(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              children: [
+                const SizedBox(height: 20.0),
+                Row(
                   children: [
+                    CircleAvatar(
+                      backgroundImage: NetworkImage(widget.group.groupImage),
+                    ),
+                    const SizedBox(width: 2.0),
                     const Text(
                       'Group ',
                       style: TextStyle(
@@ -190,124 +192,148 @@ class _GroupMemberPageState extends State<GroupMemberPage> {
                     ),
                   ],
                 ),
-              ),
-              const SizedBox(height: 2.0),
-              Container(
-                color: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      backgroundImage: NetworkImage(widget.group.groupImage),
-                    ),
-                    Flexible(
-                      child: SearchBox(
-                        controller: memberController.searchController,
-                        onSearch: () {
-                          filterChats();
-                        },
-                      ),
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.filter_list),
-                      onPressed: () {
-                        setState(() {
-                          _showFilterBar = !_showFilterBar;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-              ),
-              if (_showFilterBar)
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0, vertical: 5.0),
-                  child: Column(
+                const SizedBox(height: 2.0),
+                Container(
+                  color: Colors.white,
+                  child: Row(
                     children: [
-                      RoleDropdown(
-                        roles: RoleList.roles,
-                        selectedRole: selectedRole,
-                        onChanged: (value) {
-                          setState(() {
-                            selectedRole = value;
+                      Flexible(
+                        child: SearchBox(
+                          controller: memberController.searchController,
+                          onSearch: () {
                             filterChats();
-                          });
-                        },
-                        borderRadius: BorderRadius.circular(8.0),
+                          },
+                          onFilter: () {
+                            setState(() {
+                              _showFilterBar = !_showFilterBar;
+                            });
+                          },
+                        ),
                       ),
                     ],
                   ),
                 ),
-              //ปุ่ม Action
-              DeleteButtonBar(
-                isDeleteMode: _isDeleteMode,
-                onDeleteGroup: _deleteGroup,
-                onDeleteMemberMode: () {
-                  setState(() => _isDeleteMode = true);
-                },
-                onDeleteSelected: _deleteSelectedMembers,
-                onDeleteAll: _deleteAllMembers,
-                onCancel: () {
-                  setState(() {
-                    _isDeleteMode = false; // ปิดโหมดลบ
-                    _selectedMembers.clear();
-                  });
-                },
-              ),
-
-              const SizedBox(height: 2.0),
-              Expanded(
-                child: ValueListenableBuilder<TextEditingValue>(
-                  valueListenable: memberController.searchController,
-                  builder: (context, searchValue, _) {
-                    List<GroupMember> filteredMembers =
-                        currentGroup.groupMember ?? [];
-
-                    // filter by role
-                    if (selectedRole != null && selectedRole != 'All Role') {
-                      filteredMembers = filteredMembers
-                          .where((member) =>
-                              member.role.toLowerCase() ==
-                              selectedRole!.toLowerCase())
-                          .toList();
-                    }
-                    // filter by search
-                    if (searchValue.text.isNotEmpty) {
-                      filteredMembers = filteredMembers
-                          .where((member) =>
-                              '${member.firstName} ${member.lastName}'
-                                  .toLowerCase()
-                                  .contains(searchValue.text.toLowerCase()))
-                          .toList();
-                    }
-                    return ListView.builder(
-                      itemCount: filteredMembers.length,
-                      itemBuilder: (context, index) {
-                        final member = filteredMembers[index];
-                        return MemberItem(
-                          memberItem: member,
-                          isDeleteMode: _isDeleteMode,
-                          isSelected:
-                              _selectedMembers.contains(member.memberId),
-                          onTap: () {},
-                          onToggleSelect: () {
-                            setState(() {
-                              if (_selectedMembers.contains(member.memberId)) {
-                                _selectedMembers.remove(member.memberId);
-                              } else {
-                                _selectedMembers.add(member.memberId);
-                              }
-                            });
-                          },
-                          onEdit: () => _editMemberRole(member),
-                        );
-                      },
-                    );
+                if (_showFilterBar) ... [
+                  const SizedBox(height: 10.0),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 10.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: Colors.white,
+                      border: Border.all(color: Colors.white),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.2),
+                          spreadRadius: 1,
+                          blurRadius: 5,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            const Text(
+                              'Row',
+                              style: TextStyle(
+                                fontSize: 16,
+                                // fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const Spacer(),
+                            SizedBox(
+                              width: 180, 
+                              height: 30,
+                              child: RoleDropdown(
+                                roles: RoleList.roles,
+                                selectedRole: selectedRole,
+                                onChanged: (value) {
+                                  setState(() {
+                                    selectedRole = value;
+                                    filterChats();
+                                  });
+                                },
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+              ],
+                //ปุ่ม Action
+                DeleteButtonBar(
+                  isDeleteMode: _isDeleteMode,
+                  onDeleteGroup: _deleteGroup,
+                  onDeleteMemberMode: () {
+                    setState(() => _isDeleteMode = true);
+                  },
+                  onDeleteSelected: _deleteSelectedMembers,
+                  onDeleteAll: _deleteAllMembers,
+                  onCancel: () {
+                    setState(() {
+                      _isDeleteMode = false; // ปิดโหมดลบ
+                      _selectedMembers.clear();
+                    });
                   },
                 ),
-              ),
-            ],
+            
+                const SizedBox(height: 15.0),
+                Expanded(
+                  child: ValueListenableBuilder<TextEditingValue>(
+                    valueListenable: memberController.searchController,
+                    builder: (context, searchValue, _) {
+                      List<GroupMember> filteredMembers =
+                          currentGroup.groupMember ?? [];
+            
+                      // filter by role
+                      if (selectedRole != null && selectedRole != 'All Role') {
+                        filteredMembers = filteredMembers
+                            .where((member) =>
+                                member.role.toLowerCase() ==
+                                selectedRole!.toLowerCase())
+                            .toList();
+                      }
+                      // filter by search
+                      if (searchValue.text.isNotEmpty) {
+                        filteredMembers = filteredMembers
+                            .where((member) =>
+                                '${member.firstName} ${member.lastName}'
+                                    .toLowerCase()
+                                    .contains(searchValue.text.toLowerCase()))
+                            .toList();
+                      }
+                      return ListView.builder(
+                        itemCount: filteredMembers.length,
+                        itemBuilder: (context, index) {
+                          final member = filteredMembers[index];
+                          return MemberItem(
+                            memberItem: member,
+                            isDeleteMode: _isDeleteMode,
+                            isSelected:
+                                _selectedMembers.contains(member.memberId),
+                            onTap: () {},
+                            onToggleSelect: () {
+                              setState(() {
+                                if (_selectedMembers.contains(member.memberId)) {
+                                  _selectedMembers.remove(member.memberId);
+                                } else {
+                                  _selectedMembers.add(member.memberId);
+                                }
+                              });
+                            },
+                            onEdit: () => _editMemberRole(member),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
