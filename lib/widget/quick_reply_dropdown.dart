@@ -111,38 +111,59 @@
 //     );
 //   }
 // }
-
 import 'package:flutter/material.dart';
 
 class QuickReplyDropdown extends StatefulWidget {
-  const QuickReplyDropdown({super.key});
+  // final List<String> quickReplies;
+  // final Function(String) onEdit;
+  // final Function(String) onDelete;
+  // final VoidCallback onAdd;
+
+  const QuickReplyDropdown({
+    super.key,
+    // required this.quickReplies,
+    // required this.onEdit,
+    // required this.onDelete,
+    // required this.onAdd,
+  });
 
   @override
   State<QuickReplyDropdown> createState() => _QuickReplyDropdownState();
 }
 
 class _QuickReplyDropdownState extends State<QuickReplyDropdown> {
-  final List<String> items = ['Join Chat', 'Whisper to Agent'];
-  String? selectedValue;
-
   final LayerLink _layerLink = LayerLink();
   OverlayEntry? _overlayEntry;
   bool _isMenuOpen = false;
 
   void _toggleDropdown() {
     if (_isMenuOpen) {
-      _overlayEntry?.remove();
-      _overlayEntry = null;
-      _isMenuOpen = false;
+      _closeMenu();
     } else {
-      _overlayEntry = _createOverlayEntry();
-      Overlay.of(context).insert(_overlayEntry!);
+      _openMenu();
+    }
+  }
+
+  void _openMenu() {
+    final entry = _createOverlayEntry();
+    if (entry != null) {
+      Overlay.of(context, rootOverlay: true)?.insert(entry);
+      _overlayEntry = entry;
       _isMenuOpen = true;
     }
   }
 
-  OverlayEntry _createOverlayEntry() {
-    RenderBox renderBox = context.findRenderObject() as RenderBox;
+  void _closeMenu() {
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+    _isMenuOpen = false;
+  }
+
+  OverlayEntry? _createOverlayEntry() {
+    final renderObject = context.findRenderObject();
+    if (renderObject == null || renderObject is! RenderBox) return null;
+
+    RenderBox renderBox = renderObject;
     Size size = renderBox.size;
     Offset offset = renderBox.localToGlobal(Offset.zero);
 
@@ -150,57 +171,93 @@ class _QuickReplyDropdownState extends State<QuickReplyDropdown> {
       builder: (context) => Positioned(
         width: size.width,
         left: offset.dx,
-        top: offset.dy - (items.length * 40 + 8),
+        top: offset.dy - 180, // แสดงด้านบน
         child: CompositedTransformFollower(
           link: _layerLink,
           showWhenUnlinked: false,
-          offset: Offset(0, -size.height - 26),
+          offset: Offset(0, -size.height - 8),
           child: Material(
-            color: Colors.white, // พื้นสีขาว
-            elevation: 0, // ไม่มีเงา
-            // shape: RoundedRectangleBorder(
-            //   borderRadius: BorderRadius.only(
-            //     topLeft: Radius.circular(5),
-            //     topRight: Radius.circular(5),
-            //   ),
-            // ),
+            color: Colors.transparent,
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.white, // พื้นสีขาว
+                color: Colors.white,
+                border: Border.all(color: Colors.grey.shade300),
                 borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(5),
-                  topRight: Radius.circular(5),
+                  topLeft: Radius.circular(8),
+                  topRight: Radius.circular(8),
                 ),
-                border: const Border(
-                  left: BorderSide(color: Colors.grey),
-                  right: BorderSide(color: Colors.grey),
-                  top: BorderSide(color: Colors.grey),
-                  bottom: BorderSide.none,
-                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 6,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
               ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start, // ชิดซ้าย
-                children: items.map((item) {
-                  return InkWell(
-                    onTap: () {
-                      setState(() {
-                        selectedValue = item;
-                        _toggleDropdown();
-                      });
-                    },
-                    child: Container(
-                      width: double.infinity, // กว้างเต็มเมนู
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 4, horizontal: 12),
-                      child: Text(
-                        item,
-                        style: const TextStyle(fontSize: 12),
-                      ),
-                    ),
-                  );
-                }).toList(),
-              ),
+              padding: const EdgeInsets.all(8),
+              // child: Column(
+              //   mainAxisSize: MainAxisSize.min,
+              //   children: [
+              //     SizedBox(
+              //       height: 120,
+              //       child: Scrollbar(
+              //         thumbVisibility: true,
+              //         radius: const Radius.circular(10),
+              //         child: ListView.builder(
+              //           itemCount: widget.quickReplies.length,
+              //           itemBuilder: (context, index) {
+              //             final item = widget.quickReplies[index];
+              //             return Padding(
+              //               padding: const EdgeInsets.symmetric(vertical: 4.0),
+              //               child: Row(
+              //                 children: [
+              //                   Expanded(
+              //                     child: Text(
+              //                       item,
+              //                       style: const TextStyle(fontSize: 12),
+              //                       overflow: TextOverflow.ellipsis,
+              //                     ),
+              //                   ),
+              //                   IconButton(
+              //                     icon: const Icon(Icons.edit, size: 16),
+              //                     color: Colors.blueGrey,
+              //                     onPressed: () => widget.onEdit(item),
+              //                   ),
+              //                   IconButton(
+              //                     icon: const Icon(Icons.delete, size: 16),
+              //                     color: Colors.redAccent,
+              //                     onPressed: () => widget.onDelete(item),
+              //                   ),
+              //                 ],
+              //               ),
+              //             );
+              //           },
+              //         ),
+              //       ),
+              //     ),
+              //     const Divider(height: 10, color: Colors.grey),
+              //     InkWell(
+              //       onTap: widget.onAdd,
+              //       child: Container(
+              //         width: double.infinity,
+              //         alignment: Alignment.center,
+              //         padding: const EdgeInsets.symmetric(vertical: 8),
+              //         decoration: BoxDecoration(
+              //           color: Colors.grey.shade100,
+              //           borderRadius: BorderRadius.circular(5),
+              //         ),
+              //         child: const Text(
+              //           '+ Add Quick Reply',
+              //           style: TextStyle(
+              //             color: Colors.blue,
+              //             fontSize: 12,
+              //             fontWeight: FontWeight.w500,
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
             ),
           ),
         ),
@@ -220,21 +277,17 @@ class _QuickReplyDropdownState extends State<QuickReplyDropdown> {
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(5),
-            border: Border.all(color: Colors.grey),
+            border: Border.all(color: Colors.grey.shade400),
           ),
-          child: Row(
+          child: const Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                selectedValue ?? 'Quick Reply',
-                style: const TextStyle(fontSize: 12, color: Colors.black),
+                'Quick Reply',
+                style: TextStyle(fontSize: 12, color: Colors.black),
               ),
-              const Spacer(),
-              const Icon(
-                Icons.arrow_drop_up,
-                size: 18,
-                color: Colors.black,
-              ),
+              Spacer(),
+              Icon(Icons.arrow_drop_up, size: 18, color: Colors.black),
             ],
           ),
         ),
@@ -244,7 +297,7 @@ class _QuickReplyDropdownState extends State<QuickReplyDropdown> {
 
   @override
   void dispose() {
-    _overlayEntry?.remove();
+    _closeMenu();
     super.dispose();
   }
 }

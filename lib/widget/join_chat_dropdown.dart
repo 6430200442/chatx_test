@@ -1,3 +1,5 @@
+import 'package:chatx_test/constant/app_constants.dart';
+import 'package:chatx_test/widget/popup_whisper.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 
@@ -18,7 +20,8 @@ class JoinChatDropdown extends StatefulWidget {
   final VoidCallback onJoin;
   final VoidCallback onWhisper;
 
-  const JoinChatDropdown({super.key, required this.onJoin, required this.onWhisper});
+  const JoinChatDropdown(
+      {super.key, required this.onJoin, required this.onWhisper});
 
   @override
   State<JoinChatDropdown> createState() => _JoinChatDropdownState();
@@ -78,7 +81,14 @@ class _JoinChatDropdownState extends State<JoinChatDropdown> {
             if (value == 'Join Chat') {
               widget.onJoin();
             } else if (value == 'Whisper to Agent') {
-              widget.onWhisper();
+              showDialog(
+                context: context,
+                builder: (_) => WhisperPopup(
+                  agents: AgentList.agentsOnly,
+                  onConfirm: (agent, message) {
+                  },
+                ),
+              );
             }
           },
           buttonStyleData: const ButtonStyleData(
@@ -95,9 +105,13 @@ class _JoinChatDropdownState extends State<JoinChatDropdown> {
                 bottomRight: Radius.circular(5),
               ), // โค้งเฉพาะขอบล่าง
               border: Border(
-                left: BorderSide(color: Colors.grey,),
+                left: BorderSide(
+                  color: Colors.grey,
+                ),
                 right: BorderSide(color: Colors.grey),
-                bottom: BorderSide(color: Colors.grey,),
+                bottom: BorderSide(
+                  color: Colors.grey,
+                ),
                 top: BorderSide.none, // ไม่มีขอบบน
               ),
             ),

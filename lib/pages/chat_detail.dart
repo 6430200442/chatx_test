@@ -102,8 +102,8 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                         mockChatDetailData[index].copyWith(status: 'done');
                   }
 
-                  widget.chatController.updateStatus(
-                      widget.chatDetail.chatRoomId, 'done');
+                  widget.chatController
+                      .updateStatus(widget.chatDetail.chatRoomId, 'done');
                 });
 
                 Navigator.of(context).pop();
@@ -263,6 +263,54 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                           TextPosition(offset: _messageController.text.length),
                         );
                         _showQuickReplies = false;
+                      });
+                    },
+                    onFilePicked: (filePath) {
+                      final now = DateTime.now();
+                      final newFileMsg = ChatDetailMessage(
+                        chatRoomId: widget.chatDetail.chatRoomId,
+                        customerId: widget.chatDetail.customerId,
+                        customerImage: widget.chatDetail.customerImage,
+                        customerName: widget.chatDetail.customerName,
+                        messageId: 'F${now.millisecondsSinceEpoch}',
+                        message: '[File]',
+                        time: now,
+                        isSender: true,
+                        isRead: false,
+                        status: 'have agent',
+                        channel: widget.chatDetail.channel,
+                        channelName: widget.chatDetail.channelName,
+                        agentId: widget.chatDetail.agentId,
+                        agentImage: OwnerInfo.ownerImage,
+                        agentName: OwnerInfo.ownerName,
+                        filePath: filePath, // ✅ แนบไฟล์
+                      );
+                      setState(() {
+                        mockChatDetailData.add(newFileMsg);
+                      });
+                    },
+                    onImagePicked: (imagePath) {
+                      final now = DateTime.now();
+                      final newImgMsg = ChatDetailMessage(
+                        chatRoomId: widget.chatDetail.chatRoomId,
+                        customerId: widget.chatDetail.customerId,
+                        customerImage: widget.chatDetail.customerImage,
+                        customerName: widget.chatDetail.customerName,
+                        messageId: 'I${now.millisecondsSinceEpoch}',
+                        message: '[Image]',
+                        time: now,
+                        isSender: true,
+                        isRead: false,
+                        status: 'have agent',
+                        channel: widget.chatDetail.channel,
+                        channelName: widget.chatDetail.channelName,
+                        agentId: widget.chatDetail.agentId,
+                        agentImage: OwnerInfo.ownerImage,
+                        agentName: OwnerInfo.ownerName,
+                        imagePath: imagePath, // ✅ แนบรูป
+                      );
+                      setState(() {
+                        mockChatDetailData.add(newImgMsg);
                       });
                     },
                   ),

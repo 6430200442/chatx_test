@@ -1,3 +1,4 @@
+import 'package:chatx_test/constant/app_constants.dart';
 import 'package:chatx_test/model/chat_message.dart';
 import 'package:flutter/material.dart';
 
@@ -41,7 +42,7 @@ List<ChatMessage> mockChatData = [
     time: '18:45 PM',
     unreadCount: 1,
     status: 'have agent',
-    statusColor: Colors.blue,
+    statusColor: AppColors.primaryColor,
     channel: 'assets/imgs/line.png',
     // agent info
     agentId: 'A001',
@@ -59,7 +60,7 @@ List<ChatMessage> mockChatData = [
     time: '18:00 PM',
     unreadCount: 0,
     status: 'have agent',
-    statusColor: Colors.blue,
+    statusColor: AppColors.primaryColor,
     channel: 'assets/imgs/wechat.png',
     // agent info
     agentId: 'A003',
@@ -91,7 +92,7 @@ List<ChatMessage> mockChatData = [
     time: '16:12 PM',
     unreadCount: 1,
     status: 'have agent',
-    statusColor: Colors.blue,
+    statusColor: AppColors.primaryColor,
     channel: 'assets/imgs/livechat.png',
     // agent info
     agentId: 'A002',
@@ -109,7 +110,7 @@ List<ChatMessage> mockChatData = [
     time: '15:15 PM',
     unreadCount: 0,
     status: 'have agent',
-    statusColor: Colors.blue,
+    statusColor: AppColors.primaryColor,
     channel: 'assets/imgs/facebook.png',
     // agent info
     agentId: 'A003',
@@ -211,7 +212,7 @@ List<ChatMessage> mockChatData = [
     time: '09:25 AM',
     unreadCount: 0,
     status: 'have agent',
-    statusColor: Colors.blue,
+    statusColor: AppColors.primaryColor,
     channel: 'assets/imgs/instagram.png',
     // agent info
     agentId: 'A002',
@@ -229,7 +230,7 @@ List<ChatMessage> mockChatData = [
     time: '8:00 AM',
     unreadCount: 1,
     status: 'have agent',
-    statusColor: Colors.blue,
+    statusColor: AppColors.primaryColor,
     channel: 'assets/imgs/line.png',
     // agent info
     agentId: 'A001',

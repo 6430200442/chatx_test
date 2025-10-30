@@ -116,13 +116,16 @@ class ChatBubble extends StatelessWidget {
   // ✅ ฟังก์ชันเช็คว่าเป็นข้อความ "Joined"
   bool get isJoinedMessage => message.contains('---Joined as');
 
-  // ✅ ฟังก์ชันแยกข้อความ Joined เพื่อทำสีชมพู (สำหรับแสดงใน Divider)
+  // ✅ ฟังก์ชันแยกข้อความ Joined เพื่อทำสีชมพู
   List<TextSpan> _buildJoinedMessageSpans() {
     if (!isJoinedMessage) {
       return [
         TextSpan(
           text: message,
-          style: const TextStyle(color: Colors.black, fontSize: 12),
+          style: TextStyle(
+            color: isSender ? Colors.white : Colors.black,
+            fontSize: 14,
+          ),
         )
       ];
     }
@@ -136,19 +139,19 @@ class ChatBubble extends StatelessWidget {
       return [
         const TextSpan(
           text: '---Joined as ',
-          style: TextStyle(color: Colors.grey, fontSize: 12),
+          style: TextStyle(color: Colors.white, fontSize: 14),
         ),
         TextSpan(
           text: roleName,
           style: const TextStyle(
             color: Colors.pink,
-            fontSize: 12,
+            fontSize: 14,
             fontWeight: FontWeight.bold,
           ),
         ),
         const TextSpan(
           text: '---',
-          style: TextStyle(color: Colors.grey, fontSize: 12),
+          style: TextStyle(color: Colors.white, fontSize: 14),
         ),
       ];
     }
@@ -156,7 +159,7 @@ class ChatBubble extends StatelessWidget {
     return [
       TextSpan(
         text: message,
-        style: const TextStyle(color: Colors.grey, fontSize: 12),
+        style: const TextStyle(color: Colors.white, fontSize: 14),
       )
     ];
   }
@@ -166,31 +169,11 @@ class ChatBubble extends StatelessWidget {
     final timeString =
         "${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}";
 
-    // ✅ ถ้าเป็นข้อความ Joined ให้แสดงเป็น Divider แทน
-    if (isJoinedMessage) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 12.0),
-        child: Row(
-          children: [
-            const Expanded(child: Divider(thickness: 1)),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: RichText(
-                text: TextSpan(
-                  children: _buildJoinedMessageSpans(),
-                  style: const TextStyle(fontSize: 12),
-                ),
-              ),
-            ),
-            const Expanded(child: Divider(thickness: 1)),
-          ],
-        ),
-      );
-    }
-
-    // ✅ ข้อความปกติ - ใช้สีชมพูถ้า joined แล้ว
+    // ✅ ถ้าเป็นข้อความ Joined ให้ใช้สีปกติ (ไม่ใช้สีชมพู)
     final bubbleColor = isSender
-        ? (isJoinedChat ? Colors.pink : AppColors.primaryColor)
+        ? (isJoinedMessage 
+            ? AppColors.primaryColor // ข้อความ Joined ใช้สีปกติ
+            : (isJoinedChat ? Colors.pink : AppColors.primaryColor)) // ข้อความอื่นใช้สีชมพูถ้า joined แล้ว
         : Colors.grey[200];
 
     return Column(
@@ -242,11 +225,9 @@ class ChatBubble extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(bottom: 14.0, right: 40),
-                        child: Text(
-                          message,
-                          style: TextStyle(
-                            color: isSender ? Colors.white : Colors.black,
-                            fontSize: 14,
+                        child: RichText(
+                          text: TextSpan(
+                            children: _buildJoinedMessageSpans(),
                           ),
                         ),
                       ),

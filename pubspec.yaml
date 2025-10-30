@@ -20,6 +20,7 @@ dependencies:
   uuid: ^4.2.1
   flutter_secure_storage: ^9.0.0
   dropdown_button2: ^2.3.9
+  file_picker: ^8.1.2
   # image_cropper: ^4.0.0
 
   # flutter_native_splash: ^2.4.0

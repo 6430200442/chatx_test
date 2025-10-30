@@ -17,6 +17,8 @@ class ChatDetailMessage {
   final String? agentImage;
   String? agentName;
   //final AgentInfo? agent;
+  final String? imagePath;
+  final String? filePath;
 
   ChatDetailMessage({
     required this.chatRoomId,
@@ -35,6 +37,8 @@ class ChatDetailMessage {
     this.agentImage,
     this.agentName,
     //this.agent,
+    this.imagePath,
+    this.filePath,
   });
 
   ChatDetailMessage copyWith({
@@ -53,6 +57,8 @@ class ChatDetailMessage {
   String? agentId,
   String? agentImage,
   String? agentName,
+  String? imagePath,
+  String? filePath,
 }) {
   return ChatDetailMessage(
     chatRoomId: chatRoomId ?? this.chatRoomId,
@@ -70,6 +76,8 @@ class ChatDetailMessage {
     agentId: agentId ?? this.agentId,
     agentImage: agentImage ?? this.agentImage,
     agentName: agentName ?? this.agentName,
+    imagePath: imagePath ?? this.imagePath,
+    filePath: filePath ?? this.filePath,
   );
 }
 

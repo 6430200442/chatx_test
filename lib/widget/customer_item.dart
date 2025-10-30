@@ -73,13 +73,13 @@ class CustomerItem extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                   decoration: BoxDecoration(
-                    color: customerContact.statusColor.withOpacity(0.15),
+                    color: customerContact.statusColor,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
                     customerContact.status,
-                    style: TextStyle(
-                      color: customerContact.statusColor,
+                    style: const TextStyle(
+                      color: Colors.white,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                     ),
@@ -91,13 +91,13 @@ class CustomerItem extends StatelessWidget {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                     decoration: BoxDecoration(
-                      color: customerContact.tagColor?.withOpacity(0.15),
+                      color: customerContact.tagColor,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
                       customerContact.tag!,
-                      style: TextStyle(
-                        color: customerContact.tagColor,
+                      style: const TextStyle(
+                        color: Colors.white,
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
                       ),

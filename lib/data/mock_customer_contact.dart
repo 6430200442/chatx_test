@@ -1,3 +1,4 @@
+import 'package:chatx_test/constant/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:chatx_test/model/customer_contact.dart';
 
@@ -9,8 +10,8 @@ List<CustomerContact> mockCustomerContact = [
     channelName: 'Instagram',
     channelImage: 'assets/imgs/instagram.png',
     customerNote: '......',
-    status: 'no agent',
-    statusColor: Colors.red,
+    status: 'await',
+    statusColor: Colors.yellow.shade800,
     groupName: 'Group XXX',
     customerTags: [
       CustomerTag(
@@ -69,7 +70,7 @@ List<CustomerContact> mockCustomerContact = [
     channelImage: 'assets/imgs/facebook.png',
     customerNote: 'Bankok, Lat Phrao',
     status: 'done',
-    statusColor: Colors.grey,
+    statusColor: Colors.black,
     groupName: 'Group YZX',
     customerTags: [
       CustomerTag(
@@ -130,7 +131,7 @@ List<CustomerContact> mockCustomerContact = [
     tagColor: Colors.brown,
     tag: 'track',
     status: 'have agent',
-    statusColor: Colors.orange,
+    statusColor: AppColors.primaryColor,
     groupName: 'Group XXX',
     customerTags: [
       CustomerTag(
@@ -191,7 +192,7 @@ List<CustomerContact> mockCustomerContact = [
     tagColor: Colors.brown,
     tag: 'track',
     status: 'have agent',
-    statusColor: Colors.orange,
+    statusColor: AppColors.primaryColor,
     groupName: 'Group YZX',
     customerTags: [
       CustomerTag(
@@ -252,7 +253,7 @@ List<CustomerContact> mockCustomerContact = [
     tagColor: Colors.green,
     tag: 'refund',
     status: 'Done',
-    statusColor: Colors.grey,
+    statusColor: Colors.black,
     groupName: 'Group XXX',
     customerTags: [
       CustomerTag(
@@ -311,7 +312,7 @@ List<CustomerContact> mockCustomerContact = [
     channelImage: 'assets/imgs/livechat.png',
     customerNote: 'ลูกค้าสนใจสินค้าชุดใหม่',
     status: 'have agent',
-    statusColor: Colors.orange,
+    statusColor: AppColors.primaryColor,
     groupName: 'Group XYZ',
     customerTags: [
       CustomerTag(
@@ -372,7 +373,7 @@ List<CustomerContact> mockCustomerContact = [
     tagColor: Colors.brown,
     tag: 'track',
     status: 'have agent',
-    statusColor: Colors.orange,
+    statusColor: AppColors.primaryColor,
     groupName: 'Group XXX',
     customerTags: [
       CustomerTag(
@@ -430,8 +431,8 @@ List<CustomerContact> mockCustomerContact = [
     channelName: 'Instagram',
     channelImage: 'assets/imgs/instagram.png',
     customerNote: 'Order: AC456321',
-    status: 'Done',
-    statusColor: Colors.grey,
+    status: 'done',
+    statusColor: Colors.black,
     groupName: 'Group XYZ',
     customerTags: [
       CustomerTag(
@@ -492,7 +493,7 @@ List<CustomerContact> mockCustomerContact = [
     tagColor: Colors.green,
     tag: 'refund',
     status: 'Done',
-    statusColor: Colors.grey,
+    statusColor: Colors.black,
     groupName: 'Group XXX',
     customerTags: [
       CustomerTag(
@@ -550,8 +551,8 @@ List<CustomerContact> mockCustomerContact = [
     channelName: 'WeChat',
     channelImage: 'assets/imgs/wechat.png',
     customerNote: '......',
-    status: 'no agent',
-    statusColor: Colors.red,
+    status: 'await',
+    statusColor: Colors.yellow.shade800,
     groupName: 'Group XYZ',
     customerTags: [
       CustomerTag(
@@ -610,7 +611,7 @@ List<CustomerContact> mockCustomerContact = [
     channelImage: 'assets/imgs/line.png',
     customerNote: 'ของแถม',
     status: 'done',
-    statusColor: Colors.grey,
+    statusColor: Colors.black,
     groupName: 'Group XXX',
     customerTags: [
       CustomerTag(
@@ -668,8 +669,8 @@ List<CustomerContact> mockCustomerContact = [
     channelName: 'Facebook',
     channelImage: 'assets/imgs/facebook.png',
     customerNote: '......',
-    status: 'no agent',
-    statusColor: Colors.red,
+    status: 'await',
+    statusColor: Colors.yellow.shade800,
     groupName: 'Group YZX',
     customerTags: [
       CustomerTag(
@@ -728,7 +729,7 @@ List<CustomerContact> mockCustomerContact = [
     channelImage: 'assets/imgs/livechat.png',
     customerNote: 'เปลี่ยนสินค้า',
     status: 'done',
-    statusColor: Colors.grey,
+    statusColor: Colors.black,
     groupName: 'Group XXX',
     customerTags: [
       CustomerTag(
@@ -789,7 +790,7 @@ List<CustomerContact> mockCustomerContact = [
     tag: 'refund',
     tagColor: Colors.green,
     status: 'have agent',
-    statusColor: Colors.orange,
+    statusColor: AppColors.primaryColor,
     groupName: 'Group XYZ',
     customerTags: [
       CustomerTag(
@@ -850,7 +851,7 @@ List<CustomerContact> mockCustomerContact = [
     tagColor: Colors.brown,
     tag: 'track',
     status: 'have agent',
-    statusColor: Colors.orange,
+    statusColor: AppColors.primaryColor,
     groupName: 'Group XXX',
     customerTags: [
       CustomerTag(
