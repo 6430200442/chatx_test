@@ -6,6 +6,7 @@ import 'package:chatx_test/model/chat_detail_message.dart';
 import 'package:chatx_test/model/customer_profile.dart';
 import 'package:chatx_test/widget/close_button.dart';
 import 'package:chatx_test/widget/join_chat_dropdown.dart';
+import 'package:chatx_test/widget/popup_transfer.dart';
 import 'package:chatx_test/widget/transfer_button.dart';
 import 'package:chatx_test/widget/view_only_button.dart';
 import 'package:flutter/material.dart';
@@ -132,7 +133,27 @@ class ChatDetailAppBar extends StatelessWidget implements PreferredSizeWidget {
                   SizedBox(
                       height: 25,
                       width: 70,
-                      child: TransferButton(onPressed: () {})),
+                      child: TransferButton(onPressed: () {
+                        // showDialog(
+                        //   context: context,
+                        //   builder: (_) => TransferPopup(
+                        //     agents: AgentList.agentsOnly,
+                        //     onConfirm: (agent, permanent, temporary, note,
+                        //         notify, attach) {
+                        //     },
+                        //   ),
+                        // );
+
+                        showDialog(
+                          context: context,
+                          builder: (_) => TransferPopup(
+                            agents: AgentList.agentsOnly,
+                            onConfirm: (selectedAgent, isPermanent, note,
+                                notify, attachSummary) {
+                            },
+                          ),
+                        );
+                      })),
                   const SizedBox(width: 4),
                   const Expanded(
                     child: SizedBox(

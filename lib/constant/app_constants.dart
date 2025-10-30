@@ -17,6 +17,11 @@ class AgentList {
     'Agent Anna',
     'Agent Mook',
   ];
+  static const List<String> agentsOnly = [
+    'Me',
+    'Agent Anna',
+    'Agent Mook',
+  ];
 }
 
 class ChannelList {
@@ -98,6 +103,12 @@ class AppConstants {
   static const double defaultPadding = 40.0;
   static const String backgroundLogin = 'assets/imgs/rectangle.png';
   static const String logoLogin = 'assets/imgs/iconGroup2.png';
+}
+
+class PopupImageLogo {
+  static const String success = 'assets/imgs/success-popup.png';
+  static const String fail = 'assets/imgs/fail-popup.png';
+  static const String noti = 'assets/imgs/noti-popup.png';
 }
 
 final Map<String, String> agentImages = {
