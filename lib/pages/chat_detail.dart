@@ -5,7 +5,7 @@ import 'package:chatx_test/data/mock_customer_profile.dart';
 import 'package:chatx_test/data/mock_quick_reply_data.dart';
 import 'package:chatx_test/model/chat_detail_message.dart';
 import 'package:chatx_test/widget/chat_detail_app_bar.dart';
-import 'package:chatx_test/widget/chat_detail_close_transfer.dart';
+// import 'package:chatx_test/widget/chat_detail_close_transfer.dart';
 import 'package:chatx_test/widget/chat_detail_message_list.dart';
 import 'package:chatx_test/widget/curve_body_clipper.dart';
 import 'package:flutter/material.dart';

@@ -42,7 +42,7 @@ class GroupList {
 class StatusList {
   static const List<String> statuses = [
     'All Status',
-    'no agent',
+    'await',
     'have agent',
     'done',
   ];
@@ -97,7 +97,7 @@ class AppConstants {
   static const String appName = 'ChatX Login';
   static const double defaultPadding = 40.0;
   static const String backgroundLogin = 'assets/imgs/rectangle.png';
-  static const String logoLogin = 'assets/imgs/logoName.png';
+  static const String logoLogin = 'assets/imgs/iconGroup2.png';
 }
 
 final Map<String, String> agentImages = {

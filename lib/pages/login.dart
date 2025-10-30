@@ -32,12 +32,12 @@ class LoginPage extends StatelessWidget {
                             const EdgeInsets.all(AppConstants.defaultPadding),
                         child: Column(
                           children: [
-                            const SizedBox(height: 100),
+                            const SizedBox(height: 80),
                             Image.asset(
                               AppConstants.logoLogin,
                               width: MediaQuery.of(context).size.width,
                             ),
-                            // const SizedBox(height: 30),
+                            const SizedBox(height: 30),
                             // const Text(
                             //   "ADMIN",
                             //   style: TextStyle(

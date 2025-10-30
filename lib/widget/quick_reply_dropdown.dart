@@ -154,7 +154,7 @@ class _QuickReplyDropdownState extends State<QuickReplyDropdown> {
         child: CompositedTransformFollower(
           link: _layerLink,
           showWhenUnlinked: false,
-          offset: Offset(0, -size.height - 42),
+          offset: Offset(0, -size.height - 26),
           child: Material(
             color: Colors.white, // พื้นสีขาว
             elevation: 0, // ไม่มีเงา
@@ -192,7 +192,7 @@ class _QuickReplyDropdownState extends State<QuickReplyDropdown> {
                     child: Container(
                       width: double.infinity, // กว้างเต็มเมนู
                       padding: const EdgeInsets.symmetric(
-                          vertical: 8, horizontal: 12),
+                          vertical: 4, horizontal: 12),
                       child: Text(
                         item,
                         style: const TextStyle(fontSize: 12),

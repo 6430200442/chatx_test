@@ -187,7 +187,7 @@ class _ChatListPageState extends State<ChatListPage> {
                             const Text(
                               'Channel',
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 14,
                                 // fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -215,7 +215,7 @@ class _ChatListPageState extends State<ChatListPage> {
                             const Text(
                               'Agent',
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 14,
                                 // fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -243,7 +243,7 @@ class _ChatListPageState extends State<ChatListPage> {
                             const Text(
                               'Status',
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 14,
                                 // fontWeight: FontWeight.bold,
                               ),
                             ),

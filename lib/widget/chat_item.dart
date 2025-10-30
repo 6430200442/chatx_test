@@ -100,13 +100,13 @@ class ChatItem extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                   decoration: BoxDecoration(
-                    color: chatMessage.statusColor.withOpacity(0.15),
+                    color: chatMessage.statusColor,
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
                     chatMessage.status,
-                    style: TextStyle(
-                      color: chatMessage.statusColor,
+                    style: const TextStyle(
+                      color: Colors.white,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                     ),
@@ -118,7 +118,7 @@ class ChatItem extends StatelessWidget {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                     decoration: BoxDecoration(
-                      color: Colors.blue.withOpacity(0.50),
+                      color: Colors.teal.shade600,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Row(
@@ -132,7 +132,7 @@ class ChatItem extends StatelessWidget {
                         const SizedBox(width: 4),
                         Text(
                           chatMessage.agentName ?? '',
-                          style: TextStyle(fontSize: 12,color: Colors.blue[800], fontWeight: FontWeight.bold),
+                          style: const TextStyle(fontSize: 12,color: Colors.white, fontWeight: FontWeight.bold),
                           
                         ),
                       ],

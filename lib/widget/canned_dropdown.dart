@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class CannedDropdown extends StatefulWidget {
@@ -9,7 +8,7 @@ class CannedDropdown extends StatefulWidget {
 }
 
 class _CannedDropdownState extends State<CannedDropdown> {
-  final List<String> items = ['Join Chat', 'Whisper to Agent'];
+  final List<String> items = ['Canned Response', 'Canned Response Setting'];
   String? selectedValue;
 
   final LayerLink _layerLink = LayerLink();
@@ -41,24 +40,18 @@ class _CannedDropdownState extends State<CannedDropdown> {
         child: CompositedTransformFollower(
           link: _layerLink,
           showWhenUnlinked: false,
-          offset: Offset(0, -size.height - 42),
+          offset: Offset(0, -size.height - 43),
           child: Material(
             color: Colors.white, // พื้นสีขาว
-            elevation: 0, // ไม่มีเงา
-            // shape: RoundedRectangleBorder(
-            //   borderRadius: BorderRadius.only(
-            //     topLeft: Radius.circular(5),
-            //     topRight: Radius.circular(5),
-            //   ),
-            // ),
+            elevation: 0,
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white, // พื้นสีขาว
-                borderRadius: const BorderRadius.only(
+                borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(5),
                   topRight: Radius.circular(5),
                 ),
-                border: const Border(
+                border: Border(
                   left: BorderSide(color: Colors.grey),
                   right: BorderSide(color: Colors.grey),
                   top: BorderSide(color: Colors.grey),
@@ -72,14 +65,29 @@ class _CannedDropdownState extends State<CannedDropdown> {
                   return InkWell(
                     onTap: () {
                       setState(() {
-                        selectedValue = item;
+                        // selectedValue = item;
                         _toggleDropdown();
                       });
+
+                      // แค่ทำ action ตามที่ต้องการ เช่น print หรือเปิดหน้าใหม่
+                      if (item == 'Canned Response Setting') {
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //       builder: (_) =>
+                        //           const CannedResponseSettingPage()),
+                        // );
+                      } else if (item == 'Canned Response') {
+                        // print('Open canned response list');
+                      }
                     },
+                    hoverColor: Colors.grey, // สีเวลา hover (desktop/web)
+                    highlightColor: Colors.grey,
+                    splashColor: Colors.grey,
                     child: Container(
                       width: double.infinity, // กว้างเต็มเมนู
                       padding: const EdgeInsets.symmetric(
-                          vertical: 8, horizontal: 12),
+                          vertical: 4, horizontal: 12),
                       child: Text(
                         item,
                         style: const TextStyle(fontSize: 12),

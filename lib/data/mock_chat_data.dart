@@ -12,8 +12,8 @@ List<ChatMessage> mockChatData = [
     lastMessage: 'May I ask a question?',
     time: '21:00 PM',
     unreadCount: 2,
-    status: 'no agent',
-    statusColor: Colors.red,
+    status: 'await',
+    statusColor: Colors.yellow.shade800,
     channel: 'assets/imgs/instagram.png',
   ),
 
@@ -27,7 +27,7 @@ List<ChatMessage> mockChatData = [
     time: '19:30 PM',
     unreadCount: 0,
     status: 'done',
-    statusColor: Colors.grey,
+    statusColor: Colors.black,
     channel: 'assets/imgs/facebook.png',
   ),
 
@@ -41,7 +41,7 @@ List<ChatMessage> mockChatData = [
     time: '18:45 PM',
     unreadCount: 1,
     status: 'have agent',
-    statusColor: Colors.orange,
+    statusColor: Colors.blue,
     channel: 'assets/imgs/line.png',
     // agent info
     agentId: 'A001',
@@ -59,7 +59,7 @@ List<ChatMessage> mockChatData = [
     time: '18:00 PM',
     unreadCount: 0,
     status: 'have agent',
-    statusColor: Colors.orange,
+    statusColor: Colors.blue,
     channel: 'assets/imgs/wechat.png',
     // agent info
     agentId: 'A003',
@@ -77,7 +77,7 @@ List<ChatMessage> mockChatData = [
     time: '17:25 PM',
     unreadCount: 0,
     status: 'Done',
-    statusColor: Colors.grey,
+    statusColor: Colors.black,
     channel: 'assets/imgs/line.png',
   ),
 
@@ -91,7 +91,7 @@ List<ChatMessage> mockChatData = [
     time: '16:12 PM',
     unreadCount: 1,
     status: 'have agent',
-    statusColor: Colors.orange,
+    statusColor: Colors.blue,
     channel: 'assets/imgs/livechat.png',
     // agent info
     agentId: 'A002',
@@ -109,7 +109,7 @@ List<ChatMessage> mockChatData = [
     time: '15:15 PM',
     unreadCount: 0,
     status: 'have agent',
-    statusColor: Colors.orange,
+    statusColor: Colors.blue,
     channel: 'assets/imgs/facebook.png',
     // agent info
     agentId: 'A003',
@@ -127,7 +127,7 @@ List<ChatMessage> mockChatData = [
     time: '14:12 PM',
     unreadCount: 0,
     status: 'Done',
-    statusColor: Colors.grey,
+    statusColor: Colors.black,
     channel: 'assets/imgs/instagram.png',
   ),
 
@@ -141,7 +141,7 @@ List<ChatMessage> mockChatData = [
     time: '13:59 PM',
     unreadCount: 0,
     status: 'Done',
-    statusColor: Colors.grey,
+    statusColor: Colors.black,
     channel: 'assets/imgs/livechat.png',
   ),
 
@@ -154,8 +154,8 @@ List<ChatMessage> mockChatData = [
     lastMessage: 'Where can I register for membership?',
     time: '12:44 PM',
     unreadCount: 2,
-    status: 'no agent',
-    statusColor: Colors.red,
+    status: 'await',
+    statusColor: Colors.yellow.shade800,
     channel: 'assets/imgs/wechat.png',
   ),
 
@@ -169,7 +169,7 @@ List<ChatMessage> mockChatData = [
     time: '11:22 AM',
     unreadCount: 1,
     status: 'done',
-    statusColor: Colors.grey,
+    statusColor: Colors.black,
     channel: 'assets/imgs/line.png',
   ),
 
@@ -182,8 +182,8 @@ List<ChatMessage> mockChatData = [
     lastMessage: 'Could you please recommend some products?',
     time: '10:43 AM',
     unreadCount: 1,
-    status: 'no agent',
-    statusColor: Colors.red, 
+    status: 'await',
+    statusColor: Colors.yellow.shade800,
     channel: 'assets/imgs/facebook.png',
   ),
 
@@ -197,7 +197,7 @@ List<ChatMessage> mockChatData = [
     time: '10:40 AM',
     unreadCount: 0,
     status: 'done',
-    statusColor: Colors.grey,
+    statusColor: Colors.black,
     channel: 'assets/imgs/livechat.png',
   ),
 
@@ -211,7 +211,7 @@ List<ChatMessage> mockChatData = [
     time: '09:25 AM',
     unreadCount: 0,
     status: 'have agent',
-    statusColor: Colors.orange,
+    statusColor: Colors.blue,
     channel: 'assets/imgs/instagram.png',
     // agent info
     agentId: 'A002',
@@ -229,7 +229,7 @@ List<ChatMessage> mockChatData = [
     time: '8:00 AM',
     unreadCount: 1,
     status: 'have agent',
-    statusColor: Colors.orange,
+    statusColor: Colors.blue,
     channel: 'assets/imgs/line.png',
     // agent info
     agentId: 'A001',

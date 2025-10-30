@@ -104,14 +104,14 @@ class ChatController {
 
   Color _getColorByStatus(String status) {
     switch (status) {
-      case 'no agent':
-        return Colors.red;
+      case 'await':
+        return Colors.yellow.shade800;
       case 'have agent':
-        return Colors.orange;
+        return Colors.blue;
       case 'done':
-        return Colors.grey;
-      default:
         return Colors.black;
+      default:
+        return Colors.grey;
     }
   }
 
