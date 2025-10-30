@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class CloseButtonLabel extends StatelessWidget {
+class ViewOnlyButton extends StatelessWidget {
   final VoidCallback onPressed;
 
-  const CloseButtonLabel({super.key, required this.onPressed});
+  const ViewOnlyButton({super.key, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class CloseButtonLabel extends StatelessWidget {
       ),
       child: TextButton(
         style: TextButton.styleFrom(
-          backgroundColor: Colors.black,
+          backgroundColor: const Color.fromARGB(255, 14, 80, 223),
           padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 1),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5.0),
@@ -25,13 +25,13 @@ class CloseButtonLabel extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
-              Icons.close, // ไอคอนหน้าคำ
+              Icons.remove_red_eye_rounded, // ไอคอนหน้าคำ
               size: 16, 
               color: Colors.white,
             ),
             SizedBox(width: 2),
             Text(
-              "Close",
+              "View Only",
               style: TextStyle(
                 fontSize: 12,
                 // fontWeight: FontWeight.bold,
@@ -41,26 +41,5 @@ class CloseButtonLabel extends StatelessWidget {
         ),
       ),
     );
-    // TextButton(
-    //   style: TextButton.styleFrom(
-    //     backgroundColor: Colors.black,
-    //     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-    //     shape: RoundedRectangleBorder(
-    //       borderRadius: BorderRadius.circular(10.0),
-    //       side: const BorderSide(color: Colors.white),
-    //       boxShadow: [
-    //         BoxShadow(
-    //           color: Colors.grey.withOpacity(0.2),
-    //           spreadRadius: 1,
-    //           blurRadius: 5,
-    //           offset: const Offset(0, 3),
-    //         ),
-    //       ],
-    //     ),
-    //     foregroundColor: Colors.white, // สีตัวอักษร
-    //   ),
-    //   onPressed: onPressed,
-    //   child: const Text("Close"),
-    // );
   }
 }

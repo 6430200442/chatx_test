@@ -12,6 +12,7 @@ class EmojiButton extends StatelessWidget {
       onPressed: onPressed,
       tooltip: 'Emoji',
       color: Colors.grey,
+      iconSize: 20,
     );
   }
 }

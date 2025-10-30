@@ -1,4 +1,7 @@
 // import 'package:chatx_test/model/quick_reply_message.dart';
+import 'package:chatx_test/constant/app_constants.dart';
+import 'package:chatx_test/widget/canned_dropdown.dart';
+import 'package:chatx_test/widget/quick_reply_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'emoji_button.dart';
 import 'quick_reply_label.dart';
@@ -28,7 +31,7 @@ class MessageInputBar extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+        // padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
@@ -48,11 +51,11 @@ class MessageInputBar extends StatelessWidget {
             // mainAxisSize: MainAxisSize.min,
             TextField(
               controller: controller,
-              minLines: 2, // ความสูงเริ่มต้น
+              minLines: 1, // ความสูงเริ่มต้น
               maxLines: 5, // พิมพ์หลายบรรทัดได้
               decoration: const InputDecoration(
                 hintText: 'Type a message',
-                hintStyle: TextStyle(color: Colors.grey),
+                hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
                 isDense: true,
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 12, horizontal: 16),
@@ -72,49 +75,87 @@ class MessageInputBar extends StatelessWidget {
               ),
 
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 IconButton(
                   icon: const Icon(Icons.file_present_outlined),
-                  onPressed: onSend,
+                  onPressed: onSend, 
                   color: Colors.grey,
+                  iconSize: 20,
                 ),
+                // const SizedBox(width: 4),
                 EmojiButton(onPressed: onEmojiPressed),
+                // const SizedBox(width: 4),
                 IconButton(
                   icon: const Icon(Icons.image_outlined),
                   onPressed: onSend,
                   color: Colors.grey,
+                  iconSize: 20,
                 ),
+                // const SizedBox(width: 4),
                 IconButton(
                   icon: const Icon(Icons.menu_rounded),
                   onPressed: onQuickReplyToggle, // <-- Toggle Quick Reply
                   color: Colors.grey,
+                  iconSize: 20,
                 ),
                 const Spacer(),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 14, 80, 223),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: InkWell(
-                    onTap: onSend,
-                    child: const Row(
-                      children: [
-                        Text(
-                          'Send',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        SizedBox(width: 4),
-                        Icon(Icons.send, color: Colors.white, size: 20),
-                      ],
+                Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 14, 80, 223),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: InkWell(
+                      onTap: onSend,
+                      child: const Row(
+                        children: [
+                          Text(
+                            'Send',
+                            style: TextStyle(color: Colors.white, fontSize: 14),
+                          ),
+                          SizedBox(width: 4),
+                          Icon(Icons.send, color: Colors.white, size: 18),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ],
             ),
+            Container(
+              height: 40,
+              decoration: const BoxDecoration(
+                color: Colors.grey,
+                borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(10),
+                bottomRight: Radius.circular(10),
+              ),
+              ),
+              child: const Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 25,
+                      width: 150,
+                      child: CannedDropdown()),
+                    const SizedBox(width: 8),
+                    SizedBox(
+                      height: 25,
+                      width: 150,
+                      child: QuickReplyDropdown()),
+                    
+                  ],
+                ),
+              )
+            ),
           ],
-        ),
+        ), 
       ),
     );
   }

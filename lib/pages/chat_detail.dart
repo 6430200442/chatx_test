@@ -7,6 +7,7 @@ import 'package:chatx_test/model/chat_detail_message.dart';
 import 'package:chatx_test/widget/chat_detail_app_bar.dart';
 import 'package:chatx_test/widget/chat_detail_close_transfer.dart';
 import 'package:chatx_test/widget/chat_detail_message_list.dart';
+import 'package:chatx_test/widget/curve_body_clipper.dart';
 import 'package:flutter/material.dart';
 import 'package:chatx_test/widget/message_input_bar.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
@@ -48,6 +49,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
       isRead: false,
       status: 'have agent',
       channel: widget.chatDetail.channel,
+      channelName: widget.chatDetail.channelName,
       agentId: widget.chatDetail.agentId,
       agentImage: OwnerInfo.ownerImage,
       agentName: OwnerInfo.ownerName,
@@ -188,54 +190,61 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
         chatDetail: widget.chatDetail,
         customerProfile: customerProfile,
       ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            if (widget.chatDetail.status == 'have agent' ||
-                widget.chatDetail.status == 'no agent')
-              ChatDetailCloseTransfer(
-                selectedTransfer: selectedTransfer,
-                onTransferChanged: (value) {
-                  setState(() => selectedTransfer = value!);
-                  onPressedTransfer();
-                },
-                onClosePressed: onPressedClose,
-                agentName: widget.chatDetail.agentName,
-              ),
-            Expanded(child: ChatDetailMessageList(messages: messages)),
-            if (_showEmojiBar)
-              SizedBox(
-                height: 300,
-                child: EmojiPicker(
-                  onEmojiSelected: (category, emoji) {
-                    _onEmojiSelected(emoji.emoji);
+      body: ClipPath(
+        clipper: CurveBodyClipper(),
+        child: Container(
+          color: Colors.white,
+          child: SafeArea(
+            child: Column(
+              children: [
+                // if (widget.chatDetail.status == 'have agent' ||
+                //     widget.chatDetail.status == 'no agent')
+                //   ChatDetailCloseTransfer(
+                //     selectedTransfer: selectedTransfer,
+                //     onTransferChanged: (value) {
+                //       setState(() => selectedTransfer = value!);
+                //       onPressedTransfer();
+                //     },
+                //     onClosePressed: onPressedClose,
+                //     agentName: widget.chatDetail.agentName,
+                //   ),
+                Expanded(child: ChatDetailMessageList(messages: messages)),
+                if (_showEmojiBar)
+                  SizedBox(
+                    height: 300,
+                    child: EmojiPicker(
+                      onEmojiSelected: (category, emoji) {
+                        _onEmojiSelected(emoji.emoji);
+                      },
+                    ),
+                  ),
+                MessageInputBar(
+                  controller: _messageController,
+                  onSend: _handleSend,
+                  onEmojiPressed: _toggleEmojiBar,
+                  onQuickReplyToggle: () {
+                    setState(() {
+                      _showQuickReplies = !_showQuickReplies;
+                    });
+                  },
+                  showQuickReplies: _showQuickReplies,
+                  quickReplies: mockQuickReplies,
+                  onQuickReplyTap: (msg) {
+                    setState(() {
+                      _messageController.text = msg;
+                      _messageController.selection = TextSelection.fromPosition(
+                        TextPosition(offset: _messageController.text.length),
+                      );
+                      _showQuickReplies = false;
+                    });
                   },
                 ),
-              ),
-            MessageInputBar(
-              controller: _messageController,
-              onSend: _handleSend,
-              onEmojiPressed: _toggleEmojiBar,
-              onQuickReplyToggle: () {
-                setState(() {
-                  _showQuickReplies = !_showQuickReplies;
-                });
-              },
-              showQuickReplies: _showQuickReplies,
-              quickReplies: mockQuickReplies,
-              onQuickReplyTap: (msg) {
-                setState(() {
-                  _messageController.text = msg;
-                  _messageController.selection = TextSelection.fromPosition(
-                    TextPosition(offset: _messageController.text.length),
-                  );
-                  _showQuickReplies = false;
-                });
-              },
+              ],
             ),
-          ],
+          ),
         ),
       ),
+      backgroundColor: AppColors.primaryColor,
     );
   }
 }

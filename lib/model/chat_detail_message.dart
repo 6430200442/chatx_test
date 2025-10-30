@@ -12,6 +12,7 @@ class ChatDetailMessage {
   final bool isRead;
   String status;
   final String channel;
+  final String channelName;
   final String? agentId;
   final String? agentImage;
   String? agentName;
@@ -29,6 +30,7 @@ class ChatDetailMessage {
     required this.isRead,
     required this.status,
     required this.channel,
+    required this.channelName,
     this.agentId,
     this.agentImage,
     this.agentName,
@@ -47,6 +49,7 @@ class ChatDetailMessage {
   bool? isRead,
   String? status,
   String? channel,
+  String? channelName,
   String? agentId,
   String? agentImage,
   String? agentName,
@@ -63,6 +66,7 @@ class ChatDetailMessage {
     isRead: isRead ?? this.isRead,
     status: status ?? this.status,
     channel: channel ?? this.channel,
+    channelName: channelName ?? this.channelName,
     agentId: agentId ?? this.agentId,
     agentImage: agentImage ?? this.agentImage,
     agentName: agentName ?? this.agentName,

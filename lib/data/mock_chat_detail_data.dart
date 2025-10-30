@@ -17,6 +17,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: true,
     status: 'no agent',
     channel: 'assets/imgs/instagram.png',
+    channelName: 'instagram',
   ),
 
   ChatDetailMessage(
@@ -31,6 +32,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: true,
     status: 'no agent',
     channel: 'assets/imgs/instagram.png',
+    channelName: 'instagram',
   ),
   /*----------------------------------------------------- */
 
@@ -48,6 +50,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: true,
     status: 'done',
     channel: 'assets/imgs/facebook.png',
+    channelName: 'facebook',
   ),
 
   ChatDetailMessage(
@@ -62,6 +65,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: true,
     status: 'done',
     channel: 'assets/imgs/facebook.png',
+    channelName: 'facebook',
     agentId: 'A001',
     agentImage: 'assets/imgs/agent1.jpg',
     agentName: 'Me',
@@ -79,6 +83,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: true,
     status: 'done',
     channel: 'assets/imgs/facebook.png',
+    channelName: 'facebook',
   ),
   /*----------------------------------------------------- */
 
@@ -96,6 +101,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: false,
     status: 'have agent',
     channel: 'assets/imgs/line.png',
+    channelName: 'line',
     // agent info
     agentId: 'A001',
     agentImage: 'assets/imgs/agent1.jpg',
@@ -114,6 +120,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: false,
     status: 'have agent',
     channel: 'assets/imgs/line.png',
+    channelName: 'line',
     // agent info
     agentId: 'A001',
     agentImage: 'assets/imgs/agent1.jpg',
@@ -132,6 +139,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: false,
     status: 'have agent',
     channel: 'assets/imgs/line.png',
+    channelName: 'line',
     // agent info
     agentId: 'A001',
     agentImage: 'assets/imgs/agent1.jpg',
@@ -153,6 +161,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: true,
     status: 'have agent',
     channel: 'assets/imgs/wechat.png',
+    channelName: 'wechat',
     // agent info
     agentId: 'A003',
     agentImage: 'assets/imgs/agent3.jpg',
@@ -170,6 +179,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: true,
     status: 'have agent',
     channel: 'assets/imgs/wechat.png',
+    channelName: 'wechat',
     // agent info
     agentId: 'A003',
     agentImage: 'assets/imgs/agent3.jpg',
@@ -187,6 +197,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: true,
     status: 'have agent',
     channel: 'assets/imgs/wechat.png',
+    channelName: 'wechat',
     // agent info
     agentId: 'A003',
     agentImage: 'assets/imgs/agent3.jpg',
@@ -208,6 +219,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: false,
     status: 'done',
     channel: 'assets/imgs/line.png',
+    channelName: 'line',
   ),
   ChatDetailMessage(
     chatRoomId: 'CR005',
@@ -221,6 +233,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: false,
     status: 'done',
     channel: 'assets/imgs/line.png',
+    channelName: 'line',
     agentId: 'A002',
     agentImage: 'assets/imgs/agent2.jpg',
     agentName: 'Agent Anna',
@@ -237,6 +250,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: false,
     status: 'done',
     channel: 'assets/imgs/line.png',
+    channelName: 'line',
   ),
   ChatDetailMessage(
     chatRoomId: 'CR005',
@@ -250,6 +264,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: false,
     status: 'done',
     channel: 'assets/imgs/line.png',
+    channelName: 'line',
     agentId: 'A002',
     agentImage: 'assets/imgs/agent2.jpg',
     agentName: 'Agent Anna',
@@ -266,6 +281,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: false,
     status: 'done',
     channel: 'assets/imgs/line.png',
+    channelName: 'line',
     agentId: 'A002',
     agentImage: 'assets/imgs/agent2.jpg',
     agentName: 'Agent Anna',
@@ -282,6 +298,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: false,
     status: 'done',
     channel: 'assets/imgs/line.png',
+    channelName: 'line',
     agentId: 'A002',
     agentImage: 'assets/imgs/agent2.jpg',
     agentName: 'Agent Anna',
@@ -298,6 +315,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: false,
     status: 'done',
     channel: 'assets/imgs/line.png',
+    channelName: 'line',
   ),
   ChatDetailMessage(
     chatRoomId: 'CR005',
@@ -311,6 +329,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: false,
     status: 'done',
     channel: 'assets/imgs/line.png',
+    channelName: 'line',
   ),
   /*----------------------------------------------------- */
 
@@ -328,6 +347,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: true,
     status: 'have agent',
     channel: 'assets/imgs/livechat.png',
+    channelName: 'livechat',
     // agent info
     agentId: 'A002',
     agentImage: 'assets/imgs/agent2.jpg',
@@ -346,6 +366,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: true,
     status: 'have agent',
     channel: 'assets/imgs/livechat.png',
+    channelName: 'livechat',
     agentId: 'A002',
     agentImage: 'assets/imgs/agent2.jpg',
     agentName: 'Agent Anna',
@@ -364,6 +385,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: false,
     status: 'have agent',
     channel: 'assets/imgs/livechat.png',
+    channelName: 'livechat',
     agentId: 'A002',
     agentImage: 'assets/imgs/agent2.jpg',
     agentName: 'Agent Anna',
@@ -382,6 +404,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: false,
     status: 'have agent',
     channel: 'assets/imgs/livechat.png',
+    channelName: 'livechat',
     agentId: 'A002',
     agentImage: 'assets/imgs/agent2.jpg',
     agentName: 'Agent Anna',
@@ -399,6 +422,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: true,
     status: 'have agent',
     channel: 'assets/imgs/livechat.png',
+    channelName: 'livechat',
     agentId: 'A002',
     agentImage: 'assets/imgs/agent2.jpg',
     agentName: 'Agent Anna',
@@ -419,6 +443,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: true,
     status: 'have agent',
     channel: 'assets/imgs/facebook.png',
+    channelName: 'facebook',
     // agent info
     agentId: 'A003',
     agentImage: 'assets/imgs/agent3.jpg',
@@ -437,6 +462,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: true,
     status: 'have agent',
     channel: 'assets/imgs/facebook.png',
+    channelName: 'facebook',
     // agent info
     agentId: 'A003',
     agentImage: 'assets/imgs/agent3.jpg',
@@ -455,6 +481,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: true,
     status: 'have agent',
     channel: 'assets/imgs/facebook.png',
+    channelName: 'facebook',
     // agent info
     agentId: 'A003',
     agentImage: 'assets/imgs/agent3.jpg',
@@ -473,6 +500,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: true,
     status: 'have agent',
     channel: 'assets/imgs/facebook.png',
+    channelName: 'facebook',
     // agent info
     agentId: 'A003',
     agentImage: 'assets/imgs/agent3.jpg',
@@ -491,6 +519,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: true,
     status: 'have agent',
     channel: 'assets/imgs/facebook.png',
+    channelName: 'facebook',
     // agent info
     agentId: 'A003',
     agentImage: 'assets/imgs/agent3.jpg',
@@ -512,6 +541,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: false,
     status: 'Done',
     channel: 'assets/imgs/instagram.png',
+    channelName: 'instagram',
   ),
   /*----------------------------------------------------- */
 
@@ -529,6 +559,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: true,
     status: 'done',
     channel: 'assets/imgs/livechat.png',
+    channelName: 'livechat',
   ),
   /*----------------------------------------------------- */
 
@@ -546,6 +577,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: false,
     status: 'no agent',
     channel: 'assets/imgs/wechat.png',
+    channelName: 'wechat',
   ),
   /*----------------------------------------------------- */
 
@@ -563,6 +595,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: true,
     status: 'done',
     channel: 'assets/imgs/line.png',
+    channelName: 'line',
   ),
   /*----------------------------------------------------- */
 
@@ -580,6 +613,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: false,
     status: 'no agent',
     channel: 'assets/imgs/facebook.png',
+    channelName: 'facebook',
   ),
   /*----------------------------------------------------- */
 
@@ -597,6 +631,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: true,
     status: 'done',
     channel: 'assets/imgs/livechat.png',
+    channelName: 'livechat',
   ),
   /*----------------------------------------------------- */
 
@@ -614,6 +649,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: false,
     status: 'have agent',
     channel: 'assets/imgs/instagram.png',
+    channelName: 'instagram',
     // agent info
     agentId: 'A002',
     agentImage: 'assets/imgs/agent2.jpg',
@@ -635,6 +671,7 @@ List<ChatDetailMessage> mockChatDetailData = [
     isRead: true,
     status: 'have agent',
     channel: 'assets/imgs/line.png',
+    channelName: 'line',
     // agent info
     agentId: 'A001',
     agentImage: 'assets/imgs/agent1.jpg',
