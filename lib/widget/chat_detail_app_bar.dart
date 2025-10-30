@@ -14,11 +14,13 @@ import 'package:chatx_test/pages/customer_profile.dart';
 class ChatDetailAppBar extends StatelessWidget implements PreferredSizeWidget {
   final ChatDetailMessage chatDetail;
   final CustomerProfile customerProfile;
+  final VoidCallback onClosePressed;
 
   const ChatDetailAppBar({
     super.key,
     required this.chatDetail,
     required this.customerProfile,
+    required this.onClosePressed,
   });
 
   @override
@@ -110,7 +112,7 @@ class ChatDetailAppBar extends StatelessWidget implements PreferredSizeWidget {
                     height: 25,
                     width: 60,
                     child: CloseButtonLabel(
-                      onPressed: () {},
+                      onPressed: onClosePressed,
                     ),
                   ),
                   const SizedBox(width: 4),

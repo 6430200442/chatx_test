@@ -189,6 +189,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
       appBar: ChatDetailAppBar(
         chatDetail: widget.chatDetail,
         customerProfile: customerProfile,
+        onClosePressed: onPressedClose,
       ),
       body: ClipPath(
         clipper: CurveBodyClipper(),
