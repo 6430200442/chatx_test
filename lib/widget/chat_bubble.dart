@@ -90,7 +90,6 @@
 //     );
 //   }
 // }
-
 import 'package:chatx_test/constant/app_constants.dart';
 import 'package:flutter/material.dart';
 
@@ -101,6 +100,7 @@ class ChatBubble extends StatelessWidget {
   final String senderImage;
   final String senderName;
   final bool showAvatarAndName;
+  final bool isJoinedChat;
 
   const ChatBubble({
     super.key,
@@ -110,12 +110,88 @@ class ChatBubble extends StatelessWidget {
     required this.senderImage,
     required this.senderName,
     this.showAvatarAndName = true,
+    this.isJoinedChat = false,
   });
+
+  // ✅ ฟังก์ชันเช็คว่าเป็นข้อความ "Joined"
+  bool get isJoinedMessage => message.contains('---Joined as');
+
+  // ✅ ฟังก์ชันแยกข้อความ Joined เพื่อทำสีชมพู (สำหรับแสดงใน Divider)
+  List<TextSpan> _buildJoinedMessageSpans() {
+    if (!isJoinedMessage) {
+      return [
+        TextSpan(
+          text: message,
+          style: const TextStyle(color: Colors.black, fontSize: 12),
+        )
+      ];
+    }
+
+    // แยกข้อความ "---Joined as Agent---"
+    final regex = RegExp(r'---Joined as (.+?)---');
+    final match = regex.firstMatch(message);
+
+    if (match != null) {
+      final roleName = match.group(1) ?? '';
+      return [
+        const TextSpan(
+          text: '---Joined as ',
+          style: TextStyle(color: Colors.grey, fontSize: 12),
+        ),
+        TextSpan(
+          text: roleName,
+          style: const TextStyle(
+            color: Colors.pink,
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const TextSpan(
+          text: '---',
+          style: TextStyle(color: Colors.grey, fontSize: 12),
+        ),
+      ];
+    }
+
+    return [
+      TextSpan(
+        text: message,
+        style: const TextStyle(color: Colors.grey, fontSize: 12),
+      )
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
     final timeString =
         "${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}";
+
+    // ✅ ถ้าเป็นข้อความ Joined ให้แสดงเป็น Divider แทน
+    if (isJoinedMessage) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12.0),
+        child: Row(
+          children: [
+            const Expanded(child: Divider(thickness: 1)),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: RichText(
+                text: TextSpan(
+                  children: _buildJoinedMessageSpans(),
+                  style: const TextStyle(fontSize: 12),
+                ),
+              ),
+            ),
+            const Expanded(child: Divider(thickness: 1)),
+          ],
+        ),
+      );
+    }
+
+    // ✅ ข้อความปกติ - ใช้สีชมพูถ้า joined แล้ว
+    final bubbleColor = isSender
+        ? (isJoinedChat ? Colors.pink : AppColors.primaryColor)
+        : Colors.grey[200];
 
     return Column(
       crossAxisAlignment:
@@ -159,12 +235,9 @@ class ChatBubble extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(vertical: 4),
                   padding: const EdgeInsets.fromLTRB(12, 8, 12, 6),
                   decoration: BoxDecoration(
-                    color: isSender
-                        ? AppColors.primaryColor
-                        : Colors.grey[200],
+                    color: bubbleColor,
                     borderRadius: BorderRadius.circular(5),
                   ),
-                  // 🔸 ใช้ Stack เพื่อวางเวลาไว้ล่างขวา
                   child: Stack(
                     children: [
                       Padding(
@@ -184,9 +257,7 @@ class ChatBubble extends StatelessWidget {
                           timeString,
                           style: TextStyle(
                             fontSize: 10,
-                            color: isSender
-                                ? Colors.white70
-                                : Colors.grey[600],
+                            color: isSender ? Colors.white70 : Colors.grey[600],
                           ),
                         ),
                       ),

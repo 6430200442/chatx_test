@@ -4,8 +4,13 @@ import 'package:flutter/material.dart';
 
 class ChatDetailMessageList extends StatelessWidget {
   final List<ChatDetailMessage> messages;
+  final bool isJoinedChat; // ✅ เพิ่ม parameter
 
-  const ChatDetailMessageList({super.key, required this.messages});
+  const ChatDetailMessageList({
+    super.key, 
+    required this.messages,
+    required this.isJoinedChat, // ✅ เพิ่ม
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +26,11 @@ class ChatDetailMessageList extends StatelessWidget {
           message: msg.message,
           isSender: msg.isSender,
           time: msg.time,
-          senderName:
-              msg.isSender ? (msg.agentName ?? '') : msg.customerName,
+          senderName: msg.isSender ? (msg.agentName ?? '') : msg.customerName,
           senderImage:
               msg.isSender ? (msg.agentImage ?? '') : msg.customerImage,
           showAvatarAndName: showAvatarAndName,
+          isJoinedChat: msg.isSender && isJoinedChat, // ✅ ส่งค่าเข้าไป
         );
       },
       separatorBuilder: (context, index) {

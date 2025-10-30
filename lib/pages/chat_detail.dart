@@ -5,7 +5,6 @@ import 'package:chatx_test/data/mock_customer_profile.dart';
 import 'package:chatx_test/data/mock_quick_reply_data.dart';
 import 'package:chatx_test/model/chat_detail_message.dart';
 import 'package:chatx_test/widget/chat_detail_app_bar.dart';
-// import 'package:chatx_test/widget/chat_detail_close_transfer.dart';
 import 'package:chatx_test/widget/chat_detail_message_list.dart';
 import 'package:chatx_test/widget/curve_body_clipper.dart';
 import 'package:flutter/material.dart';
@@ -28,11 +27,11 @@ class ChatDetailPage extends StatefulWidget {
 
 class _ChatDetailPageState extends State<ChatDetailPage> {
   final TextEditingController _messageController = TextEditingController();
-  //final FocusNode _focusNode = FocusNode();
   bool _showEmojiBar = false;
   bool _showQuickReplies = false;
   String? selectedTransfer;
   bool _isViewOnly = false;
+  bool isJoinedChat = false; // ✅ เก็บสถานะไว้ที่นี่
 
   void _handleSend() {
     final text = _messageController.text.trim();
@@ -87,17 +86,15 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
             TextButton(
               child: const Text('Cancel'),
               onPressed: () {
-                Navigator.of(context).pop(); // ปิด dialog แล้วกลับสู่หน้าปกติ
+                Navigator.of(context).pop();
               },
             ),
             TextButton(
               child: const Text('Confirm'),
               onPressed: () {
-                // เปลี่ยนสถานะใน chat list
                 setState(() {
                   widget.chatDetail.status = 'done';
 
-                  // หรือใช้ mock data list ก็ต้องอัปเดตใน mockChatDetailData
                   final index = mockChatDetailData.indexWhere(
                       (m) => m.chatRoomId == widget.chatDetail.chatRoomId);
                   if (index != -1) {
@@ -106,12 +103,11 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                   }
 
                   widget.chatController.updateStatus(
-                      widget.chatDetail.chatRoomId,
-                      'done'); // อัปเดตที่ ChatList
+                      widget.chatDetail.chatRoomId, 'done');
                 });
 
-                Navigator.of(context).pop(); // ปิด dialog
-                Navigator.of(context).pop(); // กลับไปหน้า ChatList
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
               },
             ),
           ],
@@ -121,7 +117,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
   }
 
   void onPressedTransfer() {
-    if (selectedTransfer == null) return; // ป้องกันถ้ายังไม่เลือก agent
+    if (selectedTransfer == null) return;
 
     showDialog(
       context: context,
@@ -134,21 +130,18 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
             TextButton(
               child: const Text('Cancel'),
               onPressed: () {
-                Navigator.of(context).pop(); // ปิด dialog
+                Navigator.of(context).pop();
               },
             ),
             TextButton(
               child: const Text('Confirm'),
               onPressed: () {
                 final image = agentImages[selectedTransfer] ??
-                    'assets/images/user_blue.png'; // ใช้ภาพ default ถ้าไม่มี
+                    'assets/images/user_blue.png';
 
                 setState(() {
-                  // อัปเดตในหน้า ChatDetail
                   widget.chatDetail.agentName = selectedTransfer;
-                  // widget.chatDetail.agentImage = image;
 
-                  // อัปเดตใน mockChatDetailData
                   final index = mockChatDetailData.indexWhere(
                       (m) => m.chatRoomId == widget.chatDetail.chatRoomId);
                   if (index != -1) {
@@ -159,19 +152,44 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                     );
                   }
 
-                  // เรียก controller เพื่อ sync กลับไปหน้า ChatList
                   widget.chatController.updateTransfer(
                       widget.chatDetail.chatRoomId, selectedTransfer!);
                 });
 
-                Navigator.of(context).pop(); // ปิด dialog
-                Navigator.of(context).pop(); // กลับไปหน้า ChatList
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
               },
             ),
           ],
         );
       },
     );
+  }
+
+  // ✅ function สำหรับ join chat - แสดงข้อความทันทีและเปิดโหมดชมพู
+  void _handleJoinChat(String roleName) {
+    final joinMessage = ChatDetailMessage(
+      chatRoomId: widget.chatDetail.chatRoomId,
+      customerId: widget.chatDetail.customerId,
+      customerImage: widget.chatDetail.customerImage,
+      customerName: widget.chatDetail.customerName,
+      messageId: 'M${DateTime.now().millisecondsSinceEpoch}',
+      message: '---Joined as ${OwnerInfo.ownerRole}---',
+      time: DateTime.now(),
+      isSender: true,
+      isRead: true,
+      status: widget.chatDetail.status,
+      channel: widget.chatDetail.channel,
+      channelName: widget.chatDetail.channelName,
+      agentId: widget.chatDetail.agentId,
+      agentImage: OwnerInfo.ownerImage,
+      agentName: OwnerInfo.ownerName,
+    );
+
+    setState(() {
+      mockChatDetailData.add(joinMessage); // เพิ่มข้อความ Join ทันที
+      isJoinedChat = true; // เปิดโหมดชมพูสำหรับข้อความถัดไป
+    });
   }
 
   @override
@@ -194,14 +212,14 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
         onViewOnlyPressed: () {
           setState(() {
             _isViewOnly = !_isViewOnly;
-
-            // ถ้าเปิด view only ให้ซ่อน keyboard
             if (_isViewOnly) {
               FocusScope.of(context).unfocus();
             }
           });
         },
         isViewOnly: _isViewOnly,
+        isJoinedChat: isJoinedChat, // ✅ ส่งค่า
+        onJoinChat: _handleJoinChat, // ✅ ส่ง callback
       ),
       body: ClipPath(
         clipper: CurveBodyClipper(),
@@ -210,18 +228,12 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
           child: SafeArea(
             child: Column(
               children: [
-                // if (widget.chatDetail.status == 'have agent' ||
-                //     widget.chatDetail.status == 'no agent')
-                //   ChatDetailCloseTransfer(
-                //     selectedTransfer: selectedTransfer,
-                //     onTransferChanged: (value) {
-                //       setState(() => selectedTransfer = value!);
-                //       onPressedTransfer();
-                //     },
-                //     onClosePressed: onPressedClose,
-                //     agentName: widget.chatDetail.agentName,
-                //   ),
-                Expanded(child: ChatDetailMessageList(messages: messages)),
+                Expanded(
+                  child: ChatDetailMessageList(
+                    messages: messages,
+                    isJoinedChat: isJoinedChat, // ✅ ส่งค่า
+                  ),
+                ),
                 if (_showEmojiBar)
                   SizedBox(
                     height: 300,
@@ -262,7 +274,8 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.remove_red_eye_rounded, color: Colors.black),
+                          Icon(Icons.remove_red_eye_rounded,
+                              color: Colors.black),
                           SizedBox(width: 4),
                           Text(
                             'View Mode',

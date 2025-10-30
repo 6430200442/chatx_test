@@ -15,7 +15,10 @@ class WhisperPage extends StatelessWidget {
 }
 
 class JoinChatDropdown extends StatefulWidget {
-  const JoinChatDropdown({super.key});
+  final VoidCallback onJoin;
+  final VoidCallback onWhisper;
+
+  const JoinChatDropdown({super.key, required this.onJoin, required this.onWhisper});
 
   @override
   State<JoinChatDropdown> createState() => _JoinChatDropdownState();
@@ -69,33 +72,19 @@ class _JoinChatDropdownState extends State<JoinChatDropdown> {
               .toList(),
           onChanged: (value) {
             setState(() {
-              selectedValue = value;
+              // selectedValue = value;
             });
 
-            // if (value == 'Join Chat') {
-            //   ScaffoldMessenger.of(context).showSnackBar(
-            //     const SnackBar(content: Text('Joined chat!')),
-            //   );
-            // } else if (value == 'Whisper to Agent') {
-            //   Navigator.push(
-            //     context,
-            //     MaterialPageRoute(builder: (_) => const WhisperPage()),
-            //   );
-            // }
+            if (value == 'Join Chat') {
+              widget.onJoin();
+            } else if (value == 'Whisper to Agent') {
+              widget.onWhisper();
+            }
           },
           buttonStyleData: const ButtonStyleData(
             height: 10,
             padding: EdgeInsets.symmetric(horizontal: 2),
           ),
-          // iconStyleData: const IconStyleData(
-          //   icon: SizedBox.shrink(), // ไม่แสดงไอคอนเลย
-          //   iconSize: 0,
-          // ),
-          // iconStyleData: const IconStyleData(
-          //   icon: Icon(Icons.arrow_drop_down, color: Colors.black),
-          //   openMenuIcon: Icon(Icons.arrow_drop_up, color: Colors.black),
-          //   iconSize: 20,
-          // ),
           dropdownStyleData: const DropdownStyleData(
             width: 110,
             maxHeight: 80,

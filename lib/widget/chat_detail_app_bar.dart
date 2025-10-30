@@ -1,7 +1,4 @@
 import 'package:chatx_test/constant/app_constants.dart';
-// import 'package:chatx_test/controller/chat_controller.dart';
-// import 'package:chatx_test/data/mock_chat_detail_data.dart';
-// import 'package:chatx_test/data/mock_customer_profile.dart';
 import 'package:chatx_test/model/chat_detail_message.dart';
 import 'package:chatx_test/model/customer_profile.dart';
 import 'package:chatx_test/widget/close_button.dart';
@@ -18,6 +15,8 @@ class ChatDetailAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback onClosePressed;
   final VoidCallback onViewOnlyPressed;
   final bool isViewOnly;
+  final bool isJoinedChat; // ✅ เพิ่ม
+  final Function(String) onJoinChat; // ✅ เพิ่ม callback สำหรับ join
 
   const ChatDetailAppBar({
     super.key,
@@ -26,6 +25,8 @@ class ChatDetailAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.onClosePressed,
     required this.onViewOnlyPressed,
     required this.isViewOnly,
+    required this.isJoinedChat, // ✅ เพิ่ม
+    required this.onJoinChat, // ✅ เพิ่ม
   });
 
   @override
@@ -75,27 +76,19 @@ class ChatDetailAppBar extends StatelessWidget implements PreferredSizeWidget {
                       children: [
                         Text(
                           chatDetail.customerName,
-                          style: const TextStyle(
-                            fontSize: 16,
-                            // fontWeight: FontWeight.bold,
-                          ),
+                          style: const TextStyle(fontSize: 16),
                         ),
                         const SizedBox(height: 4),
                         Row(
                           children: [
                             CircleAvatar(
-                              backgroundImage: AssetImage(
-                                chatDetail.channel,
-                              ),
+                              backgroundImage: AssetImage(chatDetail.channel),
                               radius: 10,
                             ),
                             const SizedBox(width: 4),
                             Text(
                               chatDetail.channelName,
-                              style: const TextStyle(
-                                fontSize: 14,
-                                // fontWeight: FontWeight.bold,
-                              ),
+                              style: const TextStyle(fontSize: 14),
                             ),
                           ],
                         ),
@@ -116,9 +109,7 @@ class ChatDetailAppBar extends StatelessWidget implements PreferredSizeWidget {
                   SizedBox(
                     height: 25,
                     width: 60,
-                    child: CloseButtonLabel(
-                      onPressed: onClosePressed,
-                    ),
+                    child: CloseButtonLabel(onPressed: onClosePressed),
                   ),
                   const SizedBox(width: 4),
                   SizedBox(
@@ -131,33 +122,41 @@ class ChatDetailAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                   const SizedBox(width: 4),
                   SizedBox(
-                      height: 25,
-                      width: 70,
-                      child: TransferButton(onPressed: () {
-                        // showDialog(
-                        //   context: context,
-                        //   builder: (_) => TransferPopup(
-                        //     agents: AgentList.agentsOnly,
-                        //     onConfirm: (agent, permanent, temporary, note,
-                        //         notify, attach) {
-                        //     },
-                        //   ),
-                        // );
-
+                    height: 25,
+                    width: 70,
+                    child: TransferButton(
+                      onPressed: () {
                         showDialog(
                           context: context,
                           builder: (_) => TransferPopup(
                             agents: AgentList.agentsOnly,
                             onConfirm: (selectedAgent, isPermanent, note,
-                                notify, attachSummary) {
-                            },
+                                notify, attachSummary) {},
                           ),
                         );
-                      })),
+                      },
+                    ),
+                  ),
                   const SizedBox(width: 4),
-                  const Expanded(
+                  Expanded(
                     child: SizedBox(
-                        height: 25, width: 110, child: JoinChatDropdown()),
+                      height: 25,
+                      width: 110,
+                      child: JoinChatDropdown(
+                        onJoin: () {
+                          // ✅ เรียก callback แทน setState
+                          onJoinChat(OwnerInfo.ownerName);
+                        },
+                        onWhisper: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const WhisperPage(),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -175,4 +174,17 @@ class ChatDetailAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize => const Size.fromHeight(100.0);
+}
+
+// ✅ เพิ่ม WhisperPage ที่หายไป
+class WhisperPage extends StatelessWidget {
+  const WhisperPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Whisper to Agent')),
+      body: const Center(child: Text('This is the Whisper Page')),
+    );
+  }
 }
