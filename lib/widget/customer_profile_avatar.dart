@@ -7,11 +7,11 @@ class CustomerProfileAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-            width: 150,
-            height: 150,
+            width: 120,
+            height: 120,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(color: Colors.grey[300]!, width: 2),
+              border: Border.all(color: Colors.white, width: 10),
             ),
             child: CircleAvatar(
               backgroundImage: AssetImage(imagePath),

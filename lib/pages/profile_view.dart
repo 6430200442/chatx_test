@@ -1,6 +1,6 @@
 import 'package:chatx_test/constant/app_constants.dart';
 import 'package:chatx_test/controller/profile_controller.dart';
-import 'package:chatx_test/widget/edit_profile_sheet.dart';
+// import 'package:chatx_test/widget/edit_profile_sheet.dart';
 import 'package:flutter/material.dart';
 
 class ProfileViewPage extends StatefulWidget {
@@ -36,17 +36,6 @@ class _ProfileViewPageState extends State<ProfileViewPage> {
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.edit, color: Colors.white),
-            onPressed: () {
-              showModalBottomSheet(
-                context: context,
-                builder: (context) => const EditProfileSheet(),
-              );
-            },
-          ),
-        ],
       ),
       body: Column(
         children: [

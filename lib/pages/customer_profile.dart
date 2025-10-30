@@ -37,19 +37,22 @@ class _CustomerProfilePageState extends State<CustomerProfilePage> {
             padding: const EdgeInsets.all(16),
             children: [
               const SizedBox(
-                height: 70,
+                height: 50,
               ),
               CustomerProfileHeader(profile: widget.customerHeaderProfile),
               CustomerProfileDetail(profile: widget.customerHeaderProfile),
-              CustomerProfileNote(profile: widget.customerHeaderProfile),
               CustomerProfileTag(profile: widget.customerHeaderProfile),
+              CustomerProfileNote(profile: widget.customerHeaderProfile),
+              const SizedBox(
+                height: 10,
+              ),
               CustomerProfileGallery(profile: widget.customerHeaderProfile),
             ],
           ),
         ),
         Positioned(
-          top: -75,
-          left: (MediaQuery.of(context).size.width / 2) - 75,
+          top: -65,
+          left: (MediaQuery.of(context).size.width / 2) - 60,
           child: CustomerProfileAvatar(imagePath: widget.customerHeaderProfile.customerImage,)
         ),
       ],

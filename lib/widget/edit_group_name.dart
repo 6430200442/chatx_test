@@ -69,7 +69,7 @@ class _EditGroupNameState extends State<EditGroupName> {
         TextButton(
           onPressed: _toggleEdit,
           child: Text(
-            _isEditing ? 'บันทึก' : 'แก้ไข',
+            _isEditing ? 'Save' : 'Edit',
             style: const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.bold,

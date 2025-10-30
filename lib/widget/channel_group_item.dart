@@ -100,8 +100,13 @@ class ChannelGroupItem extends StatelessWidget {
         ),
         trailing: !channelGroupItem.isConnect
             ? ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                backgroundColor: AppColors.primaryColor,),
                 onPressed: () => connectChannel(context),
-                child: const Text('Connect'),
+                child: const Text('Connect', style: TextStyle(color: Colors.white),),
               )
             : Row(
                 mainAxisSize: MainAxisSize.min,

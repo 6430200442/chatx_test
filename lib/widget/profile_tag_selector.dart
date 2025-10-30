@@ -30,12 +30,12 @@ class ProfileTagSelector extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.blue[100],
+                borderRadius: BorderRadius.circular(6),
+                color: tag.tagColor,
               ),
               child: Text(
                 tag.tagLabelName,
-                style: const TextStyle(color: Colors.black),
+                style: const TextStyle(color: Colors.white),
               ),
             ),
           );

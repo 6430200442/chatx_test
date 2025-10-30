@@ -186,7 +186,7 @@ class _CustomerContactPageState extends State<CustomerContactPage> {
                             const Text(
                               'Channel',
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 14,
                                 // fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -214,7 +214,7 @@ class _CustomerContactPageState extends State<CustomerContactPage> {
                             const Text(
                               'Group',
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 14,
                                 // fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -242,7 +242,7 @@ class _CustomerContactPageState extends State<CustomerContactPage> {
                             const Text(
                               'Agent',
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 14,
                                 // fontWeight: FontWeight.bold,
                               ),
                             ),

@@ -120,18 +120,30 @@ class _CustomerProfileTagState extends State<CustomerProfileTag> {
           alignment: Alignment.topRight,
           child: GestureDetector(
             onTap: toggleEditing,
-            child: Text(
-              isEditing ? 'Save' : 'Edit',
-              style: const TextStyle(
-                decoration: TextDecoration.underline,
-                color: Colors.grey,
-              ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  isEditing ? Icons.save : Icons.edit,
+                  size: 18,
+                  color: Colors.grey[700],
+                ),
+                const SizedBox(width: 4),
+                Text(
+                  isEditing ? 'Save' : 'Edit',
+                  style: const TextStyle(
+                    decoration: TextDecoration.underline,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
           ),
         ),
-        const Divider(
-          height: 24,
-        ),
+        // const Divider(
+        //   height: 24,
+        // ),
       ],
     );
   }

@@ -56,9 +56,9 @@ class _GroupMemberPageState extends State<GroupMemberPage> {
     showDialog(
       context: context,
       builder: (_) => DeleteDialog(
-        title: "ยืนยันการลบกลุ่ม",
-        content: "คุณต้องการลบกลุ่มนี้หรือไม่?",
-        confirmText: "ลบ",
+        title: "Delete Group Confirmation",
+        content: "Are you sure you want to delete this group?",
+        confirmText: "Delete",
         onConfirm: () {
           widget.controller.deleteGroup(widget.group.groupId);
           Navigator.pop(context);
@@ -74,10 +74,10 @@ class _GroupMemberPageState extends State<GroupMemberPage> {
     showDialog(
       context: context,
       builder: (_) => DeleteDialog(
-        title: "ยืนยันการลบสมาชิก",
+        title: "Confirm Delete Members",
         content:
-            "คุณต้องการลบสมาชิกจำนวน ${_selectedMembers.length} คน หรือไม่?",
-        confirmText: "ลบ",
+            "Are you sure you want to delete ${_selectedMembers.length} members?",
+        confirmText: "Delete",
         onConfirm: () {
           widget.controller
               .deleteMembers(widget.group.groupId, _selectedMembers.toList());
@@ -101,9 +101,9 @@ class _GroupMemberPageState extends State<GroupMemberPage> {
     showDialog(
       context: context,
       builder: (_) => DeleteDialog(
-        title: "ยืนยันการลบสมาชิกทั้งหมด",
-        content: "คุณต้องการลบสมาชิกทั้งหมดในกลุ่มนี้หรือไม่?",
-        confirmText: "ลบทั้งหมด",
+        title: "Confirm Delete All Members",
+        content: "Are you sure you want to delete all members in this group?",
+        confirmText: "Delete All",
         onConfirm: () {
           widget.controller.deleteAllMembers(widget.group.groupId);
           setState(() {
@@ -238,7 +238,7 @@ class _GroupMemberPageState extends State<GroupMemberPage> {
                             const Text(
                               'Row',
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 14,
                                 // fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -281,7 +281,7 @@ class _GroupMemberPageState extends State<GroupMemberPage> {
                   },
                 ),
             
-                const SizedBox(height: 15.0),
+                const SizedBox(height: 5.0),
                 Expanded(
                   child: ValueListenableBuilder<TextEditingValue>(
                     valueListenable: memberController.searchController,

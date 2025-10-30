@@ -83,12 +83,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
           title: const Text(' Confirm chat closure '),
           content: const Text('Do you want to complete the task?'),
           actions: <Widget>[
-            TextButton(
-              child: const Text('Cancel'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
+            
             TextButton(
               child: const Text('Confirm'),
               onPressed: () {
@@ -107,6 +102,12 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                 });
 
                 Navigator.of(context).pop();
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () {
                 Navigator.of(context).pop();
               },
             ),

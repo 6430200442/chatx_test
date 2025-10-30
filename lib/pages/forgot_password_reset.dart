@@ -141,7 +141,7 @@ class _ForgotPasswordResetPageState extends State<ForgotPasswordResetPage> {
                         : null,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: isPasswordMatch
-                          ? const Color.fromARGB(255, 28, 98, 249)
+                          ? AppColors.primaryColor
                           : Colors.blue[200],
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),

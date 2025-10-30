@@ -1,7 +1,8 @@
 import 'package:chatx_test/constant/app_constants.dart';
 import 'package:chatx_test/controller/profile_controller.dart';
 import 'package:chatx_test/pages/profile_view.dart';
-import 'package:chatx_test/pages/setting.dart';
+// import 'package:chatx_test/pages/setting.dart';
+import 'package:chatx_test/widget/edit_profile_sheet.dart';
 import 'package:flutter/material.dart';
 
 class UserProfilePage extends StatefulWidget {
@@ -34,17 +35,17 @@ class _UserProfilePageState extends State<UserProfilePage> {
         iconTheme: const IconThemeData(color: AppColors.backButton),
         backgroundColor: Colors.transparent,
         elevation: 0,
-        actions: [IconButton(
-            icon: const Icon(Icons.settings, color: Colors.white),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.edit, color: Colors.white),
             onPressed: () {
-              Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SettingPage(),
-                    ),
-                  );
+              showModalBottomSheet(
+                context: context,
+                builder: (context) => const EditProfileSheet(),
+              );
             },
-          ),],
+          ),
+        ],
       ),
       body: Container(
         width: double.infinity,

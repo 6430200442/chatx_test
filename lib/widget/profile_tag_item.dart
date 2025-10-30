@@ -27,7 +27,7 @@ class ProfileTagItem extends StatelessWidget {
           ),
           child: Text(
             tag.tagLabelName,
-            style: const TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
           ),
         ),
         if (isEditing)

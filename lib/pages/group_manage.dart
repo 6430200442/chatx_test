@@ -182,7 +182,7 @@ class _GroupManagePageState extends State<GroupManagePage> {
                             const Text(
                               'Row',
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 14,
                                 // fontWeight: FontWeight.bold,
                               ),
                             ),

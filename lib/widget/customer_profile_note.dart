@@ -4,7 +4,7 @@ import 'package:chatx_test/model/customer_profile.dart';
 
 class CustomerProfileNote extends StatefulWidget {
   final CustomerProfile profile;
-  
+
   const CustomerProfileNote({Key? key, required this.profile})
       : super(key: key);
 
@@ -48,23 +48,35 @@ class _CustomerProfileNoteState extends State<CustomerProfileNote> {
           height: 10,
         ),
         ProfileNoteEdit(
-            label: 'Note',
-            controller: noteController,
-            isEditing: isEditing),
+            label: 'Note', controller: noteController, isEditing: isEditing),
         Align(
-            alignment: Alignment.topRight,
-            child: GestureDetector(
-              onTap: toggleEditing,
-              child: Text(
-                isEditing ? 'Save' : 'Edit',
-                style: const TextStyle(
-                  decoration: TextDecoration.underline,
-                  color: Colors.grey,
+          alignment: Alignment.topRight,
+          child: GestureDetector(
+            onTap: toggleEditing,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  isEditing ? Icons.save : Icons.edit,
+                  size: 18,
+                  color: Colors.grey[700],
                 ),
-              ),
+                const SizedBox(width: 4),
+                Text(
+                  isEditing ? 'Save' : 'Edit',
+                  style: const TextStyle(
+                    decoration: TextDecoration.underline,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
-            ),
-        const Divider(height: 24,),
+          ),
+        ),
+        // const Divider(
+        //   height: 24,
+        // ),
       ],
     );
   }

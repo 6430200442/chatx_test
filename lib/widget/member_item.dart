@@ -93,7 +93,7 @@ class MemberItem extends StatelessWidget {
                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
               ),
               child: const Text(
-                'แก้ไข',
+                'Edit',
                 style: TextStyle(
                   fontSize: 12,
                   color: Colors.grey,

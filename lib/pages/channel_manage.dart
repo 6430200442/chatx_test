@@ -179,7 +179,7 @@ class _ChannelManagePageState extends State<ChannelManagePage> {
                             const Text(
                               'Channel',
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 14,
                                 // fontWeight: FontWeight.bold,
                               ),
                             ),

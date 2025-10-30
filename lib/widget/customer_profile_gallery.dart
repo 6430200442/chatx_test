@@ -47,7 +47,7 @@ class _CustomerProfileGalleryState extends State<CustomerProfileGallery> {
               child: const Text(
               'View all',
               style: TextStyle(
-                  fontWeight: FontWeight.normal,
+                  fontWeight: FontWeight.bold,
                   decoration: TextDecoration.underline,
                   color: Colors.grey,
               ),

@@ -129,7 +129,7 @@ class _ForgotPasswordOtpPageState extends State<ForgotPasswordOtpPage> {
                         : null,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: isOtpFilled
-                          ? const Color.fromARGB(255, 28, 98, 249)
+                          ? AppColors.primaryColor
                           : Colors.blue[200],
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),

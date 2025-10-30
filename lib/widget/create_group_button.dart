@@ -1,3 +1,4 @@
+import 'package:chatx_test/constant/app_constants.dart';
 import 'package:flutter/material.dart';
 
 class CreateGroupButton extends StatelessWidget {
@@ -11,9 +12,9 @@ class CreateGroupButton extends StatelessWidget {
       height: 60,
       child: FloatingActionButton(
         onPressed: onPressed, 
-        backgroundColor: Colors.grey.shade200,
+        backgroundColor: AppColors.primaryColor,
         shape: const CircleBorder(),
-        child: const Icon(Icons.group_add_rounded),
+        child: const Icon(Icons.group_add_rounded, color: Colors.white,),
         ),
     );
   }

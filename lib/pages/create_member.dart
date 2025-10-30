@@ -2,7 +2,7 @@ import 'package:chatx_test/constant/app_constants.dart';
 import 'package:chatx_test/widget/confirm_button.dart';
 // import 'package:chatx_test/widget/create_group_button.dart';
 import 'package:chatx_test/widget/curve_body_clipper.dart';
-import 'package:chatx_test/widget/input_field.dart';
+// import 'package:chatx_test/widget/input_field.dart';
 import 'package:flutter/material.dart';
 
 class CreateMember extends StatefulWidget {
@@ -43,35 +43,47 @@ class _CreateMemberState extends State<CreateMember> {
           color: Colors.white,
           child: Column(
             children: [
-              const SizedBox(height: 15.0),
               Container(
                 color: Colors.white,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Center(
-                        child: Column(
-                      children: [
-                        Text('Group ${widget.groupName}',
-                            style: const TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold)),
-                        const Text('เพิ่มสมาชิกกลุ่ม',
-                            style: TextStyle(
-                                fontSize: 15, fontWeight: FontWeight.bold)),
-                      ],
-                    )),
-                    const SizedBox(height: 35),
-                    const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                            'กรอก Email เพื่อส่งลิงค์คำชวนเข้ากลุ่ม',
-                            style: TextStyle(
-                                fontSize: 13, fontWeight: FontWeight.bold))),
-                    InputField(controller: memberNameController),
-                    const SizedBox(height: 20),
-                    Align(
-                      alignment: Alignment.centerRight,
+                    const SizedBox(height: 14),
+                    Text('Group ${widget.groupName}',
+                        style: const TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold)),
+                    const SizedBox(height: 16),
+                    const Text(
+                      "Please enter email to invite member to the group",
+                      style: TextStyle(
+                          fontSize: 13, fontWeight: FontWeight.normal),
+                    ),
+                    const SizedBox(height: 16),
+                    const Text(
+                      "Email",
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 16),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: TextField(
+                        controller: memberNameController,
+                        decoration: const InputDecoration(
+                          hintText: "Enter member email",
+                          hintStyle: TextStyle(
+                              fontSize: 13, fontWeight: FontWeight.normal),
+                          border: OutlineInputBorder(),
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 10),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    SizedBox(
+                      width: double.infinity,
                       child: ConfirmButton(
                         onPressed: () {
                           final memberName = memberNameController.text.trim();

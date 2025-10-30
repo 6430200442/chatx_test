@@ -13,7 +13,7 @@ class ProfileTagAdd extends StatelessWidget {
         padding: const EdgeInsets.all(4),
         decoration: BoxDecoration(
           border: Border.all(color: Colors.grey),
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(20),
         ),
         child: const Icon(Icons.add),
       ),

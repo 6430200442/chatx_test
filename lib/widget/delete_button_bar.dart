@@ -28,37 +28,68 @@ class DeleteButtonBar extends StatelessWidget {
             ? [
                 TextButton(
                   onPressed: onCancel,
-                  child: Text("ยกเลิก",
-                      style: TextStyle(fontSize: 12, color: Colors.red.shade800)),
+                  child: const Row(
+                    children: [
+                      Icon(Icons.cancel, size: 12, color: Colors.red),
+                      SizedBox(width: 2),
+                      Text("Cancel",
+                          style: TextStyle(fontSize: 12, color: Colors.red)),
+                    ],
+                  ),
                 ),
                 const Spacer(),
                 TextButton(
                     onPressed: onDeleteSelected,
-                    child: Text(
-                      "ลบที่เลือก",
-                      style: TextStyle(fontSize: 12, color: Colors.red.shade800),
+                    child: const Row(
+                      children: [
+                        Icon(Icons.delete, size: 14, color: Colors.red),
+                        SizedBox(width: 2),
+                        Text(
+                          "Delete Selected",
+                          style: TextStyle(fontSize: 12, color: Colors.red),
+                        ),
+                      ],
                     )),
                 const SizedBox(width: 4),
                 TextButton(
                     onPressed: onDeleteAll,
-                    child: Text(
-                      "ลบทั้งหมด",
-                      style: TextStyle(fontSize: 12, color: Colors.red.shade800),
+                    child: const Row(
+                      children: [
+                        Icon(Icons.delete_forever, size: 14, color: Colors.red),
+                        SizedBox(width: 2),
+                        Text(
+                          "Delete All",
+                          style: TextStyle(fontSize: 12, color: Colors.red),
+                        ),
+                      ],
                     )),
               ]
             : [
                 TextButton(
                     onPressed: onDeleteGroup,
-                    child: Text(
-                      "ลบกลุ่ม",
-                      style: TextStyle(fontSize: 12, color: Colors.red.shade800),
+                    child: const Row(
+                      children: [
+                        Icon(Icons.group_remove_rounded,
+                            size: 14, color: Colors.red),
+                        SizedBox(width: 2),
+                        Text(
+                          "Delete Group",
+                          style: TextStyle(fontSize: 12, color: Colors.red),
+                        ),
+                      ],
                     )),
                 const SizedBox(width: 4),
                 TextButton(
                     onPressed: onDeleteMemberMode,
-                    child: Text(
-                      "ลบสมาชิก",
-                      style: TextStyle(fontSize: 12, color: Colors.red.shade800),
+                    child: const Row(
+                      children: [
+                        Icon(Icons.person_remove, size: 14, color: Colors.red),
+                        SizedBox(width: 2),
+                        Text(
+                          "Delete Members",
+                          style: TextStyle(fontSize: 12, color: Colors.red),
+                        ),
+                      ],
                     )),
               ],
       ),

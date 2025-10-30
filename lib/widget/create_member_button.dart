@@ -1,3 +1,4 @@
+import 'package:chatx_test/constant/app_constants.dart';
 import 'package:flutter/material.dart';
 
 class CreateMemberButton extends StatelessWidget {
@@ -11,9 +12,9 @@ class CreateMemberButton extends StatelessWidget {
       height: 60,
       child: FloatingActionButton(
         onPressed: onPressed, 
-        backgroundColor: Colors.grey.shade200,
+        backgroundColor: AppColors.primaryColor,
         shape: const CircleBorder(),
-        child: const Icon(Icons.person_add_alt_1),
+        child: const Icon(Icons.person_add_alt_1, color: Colors.white,),
         ),
     );
   }

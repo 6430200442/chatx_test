@@ -1,3 +1,4 @@
+import 'package:chatx_test/constant/app_constants.dart';
 import 'package:flutter/material.dart';
 
 class ConfirmButton extends StatelessWidget {
@@ -15,19 +16,14 @@ class ConfirmButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.grey.shade100, 
-          foregroundColor: Colors.grey,
-          shape: RoundedRectangleBorder( 
-            borderRadius: BorderRadius.circular(8),
-          ),
-          textStyle: const TextStyle(
-            fontSize: 13,    
-            fontWeight: FontWeight.bold, 
-          ),
-          elevation: 4,
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        backgroundColor: AppColors.primaryColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
         ),
-      child: Text(text),
+      ),
+      child: Text(text,
+          style: const TextStyle(
+              fontSize: 13, fontWeight: FontWeight.bold, color: Colors.white)),
     );
   }
 }
