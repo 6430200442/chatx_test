@@ -32,6 +32,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
   bool _showEmojiBar = false;
   bool _showQuickReplies = false;
   String? selectedTransfer;
+  bool _isViewOnly = false;
 
   void _handleSend() {
     final text = _messageController.text.trim();
@@ -139,7 +140,6 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
             TextButton(
               child: const Text('Confirm'),
               onPressed: () {
-
                 final image = agentImages[selectedTransfer] ??
                     'assets/images/user_blue.png'; // ใช้ภาพ default ถ้าไม่มี
 
@@ -152,10 +152,11 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                   final index = mockChatDetailData.indexWhere(
                       (m) => m.chatRoomId == widget.chatDetail.chatRoomId);
                   if (index != -1) {
-                    mockChatDetailData[index] = mockChatDetailData[index]
-                        .copyWith(
-                          agentName: selectedTransfer,
-                          agentImage: image,);
+                    mockChatDetailData[index] =
+                        mockChatDetailData[index].copyWith(
+                      agentName: selectedTransfer,
+                      agentImage: image,
+                    );
                   }
 
                   // เรียก controller เพื่อ sync กลับไปหน้า ChatList
@@ -190,6 +191,17 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
         chatDetail: widget.chatDetail,
         customerProfile: customerProfile,
         onClosePressed: onPressedClose,
+        onViewOnlyPressed: () {
+          setState(() {
+            _isViewOnly = !_isViewOnly;
+
+            // ถ้าเปิด view only ให้ซ่อน keyboard
+            if (_isViewOnly) {
+              FocusScope.of(context).unfocus();
+            }
+          });
+        },
+        isViewOnly: _isViewOnly,
       ),
       body: ClipPath(
         clipper: CurveBodyClipper(),
@@ -219,27 +231,47 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                       },
                     ),
                   ),
-                MessageInputBar(
-                  controller: _messageController,
-                  onSend: _handleSend,
-                  onEmojiPressed: _toggleEmojiBar,
-                  onQuickReplyToggle: () {
-                    setState(() {
-                      _showQuickReplies = !_showQuickReplies;
-                    });
-                  },
-                  showQuickReplies: _showQuickReplies,
-                  quickReplies: mockQuickReplies,
-                  onQuickReplyTap: (msg) {
-                    setState(() {
-                      _messageController.text = msg;
-                      _messageController.selection = TextSelection.fromPosition(
-                        TextPosition(offset: _messageController.text.length),
-                      );
-                      _showQuickReplies = false;
-                    });
-                  },
-                ),
+                if (!_isViewOnly)
+                  MessageInputBar(
+                    controller: _messageController,
+                    onSend: _handleSend,
+                    onEmojiPressed: _toggleEmojiBar,
+                    onQuickReplyToggle: () {
+                      setState(() {
+                        _showQuickReplies = !_showQuickReplies;
+                      });
+                    },
+                    showQuickReplies: _showQuickReplies,
+                    quickReplies: mockQuickReplies,
+                    onQuickReplyTap: (msg) {
+                      setState(() {
+                        _messageController.text = msg;
+                        _messageController.selection =
+                            TextSelection.fromPosition(
+                          TextPosition(offset: _messageController.text.length),
+                        );
+                        _showQuickReplies = false;
+                      });
+                    },
+                  ),
+                if (_isViewOnly)
+                  Container(
+                    color: Colors.grey,
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.remove_red_eye_rounded, color: Colors.black),
+                          SizedBox(width: 4),
+                          Text(
+                            'View Mode',
+                            style: TextStyle(color: Colors.black, fontSize: 12),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),

@@ -15,12 +15,16 @@ class ChatDetailAppBar extends StatelessWidget implements PreferredSizeWidget {
   final ChatDetailMessage chatDetail;
   final CustomerProfile customerProfile;
   final VoidCallback onClosePressed;
+  final VoidCallback onViewOnlyPressed;
+  final bool isViewOnly;
 
   const ChatDetailAppBar({
     super.key,
     required this.chatDetail,
     required this.customerProfile,
     required this.onClosePressed,
+    required this.onViewOnlyPressed,
+    required this.isViewOnly,
   });
 
   @override
@@ -117,15 +121,19 @@ class ChatDetailAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                   const SizedBox(width: 4),
                   SizedBox(
-                      height: 25,
-                      width: 80,
-                      child: ViewOnlyButton(onPressed: () {})),
-                  const SizedBox(width: 4),    
+                    height: 25,
+                    width: 80,
+                    child: ViewOnlyButton(
+                      isViewOnly: isViewOnly,
+                      onPressed: onViewOnlyPressed,
+                    ),
+                  ),
+                  const SizedBox(width: 4),
                   SizedBox(
                       height: 25,
                       width: 70,
                       child: TransferButton(onPressed: () {})),
-                  const SizedBox(width: 4),    
+                  const SizedBox(width: 4),
                   const Expanded(
                     child: SizedBox(
                         height: 25, width: 110, child: JoinChatDropdown()),
